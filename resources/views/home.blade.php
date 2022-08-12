@@ -8,13 +8,48 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <table class="table table-striped task-table">
+                        <!-- Table Headings -->
+                        <thead>
+                            <th>Vehicle</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                        </thead>
+    
+                        <!-- Table Body -->
+                        <tbody>
+                            @foreach ($vehicles as $vehicle)
+                                <tr>
+                                    <td class="table-text">
+                                        <div>{{ $vehicle->year . " " . $vehicle->make . " " . $vehicle->model }}</div>
+                                    </td>
+                                    
+                                    <td>
+                                        <!-- Show records button button -->
+                                        <a href="{{ url("/home") }}" class="btn btn-primary"><i class="fa fa-gear"></i>See records</a>
+                                    </td>
 
-                    {{ __('You are logged in!') }}
+                                    <td>
+                                        <!-- Add record button -->
+                                        <a href="{{ url("/home") }}" class="btn btn-primary"><i class="fa fa-gear"></i>Add record</a>
+                                    </td>
+    
+                                    <td>
+                                        <!-- Delete record button -->
+                                        <form action="{{ url("/home") }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+    
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
