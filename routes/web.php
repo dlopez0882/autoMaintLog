@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/vehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicle');
