@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Records for <year> <make> <model>') }}</div>
+                <div class="card-header">{{ $vehicle->year . " " . $vehicle->make . " " . $vehicle->model }}</div>
             </div>
         </div>
     </div>
