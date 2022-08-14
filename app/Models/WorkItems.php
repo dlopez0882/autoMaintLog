@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicle extends Model
+class WorkItems extends Model
 {
     use HasFactory;
 
@@ -15,19 +15,16 @@ class Vehicle extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'year',
-        'make',
-        'model',
+        'service_date',
+        'vehicle_id',
+        'mileage',
+        'services',
+        'cost',
+        'technician_id',
     ];
-
-    public function user()
+    
+    public function vehicle()
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function workItems()
-    {
-        return $this-hasMany(WorkItems::class);
+        return $this->belongsTo(Vehicle::class);
     }
 }

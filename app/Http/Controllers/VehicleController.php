@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\VehicleRepository;
 use App\Models\Vehicle;
-use Illuminate\Support\Facades\Storage;
+use App\Models\WorkItems;
 
 class VehicleController extends Controller
 {
@@ -30,9 +30,7 @@ class VehicleController extends Controller
 
     public function index(Request $request, Vehicle $vehicle)
     {
-        // only temporary until we can retrieve from DB...
-        $workOrders = Storage::disk('public')->get('json/work_order.json');
-        $workOrders = json_decode($workOrders, true);
+        $workOrders = WorkItems::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
         return view('vehicles.index', [
             'vehicle' => $this->vehicle->forUserSingle($request->user(), $vehicle),

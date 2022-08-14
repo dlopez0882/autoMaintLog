@@ -61,10 +61,10 @@
                             @foreach ($workOrders as $workOrder)
                             <tr>
                                 <td class="table-text">
-                                    <div>{{ $workOrder["date"] }}</div>
+                                    <div>{{ $workOrder->service_date }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder["mileage"] }}</div>
+                                    <div>{{ $workOrder->mileage }}</div>
                                 </td>
                                 <td class="table-text">
                                     <div>
@@ -72,14 +72,14 @@
                                             <li>Install OEM brake pads F (p/n: 45022-S2A-E51)</li>
                                             <li>Install OEM brake pads R (p/n: 43022-S2A-010)</li>
                                         </ul> --}}
-                                        {{ $workOrder["work_items"] }}
+                                        {{ $workOrder->services }}
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    {{ $workOrder["performedBy"] }}
+                                    {{ $workOrder->technician_id }}
                                 </td>
                                 <td class="table-text">
-                                    {{ $workOrder["cost"] }}
+                                    ${{ $workOrder->cost }}
                                 </td>
                             </tr>
                             @endforeach
