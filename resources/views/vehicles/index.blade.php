@@ -21,8 +21,8 @@
                             <input type="number" name="mileage" id="mileage" class="form-control" value="">
                         </div>
                         <div class="mb-3">
-                            <label for="maintenance">Maintenance item(s)</label>
-                            <input type="text" name="maintenance" id="maintenance" class="form-control" value="">
+                            <label for="services">Service item(s)</label>
+                            <input type="text" name="services" id="services" class="form-control" value="">
                         </div>
                         <div class="mb-3">
                             <label for="technician">Performed by</label>
@@ -52,7 +52,7 @@
                         <thead>
                             <th>Date</th>
                             <th>Mileage</th>
-                            <th>Maintenance</th>
+                            <th>Service item(s)</th>
                             <th>Performed by</th>
                             <th>Cost</th>
                         </thead>
