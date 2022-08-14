@@ -7,8 +7,47 @@
             <div class="card">
                 <div class="card-header">{{ $vehicle->year . " " . $vehicle->make . " " . $vehicle->model }}</div>
 
-                <!-- body -->
+                <!-- form for entering a maintenance record -->
                 <div class="card-body">
+                    <h2>Enter Work Item</h2>
+                    <form action="">
+
+                        <div class="mb-3">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="date" class="form-control" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mileage">Mileage</label>
+                            <input type="number" name="mileage" id="mileage" class="form-control" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="maintenance_item">Maintenance item</label>
+                            <input type="text" name="maintenance_item" id="maintenance_item" class="form-control" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="technician">Performed by</label>
+                            <input type="text" name="technician" id="technician" class="form-control" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cost">Cost</label>
+                            <input type="number" name="cost" id="cost" class="form-control" value="">
+                        </div>
+
+                        <!-- add work item button -->
+                        <div class="mb-3">
+                            <div class="col-sm-offset-3 col-sm-6">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i> Add Work Item
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+
+                <!-- table of maintenance records -->
+                <div class="card-body">
+                    <h2>Work Items</h2>
                     <table class="table table-striped task-table">
                         <thead>
                             <th>Date</th>
