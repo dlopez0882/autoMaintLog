@@ -21,8 +21,8 @@
                             <input type="number" name="mileage" id="mileage" class="form-control" value="">
                         </div>
                         <div class="mb-3">
-                            <label for="maintenance_item">Maintenance item</label>
-                            <input type="text" name="maintenance_item" id="maintenance_item" class="form-control" value="">
+                            <label for="maintenance">Maintenance item(s)</label>
+                            <input type="text" name="maintenance" id="maintenance" class="form-control" value="">
                         </div>
                         <div class="mb-3">
                             <label for="technician">Performed by</label>
