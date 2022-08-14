@@ -30,10 +30,11 @@ class VehicleController extends Controller
 
     public function index(Request $request, Vehicle $vehicle)
     {
+        $vehicle = $this->vehicle->forUserSingle($request->user(), $vehicle);
         $workOrders = WorkItems::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
         return view('vehicles.index', [
-            'vehicle' => $this->vehicle->forUserSingle($request->user(), $vehicle),
+            'vehicle' => $vehicle,
             'workOrders' => $workOrders,
         ]);
     }
