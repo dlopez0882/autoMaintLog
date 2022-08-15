@@ -26,7 +26,7 @@
                                     
                                     <td>
                                         <!-- Show records button button -->
-                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary"><i class="fa fa-gear"></i> See maitenance log</a>
+                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary"><i class="fa fa-gear"></i> See maintenance log</a>
                                     </td>
     
                                     <td>
