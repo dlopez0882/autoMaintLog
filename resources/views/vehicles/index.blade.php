@@ -9,8 +9,12 @@
 
                 <!-- form for entering a maintenance record -->
                 <div class="card-body">
+                    <!-- Display Validation Errors -->
+                    @include('common.errors')
+                    
                     <h2>Enter Work Item</h2>
-                    <form action="">
+                    <form action="{{ url('addworkitem') }}" method="POST" class="form-horizontal">
+                        {{ csrf_field() }}
 
                         <div class="mb-3">
                             <label for="date">Date</label>
