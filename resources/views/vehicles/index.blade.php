@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <!-- Display Validation Errors -->
                     @include('common.errors')
-                    
+
                     <h2>Enter Work Item</h2>
                     <form action="{{ url('addworkitem') }}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
@@ -34,7 +34,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="cost">Cost</label>
-                            <input type="number" name="cost" id="cost" class="form-control" value="">
+                            <input type="number" step=0.01 name="cost" id="cost" class="form-control" value="">
                         </div>
 
                         <!-- add work item button -->
