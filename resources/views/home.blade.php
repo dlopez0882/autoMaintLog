@@ -31,7 +31,7 @@
     
                                     <td>
                                         <!-- Delete record button -->
-                                        <form action="{{ url("/home") }}" method="POST">
+                                        <form action="{{ url("deletevehicle/" . $vehicle->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
     

@@ -38,4 +38,15 @@ class VehicleController extends Controller
             'workOrders' => $workOrders,
         ]);
     }
+
+    /**
+     * Delete a vehicle and its associate maintenance history items.
+     *
+     * @return void
+     */
+    public function destroy(Request $request, Vehicle $vehicle)
+    {
+        echo $vehicle; die;
+        return redirect('/');
+    }
 }
