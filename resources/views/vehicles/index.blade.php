@@ -16,6 +16,9 @@
                     <form action="{{ url('addworkitem') }}" method="POST" class="form-horizontal">
                         {{ csrf_field() }}
 
+                        {{-- hidden field(s) --}}
+                        <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ $vehicle->id }}">
+
                         <div class="mb-3">
                             <label for="date">Date</label>
                             <input type="date" name="date" id="date" class="form-control" value="">
@@ -48,10 +51,18 @@
                         
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <!-- table of maintenance records -->
+<!-- table of maintenance records -->
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Work Items</div>
                 <div class="card-body">
-                    <h2>Work Items</h2>
                     <table class="table table-striped task-table">
                         <thead>
                             <th>Date</th>
@@ -68,16 +79,10 @@
                                     <div>{{ $workOrder->service_date }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->mileage }}</div>
+                                    <div>{{ number_format($workOrder->mileage) }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>
-                                        {{-- <ul>
-                                            <li>Install OEM brake pads F (p/n: 45022-S2A-E51)</li>
-                                            <li>Install OEM brake pads R (p/n: 43022-S2A-010)</li>
-                                        </ul> --}}
-                                        {{ $workOrder->services }}
-                                    </div>
+                                    <div>{{ $workOrder->services }}</div>
                                 </td>
                                 <td class="table-text">
                                     {{ $workOrder->technician }}
@@ -95,4 +100,5 @@
         </div>
     </div>
 </div>
+
 @endsection

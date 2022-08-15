@@ -42,13 +42,13 @@ class WorkItemController extends Controller
         
         WorkItems::create([
             'service_date' => $request->date,
-            'vehicle_id' => 1, // TODO: make this dynamic
+            'vehicle_id' => $request->vehicle_id,
             'mileage' => $request->mileage,
             'services' => $request->services,
             'technician' => $request->technician,
             'cost' => $request->cost,
         ]);
      
-        return redirect('vehicle/1');
+        return redirect('vehicle/' . $request->vehicle_id);
     }
 }
