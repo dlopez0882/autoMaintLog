@@ -27,12 +27,7 @@
                                     
                                     <td>
                                         <!-- Show records button button -->
-                                        <a href="{{ url("/home") }}" class="btn btn-primary"><i class="fa fa-gear"></i>See records</a>
-                                    </td>
-
-                                    <td>
-                                        <!-- Add record button -->
-                                        <a href="{{ url("/home") }}" class="btn btn-primary"><i class="fa fa-gear"></i>Add record</a>
+                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary"><i class="fa fa-gear"></i>See vehicle</a>
                                     </td>
     
                                     <td>
