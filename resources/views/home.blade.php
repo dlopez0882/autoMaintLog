@@ -5,14 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('My Vehicles') }}</div>
 
                 <div class="card-body">
                     <table class="table table-striped task-table">
                         <!-- Table Headings -->
                         <thead>
                             <th>Vehicle</th>
-                            <th>&nbsp;</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </thead>
@@ -27,7 +26,7 @@
                                     
                                     <td>
                                         <!-- Show records button button -->
-                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary"><i class="fa fa-gear"></i>See vehicle</a>
+                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary"><i class="fa fa-gear"></i> See maitenance log</a>
                                     </td>
     
                                     <td>
@@ -37,7 +36,7 @@
                                             {{ method_field('DELETE') }}
     
                                             <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i> Delete
+                                                <i class="fa fa-trash"></i> Delete vehicle
                                             </button>
                                         </form>
                                     </td>
