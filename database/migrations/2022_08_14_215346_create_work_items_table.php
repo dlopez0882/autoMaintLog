@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('mileage');
             $table->string('services');
             $table->decimal('cost', 7, 2);
-            $table->string('technician_id');
+            $table->string('technician');
             $table->timestamps();
         });
     }

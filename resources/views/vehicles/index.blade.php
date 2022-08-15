@@ -80,7 +80,7 @@
                                     </div>
                                 </td>
                                 <td class="table-text">
-                                    {{ $workOrder->technician_id }}
+                                    {{ $workOrder->technician }}
                                 </td>
                                 <td class="table-text">
                                     ${{ $workOrder->cost }}

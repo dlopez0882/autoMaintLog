@@ -45,7 +45,7 @@ class WorkItemController extends Controller
             'vehicle_id' => 1, // TODO: make this dynamic
             'mileage' => $request->mileage,
             'services' => $request->services,
-            'technician_id' => $request->technician,
+            'technician' => $request->technician,
             'cost' => $request->cost,
         ]);
      

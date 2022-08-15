@@ -20,7 +20,7 @@ class WorkItems extends Model
         'mileage',
         'services',
         'cost',
-        'technician_id',
+        'technician',
     ];
     
     public function vehicle()
