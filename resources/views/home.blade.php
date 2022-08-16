@@ -31,14 +31,19 @@
     
                                     <td>
                                         <!-- Delete record button -->
-                                        <form action="{{ url("deletevehicle/" . $vehicle->id) }}" method="POST">
+                                        {{-- <form action="{{ url("deletevehicle/" . $vehicle->id) }}" method="POST">
                                             {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
+                                            {{ method_field('DELETE') }} --}}
     
-                                            <button type="submit" class="btn btn-danger">
+                                            {{-- <button type="submit" class="btn btn-danger">
                                                 <i class="fa fa-trash"></i> Delete vehicle
-                                            </button>
-                                        </form>
+                                            </button> --}}
+
+                                            {{-- <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle_id={{ $vehicle->id }}"><i class="fa fa-trash"></i> Delete vehicle</button> --}}
+                                            <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle={{ json_encode($vehicle) }}"><i class="fa fa-trash"></i> Delete vehicle</button>
+                                            <!-- use the modal component -->
+
+                                        {{-- </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,5 +53,18 @@
             </div>
         </div>
     </div>
+
+    <transition name="modal">
+        <modal-component v-if="showModal" @close="showModal = false" v-bind:vehicle = vehicle>
+          <!--
+            you can use custom content here to overwrite
+            default content
+          -->
+          <template v-slot:header>
+            <h3>Confirm</h3>
+          </template>
+        </modal-component>
+      </transition>
+
 </div>
 @endsection
