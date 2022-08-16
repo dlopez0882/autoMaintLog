@@ -46,7 +46,8 @@ class VehicleController extends Controller
      */
     public function destroy(Request $request, Vehicle $vehicle)
     {
-        echo $vehicle; die;
+        $vehicle->delete();
+
         return redirect('/');
     }
 }
