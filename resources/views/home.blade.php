@@ -30,20 +30,8 @@
                                     </td>
     
                                     <td>
-                                        <!-- Delete record button -->
-                                        {{-- <form action="{{ url("deletevehicle/" . $vehicle->id) }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }} --}}
-    
-                                            {{-- <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-trash"></i> Delete vehicle
-                                            </button> --}}
-
-                                            {{-- <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle_id={{ $vehicle->id }}"><i class="fa fa-trash"></i> Delete vehicle</button> --}}
-                                            <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}' "><i class="fa fa-trash"></i> Delete vehicle</button>
-                                            <!-- use the modal component -->
-
-                                        {{-- </form> --}}
+                                        <!-- Button to open delete confirmation modal -->
+                                        <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}' "><i class="fa fa-trash"></i> Delete vehicle</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -56,15 +44,11 @@
 
     <transition name="modal">
         <modal-component v-if="showModal" @close="showModal = false" v-bind:vehicle = vehicle v-bind:postroute = postroute>
-          <!--
-            you can use custom content here to overwrite
-            default content
-          -->
-          <template v-slot:header>
-            <h3>Confirm</h3>
-          </template>
+            <template v-slot:header>
+                <h3>Confirm</h3>
+            </template>
         </modal-component>
-      </transition>
+    </transition>
 
 </div>
 @endsection
