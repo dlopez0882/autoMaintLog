@@ -46,6 +46,8 @@ class VehicleController extends Controller
      */
     public function destroy(Request $request, Vehicle $vehicle)
     {
+        $this->authorize('destroy', $vehicle);
+
         $vehicle->delete();
 
         return redirect('/');
