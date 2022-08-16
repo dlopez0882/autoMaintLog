@@ -18,8 +18,8 @@
           <div class="modal-footer">
             <slot name="footer">
               <form :action="`${postroute}`" method="POST">
-              <!-- {{ csrf_field() }}
-              {{ method_field('DELETE') }} -->
+                <input type="hidden" name="_token" :value="csrf">
+                <input type="hidden" name="_method" value="DELETE">
               
               <button class="modal-default-button" @click="$emit('close')">
                 Cancel
@@ -39,11 +39,11 @@
 <script>
 export default {
   props: ['vehicle', 'postroute'],
-  // data() {
-  //   return {
-  //     count: 0
-  //   }
-  // }
+  data() {
+    return {
+      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+  }
 }
 </script>
 
