@@ -28,6 +28,13 @@ class VehicleController extends Controller
         $this->vehicle = $vehicle;
     }
 
+    /**
+     * Display a list of all of the user's vehicles.
+     *
+     * @param  Request  $request
+     * @param  Vehicle  $vehicle
+     * @return Response
+     */
     public function index(Request $request, Vehicle $vehicle)
     {
         $vehicle = $this->vehicle->forUserSingle($request->user(), $vehicle);
@@ -42,13 +49,17 @@ class VehicleController extends Controller
     /**
      * Delete a vehicle and its associate maintenance history items.
      *
-     * @return void
+     * @param  Request  $request
+     * @param  Vehicle  $vehicle
+     * @param  WorkItems  $workItems  
+     * @return Response
      */
-    public function destroy(Request $request, Vehicle $vehicle)
+    public function destroy(Request $request, Vehicle $vehicle, WorkItems $workItems)
     {
         $this->authorize('destroy', $vehicle);
 
         $vehicle->delete();
+        $workItems->where('vehicle_id', $vehicle->id)->delete();
 
         return redirect('/');
     }
