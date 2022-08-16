@@ -11,13 +11,13 @@
 
           <div class="modal-body">
             <slot name="body">
-              Are you sure that you want to delete your {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}?
+              Are you sure that you want to delete your {{ data.vehicle.year }} {{ data.vehicle.make }} {{ data.vehicle.model }}?
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              <form :action="`${postroute}`" method="POST">
+              <form :action="`${data.postroute}`" method="POST">
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="_method" value="DELETE">
 
@@ -38,9 +38,9 @@
 
 <script>
 export default {
-  props: ['vehicle', 'postroute'],
   data() {
     return {
+      data: this.$attrs.vehicledata,
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     }
   }

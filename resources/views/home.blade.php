@@ -31,7 +31,12 @@
     
                                     <td>
                                         <!-- Button to open delete confirmation modal -->
-                                        <button id="show-modal" class="btn btn-danger" @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}' "><i class="fa fa-trash"></i> Delete vehicle</button>
+                                        <button 
+                                            id="show-modal" 
+                                            class="btn btn-danger" 
+                                            @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}'"
+                                        >
+                                        <i class="fa fa-trash"></i> Delete vehicle</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -43,7 +48,7 @@
     </div>
 
     <transition name="modal">
-        <modal-component v-if="showModal" @close="showModal = false" v-bind:vehicle = vehicle v-bind:postroute = postroute>
+        <modal-component v-if="showModal" @close="showModal = false" v-bind:vehicledata = "{vehicle:vehicle, postroute:postroute}">
             <template v-slot:header>
                 <h3>Confirm</h3>
             </template>
