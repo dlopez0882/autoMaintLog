@@ -20,14 +20,14 @@
               <form :action="`${postroute}`" method="POST">
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="_method" value="DELETE">
-              
-              <button class="modal-default-button" @click="$emit('close')">
-                Cancel
-              </button>
 
-              <button class="modal-default-button" @click="$emit('close')">
-                OK
-              </button>
+                <button type="button" class="btn btn-light me-2" @click="$emit('close')">
+                  Cancel
+                </button>
+              
+                <button type="submit" class="btn btn-danger" @click="$emit('close')">
+                  OK
+                </button>
               </form>
             </slot>
           </div>
