@@ -13,10 +13,19 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({
+    data: function() {
+        return {
+            showModal: false,
+        }
+    }
+});
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
+
+import ModalComponent from './components/ModalComponent.vue';
+app.component('modal-component', ModalComponent);
 
 /**
  * The following block of code may be used to automatically register your
