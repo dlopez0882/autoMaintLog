@@ -18,6 +18,7 @@ const app = createApp({
         return {
             showModal: false,
             vehicle: '',
+            postroute: '',
         }
     }
 });

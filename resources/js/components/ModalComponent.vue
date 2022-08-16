@@ -5,7 +5,7 @@
 
           <div class="modal-header">
             <slot name="header">
-              default header
+              Confirm
             </slot>
           </div>  
 
@@ -17,6 +17,9 @@
 
           <div class="modal-footer">
             <slot name="footer">
+              <form :action="`${postroute}`" method="POST">
+              <!-- {{ csrf_field() }}
+              {{ method_field('DELETE') }} -->
               
               <button class="modal-default-button" @click="$emit('close')">
                 Cancel
@@ -25,6 +28,7 @@
               <button class="modal-default-button" @click="$emit('close')">
                 OK
               </button>
+              </form>
             </slot>
           </div>
         </div>
@@ -34,7 +38,7 @@
 
 <script>
 export default {
-  props: ['vehicle'],
+  props: ['vehicle', 'postroute'],
   // data() {
   //   return {
   //     count: 0
