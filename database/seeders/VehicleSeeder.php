@@ -22,6 +22,8 @@ class VehicleSeeder extends Seeder
                 'year' => rand(1990, 2022),
                 'make' => Str::random(10),
                 'model' => Str::random(10),
+                'created_at' => now()->format('Y-m-d H:i:s'),
+                'updated_at' => now()->format('Y-m-d H:i:s'),
             ]);
         }
 
