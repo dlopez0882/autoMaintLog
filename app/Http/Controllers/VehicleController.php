@@ -47,6 +47,27 @@ class VehicleController extends Controller
     }
 
     /**
+     * Create a new vehicle record.
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            '*' => 'required'
+        ]);
+    
+        $request->user()->vehicles()->create([
+            'year' => $request->year,
+            'make' => $request->make,
+            'model' => $request->model,
+        ]);
+     
+        return redirect('/');
+    }
+
+    /**
      * Delete a vehicle and its associate maintenance history items.
      *
      * @param  Request  $request

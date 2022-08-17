@@ -27,3 +27,5 @@ Route::get('/vehicle/{vehicle}', [App\Http\Controllers\VehicleController::class,
 Route::post('/addworkitem', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');
 
 Route::delete('/deletevehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicle.destoy');
+
+Route::post('/addvehicle', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
