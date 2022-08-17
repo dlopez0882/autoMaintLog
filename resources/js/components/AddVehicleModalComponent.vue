@@ -15,7 +15,7 @@
                                 <input type="hidden" name="_token" :value="csrf">
                                 <div class="mb-3">
                                     <label for="mileage">Year</label>
-                                    <input type="number" name="year" id="mileyearage" class="form-control" value="">
+                                    <input type="number" name="year" id="mileage" class="form-control" value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="services">Make</label>
