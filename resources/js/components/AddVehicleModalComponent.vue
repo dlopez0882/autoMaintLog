@@ -5,14 +5,13 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Add new vehicle here...
+                            Add a New Vehicle
                         </slot>
                     </div>
 
                     <div class="card-body">
                         <slot name="body">
-                            <!-- <form :action="`${data.postroute}`" method="POST"> -->
-                            <form action="" methond="POST">
+                            <form :action="`${data.postroute}`" method="POST">
                                 <input type="hidden" name="_token" :value="csrf">
                                 <div class="mb-3">
                                     <label for="mileage">Year</label>
@@ -26,20 +25,20 @@
                                     <label for="technician">Model</label>
                                     <input type="text" name="model" id="model" class="form-control" value="">
                                 </div>
+
+                                <div class="text-end">
+                                    <slot name="footer">
+                                        <button type="button" class="btn btn-light me-2" @click="$emit('close')">
+                                            Cancel
+                                        </button>
+
+                                        <button type="submit" class="btn btn-danger" @click="$emit('close')">
+                                            OK
+                                        </button>
+                                    </slot>
+                                </div>
                             </form>
                         </slot>
-
-                        <div class="text-end">
-                            <slot name="footer">
-                                <button type="button" class="btn btn-light me-2" @click="$emit('close')">
-                                    Cancel
-                                </button>
-
-                                <button type="submit" class="btn btn-danger" @click="$emit('close')">
-                                    OK
-                                </button>
-                            </slot>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -51,8 +50,8 @@
 export default {
     data() {
         return {
-            // data: this.$attrs.vehicledata,
-            // csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            data: this.$attrs.data,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         }
     }
 }

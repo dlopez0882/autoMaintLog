@@ -92,7 +92,7 @@
                         type="button"
                         id="show-add-vehicle-modal"
                         class="btn btn-primary"
-                        @click="showAddVehicleModal = true"
+                        @click="showAddVehicleModal = true, postroute='{{ url("addvehicle") }}'"
                     >
                     <i class="fa fa-plus"></i> Add Vehicle</button>
 
@@ -110,7 +110,7 @@
     </transition>
 
     <transition name="modal">
-        <add-vehicle-modal-component v-if="showAddVehicleModal" @close="showAddVehicleModal = false"></add-vehicle-modal-component>
+        <add-vehicle-modal-component v-if="showAddVehicleModal" @close="showAddVehicleModal = false" v-bind:data = "{postroute:postroute}"></add-vehicle-modal-component>
     </transition>
 
 </div>
