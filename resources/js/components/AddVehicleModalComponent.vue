@@ -58,24 +58,21 @@
                             <form action="submitForm" method="POST">
                                 <input type="hidden" name="_token" :value="csrf">
                                 <div class="mb-3">
-                                    <label for="year">Year
-                                        <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">
-                                        <div v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>
-                                    </label>
+                                    <label for="year">Year</label>
+                                    <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">
+                                    <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>                              
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="make">Make
-                                        <input type="text" name="make" id="make" class="form-control" v-model="make" ref="make">
-                                        <div v-if="v$.make.$error">Make field is required.</div>
-                                    </label>
+                                    <label for="make">Make</label>
+                                    <input type="text" name="make" id="make" class="form-control" v-model="make" ref="make">
+                                    <div class="text-danger" v-if="v$.make.$error">Make field is required.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="model">Model
-                                        <input type="text" name="model" id="model" class="form-control" v-model="model" ref="model">
-                                        <div v-if="v$.model.$error">Model field is required.</div>
-                                    </label>
+                                    <label for="model">Model</label>
+                                    <input type="text" name="model" id="model" class="form-control" v-model="model" ref="model">
+                                    <div class="text-danger" v-if="v$.model.$error">Model field is required.</div>                          
                                 </div>
 
                                 <div class="text-end">
