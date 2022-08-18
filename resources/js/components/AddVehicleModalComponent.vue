@@ -1,6 +1,7 @@
 <script>
     import useVuelidate from '@vuelidate/core';
     import { between, required } from '@vuelidate/validators';
+    import axios from 'axios';
 
     export default {
         setup () {
@@ -31,11 +32,31 @@
         },
         methods: {
             async submitForm () {
-            const isFormCorrect = await this.v$.$validate()
-            // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
-            if (!isFormCorrect) return
-            // actually submit form
-                console.log(this.$refs.year.value);
+                const isFormCorrect = await this.v$.$validate()
+
+                // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
+                if (!isFormCorrect) return
+
+                // actually submit form
+
+                // const vehicleProps = [this.$refs.year.value, this.$refs.make.value, this.$refs.model.value]
+                const vehicleProps = {
+                    year: this.$refs.year.value, 
+                    make: this.$refs.make.value, 
+                    model: this.$refs.model.value
+                }
+                const data = JSON.stringify({vehicleProps})
+                const config = {
+                    headers: {'Content-Type': 'application/json'}
+                }
+
+                axios.post('addvehicle/', data, config)
+                    // .then(response => console.log(response))
+                    .then(response => {
+                        // console.log(response)
+                        window.location.href = '/';
+                    })
+                    .catch(error => console.log(error));
             }
         }
     }
@@ -81,10 +102,7 @@
                                             Cancel
                                         </button>
 
-                                        <!-- <button type="submit" class="btn btn-danger">
-                                            OK
-                                        </button> -->
-                                        <button @click.prevent="submitForm">Add person</button>
+                                        <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Vehicle</button>
                                     </slot>
                                 </div>
                             </form>
