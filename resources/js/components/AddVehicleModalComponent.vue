@@ -1,3 +1,42 @@
+<script>
+    import { reactive } from 'vue';
+    import useVuelidate from '@vuelidate/core';
+    import { required } from '@vuelidate/validators';
+
+    export default {
+        setup () {
+            return { 
+                v$: useVuelidate() 
+            }
+        },
+        data () {
+            return {
+                year: "",
+                // make: "",
+                // model: "",
+                data: this.$attrs.data,
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        },
+        validations () {
+            return {
+                year: { required }, // Matches this.year
+                // make: { required }, // Matches this.make
+                // model: { required }, // Matches this.make
+            }
+        },
+        methods: {
+            async submitForm () {
+            const isFormCorrect = await this.v$.$validate()
+            // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
+            if (!isFormCorrect) return
+            // actually submit form
+                console.log(this.$refs.year.value);
+            }
+        }
+    }
+</script>
+
 <template>
     <div class="modal-mask">
         <div class="modal-wrapper">
@@ -11,20 +50,29 @@
 
                     <div class="card-body">
                         <slot name="body">
-                            <form :action="`${data.postroute}`" method="POST">
+                            <!-- <form :action="`${data.postroute}`" method="POST"> -->
+                            <form action="submitForm" method="POST">
                                 <input type="hidden" name="_token" :value="csrf">
                                 <div class="mb-3">
-                                    <label for="mileage">Year</label>
-                                    <input type="number" name="year" id="mileage" class="form-control" value="">
+                                    <label for="year">Year
+                                        <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">
+                                        <div v-if="v$.year.$error">Year field has an error.</div>
+                                    </label>
                                 </div>
+
+                                <!-- <div class="mb-3">
+                                    <label for="make">Make
+                                        <input type="text" name="make" id="make" class="form-control" v-model="make">
+                                        <div v-if="v$.make.$error">Make field has an error.</div>
+                                    </label>
+                                </div>
+
                                 <div class="mb-3">
-                                    <label for="services">Make</label>
-                                    <input type="text" name="make" id="make" class="form-control" value="">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="technician">Model</label>
-                                    <input type="text" name="model" id="model" class="form-control" value="">
-                                </div>
+                                    <label for="model">Model
+                                        <input type="text" name="model" id="model" class="form-control" v-model="model">
+                                        <div v-if="v$.model.$error">Model field has an error.</div>
+                                    </label>
+                                </div> -->
 
                                 <div class="text-end">
                                     <slot name="footer">
@@ -32,9 +80,10 @@
                                             Cancel
                                         </button>
 
-                                        <button type="submit" class="btn btn-danger" @click="$emit('close')">
+                                        <!-- <button type="submit" class="btn btn-danger">
                                             OK
-                                        </button>
+                                        </button> -->
+                                        <button @click.prevent="submitForm">Add person</button>
                                     </slot>
                                 </div>
                             </form>
@@ -45,17 +94,6 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            data: this.$attrs.data,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    }
-}
-</script>
 
 <style>
 .modal-mask {
