@@ -1,7 +1,7 @@
 <script>
     import { reactive } from 'vue';
     import useVuelidate from '@vuelidate/core';
-    import { required } from '@vuelidate/validators';
+    import { between, required } from '@vuelidate/validators';
 
     export default {
         setup () {
@@ -11,6 +11,8 @@
         },
         data () {
             return {
+                yearMin: 1900,
+                yearMax: new Date().getFullYear() + 1,
                 year: "",
                 // make: "",
                 // model: "",
@@ -20,7 +22,10 @@
         },
         validations () {
             return {
-                year: { required }, // Matches this.year
+                year: { 
+                    between: between(this.yearMin, this.yearMax),
+                    required 
+                }, // Matches this.year
                 // make: { required }, // Matches this.make
                 // model: { required }, // Matches this.make
             }
@@ -56,7 +61,7 @@
                                 <div class="mb-3">
                                     <label for="year">Year
                                         <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">
-                                        <div v-if="v$.year.$error">Year field has an error.</div>
+                                        <div v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>
                                     </label>
                                 </div>
 
