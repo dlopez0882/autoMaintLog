@@ -1,5 +1,4 @@
 <script>
-    import { reactive } from 'vue';
     import useVuelidate from '@vuelidate/core';
     import { between, required } from '@vuelidate/validators';
 
@@ -14,8 +13,8 @@
                 yearMin: 1900,
                 yearMax: new Date().getFullYear() + 1,
                 year: "",
-                // make: "",
-                // model: "",
+                make: "",
+                model: "",
                 data: this.$attrs.data,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
@@ -25,9 +24,9 @@
                 year: { 
                     between: between(this.yearMin, this.yearMax),
                     required 
-                }, // Matches this.year
-                // make: { required }, // Matches this.make
-                // model: { required }, // Matches this.make
+                },
+                make: { required },
+                model: { required },
             }
         },
         methods: {
@@ -65,19 +64,19 @@
                                     </label>
                                 </div>
 
-                                <!-- <div class="mb-3">
+                                <div class="mb-3">
                                     <label for="make">Make
-                                        <input type="text" name="make" id="make" class="form-control" v-model="make">
-                                        <div v-if="v$.make.$error">Make field has an error.</div>
+                                        <input type="text" name="make" id="make" class="form-control" v-model="make" ref="make">
+                                        <div v-if="v$.make.$error">Make field is required.</div>
                                     </label>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="model">Model
-                                        <input type="text" name="model" id="model" class="form-control" v-model="model">
-                                        <div v-if="v$.model.$error">Model field has an error.</div>
+                                        <input type="text" name="model" id="model" class="form-control" v-model="model" ref="model">
+                                        <div v-if="v$.model.$error">Model field is required.</div>
                                     </label>
-                                </div> -->
+                                </div>
 
                                 <div class="text-end">
                                     <slot name="footer">
