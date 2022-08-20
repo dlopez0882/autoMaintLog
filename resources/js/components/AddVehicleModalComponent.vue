@@ -6,20 +6,20 @@
     export default {
         setup () {
             return { 
-                v$: useVuelidate() 
+                v$: useVuelidate(),
+                yearMin: 1900,
+                yearMax: new Date().getFullYear() + 1
             }
         },
         data () {
             return {
-                yearMin: 1900,
-                yearMax: new Date().getFullYear() + 1,
                 year: "",
                 make: "",
-                model: "",
-                data: this.$attrs.data,
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                model: ""
             }
         },
+
+        // vuelidate validation rules
         validations () {
             return {
                 year: { 
@@ -34,22 +34,24 @@
             async submitForm () {
                 const isFormCorrect = await this.v$.$validate()
 
-                // you can show some extra alert to the user or just leave the each field to show it's `$errors`.
+                // if validation returns errors, do nothing
                 if (!isFormCorrect) return
 
-                // actually submit form
-
-                // const vehicleProps = [this.$refs.year.value, this.$refs.make.value, this.$refs.model.value]
+                // otherwise, submit form
+                // gather data from form
                 const vehicleProps = {
                     year: this.$refs.year.value, 
                     make: this.$refs.make.value, 
                     model: this.$refs.model.value
                 }
+
+                // json the data from form
                 const data = JSON.stringify({vehicleProps})
                 const config = {
                     headers: {'Content-Type': 'application/json'}
                 }
 
+                // submit data to laravel
                 axios.post('addvehicle/', data, config)
                     // .then(response => console.log(response))
                     .then(response => {
@@ -75,9 +77,8 @@
 
                     <div class="card-body">
                         <slot name="body">
-                            <!-- <form :action="`${data.postroute}`" method="POST"> -->
                             <form action="submitForm" method="POST">
-                                <input type="hidden" name="_token" :value="csrf">
+
                                 <div class="mb-3">
                                     <label for="year">Year</label>
                                     <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">

@@ -54,16 +54,6 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     '*' => 'required'
-        // ]);
-    
-        // $request->user()->vehicles()->create([
-        //     'year' => $request->year,
-        //     'make' => $request->make,
-        //     'model' => $request->model,
-        // ]);
-
         $request->user()->vehicles()->create([
             'year' => $request->vehicleProps['year'],
             'make' => $request->vehicleProps['make'],
