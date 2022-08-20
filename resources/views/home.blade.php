@@ -87,6 +87,15 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
+                    <button 
+                        type="button"
+                        id="show-add-vehicle-modal"
+                        class="btn btn-primary"
+                        @click="showAddVehicleModal = true, postroute='{{ url("addvehicle") }}'"
+                    >
+                    <i class="fa fa-plus"></i> Add Vehicle</button>
+
                 </div>
             </div>
         </div>
@@ -98,6 +107,10 @@
                 <h3>Confirm</h3>
             </template>
         </modal-component>
+    </transition>
+
+    <transition name="modal">
+        <add-vehicle-modal-component v-if="showAddVehicleModal" @close="showAddVehicleModal = false" v-bind:data = "{postroute:postroute}"></add-vehicle-modal-component>
     </transition>
 
 </div>

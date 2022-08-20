@@ -50,21 +50,17 @@ class VehicleController extends Controller
      * Create a new vehicle record.
      *
      * @param  Request  $request
-     * @return Response
+     * @return void
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            '*' => 'required'
-        ]);
-    
         $request->user()->vehicles()->create([
-            'year' => $request->year,
-            'make' => $request->make,
-            'model' => $request->model,
+            'year' => $request->vehicleProps['year'],
+            'make' => $request->vehicleProps['make'],
+            'model' => $request->vehicleProps['model'],
         ]);
      
-        return redirect('/');
+        return;
     }
 
     /**

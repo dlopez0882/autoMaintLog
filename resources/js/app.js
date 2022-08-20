@@ -17,6 +17,7 @@ const app = createApp({
     data: function() {
         return {
             showModal: false,
+            showAddVehicleModal: false,
         }
     }
 });
@@ -26,6 +27,9 @@ app.component('example-component', ExampleComponent);
 
 import ModalComponent from './components/ModalComponent.vue';
 app.component('modal-component', ModalComponent);
+
+import AddVehicleModalComponent from './components/AddVehicleModalComponent.vue';
+app.component('add-vehicle-modal-component', AddVehicleModalComponent);
 
 /**
  * The following block of code may be used to automatically register your
