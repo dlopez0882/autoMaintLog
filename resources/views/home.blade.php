@@ -5,51 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Add a New Vehicle</div>
-
-                <!-- form for entering a maintenance record -->
-                <div class="card-body">
-                    <!-- Display Validation Errors -->
-                    @include('common.errors')
-                    <form action="{{ url('addvehicle') }}" method="POST" class="form-horizontal">
-                        {{ csrf_field() }}
-
-                        {{-- hidden field(s) --}}
-                        {{-- <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ $vehicle->id }}"> --}}
-
-                        <div class="mb-3">
-                            <label for="mileage">Year</label>
-                            <input type="number" name="year" id="mileyearage" class="form-control" value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="services">Make</label>
-                            <input type="text" name="make" id="make" class="form-control" value="">
-                        </div>
-                        <div class="mb-3">
-                            <label for="technician">Model</label>
-                            <input type="text" name="model" id="model" class="form-control" value="">
-                        </div>
-
-                        <!-- add work item button -->
-                        <div class="mb-3">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-plus"></i> Add Vehicle
-                                </button>
-                            </div>
-                        </div>
-                        
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
                 <div class="card-header">{{ __('My Vehicles') }}</div>
 
                 <div class="card-body">
