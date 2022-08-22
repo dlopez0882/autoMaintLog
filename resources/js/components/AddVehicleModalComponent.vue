@@ -48,7 +48,11 @@
                 // json the data from form
                 const data = JSON.stringify({vehicleProps})
                 const config = {
-                    headers: {'Content-Type': 'application/json'}
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
                 }
 
                 // submit data to laravel
