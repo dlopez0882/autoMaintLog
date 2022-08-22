@@ -56,7 +56,7 @@
                 }
 
                 // submit data to laravel
-                axios.post('addvehicle', data, config)
+                axios.post('addworkitem', data, config)
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)
@@ -71,7 +71,7 @@
 <template>
     <div class="modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container2">
+            <div class="modal-container3">
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
@@ -83,22 +83,37 @@
                         <slot name="body">
                             <form action="submitForm" method="POST">
 
+                                <!-- hidden field(s) -->
+                                <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ $vehicle->id }}">
+
                                 <div class="mb-3">
-                                    <label for="year">Year</label>
-                                    <input type="number" name="year" id="year" class="form-control" v-model="year" ref="year">
-                                    <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>                              
+                                    <label for="date">Date</label>
+                                    <input type="date" name="date" id="date" class="form-control" v-model="date" ref="date">
+                                    <div class="text-danger" v-if="v$.year.$error">Date field is required.</div>                              
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="make">Make</label>
-                                    <input type="text" name="make" id="make" class="form-control" v-model="make" ref="make">
-                                    <div class="text-danger" v-if="v$.make.$error">Make field is required.</div>
+                                    <label for="mileage">Mileage</label>
+                                    <input type="number" name="mileage" id="mileage" class="form-control" v-model="mileage" ref="mileage">
+                                    <div class="text-danger" v-if="v$.make.$error">Mileage field is required.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="model">Model</label>
-                                    <input type="text" name="model" id="model" class="form-control" v-model="model" ref="model">
-                                    <div class="text-danger" v-if="v$.model.$error">Model field is required.</div>                          
+                                    <label for="model">Service item(s)</label>
+                                    <input type="text" name="services" id="services" class="form-control" v-model="services" ref="services">
+                                    <div class="text-danger" v-if="v$.model.$error">Service item(s) field is required.</div>                          
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="technician">Performed by</label>
+                                    <input type="text" name="technician" id="technician" class="form-control" v-model="technician" ref="technician">
+                                    <div class="text-danger" v-if="v$.model.$error">Performed by field is required.</div>    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="cost">Cost</label>
+                                    <input type="number" step=0.01 name="cost" id="cost" class="form-control" v-model="cost" ref="cost">
+                                    <div class="text-danger" v-if="v$.model.$error">Cost field is required.</div>    
                                 </div>
 
                                 <div class="text-end">
@@ -107,7 +122,7 @@
                                             Cancel
                                         </button>
 
-                                        <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Vehicle</button>
+                                        <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Work Item</button>
                                     </slot>
                                 </div>
                             </form>
@@ -137,7 +152,7 @@
     vertical-align: middle;
 }
 
-.modal-container2 {
+.modal-container3 {
     width: 800px;
     margin: 0px auto;
     padding: 20px 30px;

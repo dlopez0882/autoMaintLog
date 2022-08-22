@@ -100,9 +100,9 @@
                         type="button"
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
-                        @click="showAddWorkItemModal = true, postroute='{{ url("addvehicle") }}'"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}'"
                     >
-                    <i class="fa fa-plus"></i> Add Vehicle</button>
+                    <i class="fa fa-plus"></i> Add Work Item</button>
 
                 </div>
             </div>
