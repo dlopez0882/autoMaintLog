@@ -95,10 +95,24 @@
                         </tbody>
 
                     </table>
+
+                    <button 
+                        type="button"
+                        id="show-add-work-item-modal"
+                        class="btn btn-primary"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("addvehicle") }}'"
+                    >
+                    <i class="fa fa-plus"></i> Add Vehicle</button>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <transition name="modal">
+        <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute}"></add-work-item-modal-component>
+    </transition>
+
 </div>
 
 @endsection
