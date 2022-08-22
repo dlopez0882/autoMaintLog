@@ -1,33 +1,32 @@
 <script>
     import useVuelidate from '@vuelidate/core';
-    import { between, required } from '@vuelidate/validators';
+    import { required } from '@vuelidate/validators';
     import axios from 'axios';
 
     export default {
         setup () {
             return { 
-                v$: useVuelidate(),
-                yearMin: 1900,
-                yearMax: new Date().getFullYear() + 1
+                v$: useVuelidate()
             }
         },
         data () {
             return {
-                year: "",
-                make: "",
-                model: ""
+                date: "",
+                mileage: "",
+                services: "",
+                technician: "",
+                cost: ""
             }
         },
 
         // vuelidate validation rules
         validations () {
             return {
-                year: { 
-                    between: between(this.yearMin, this.yearMax),
-                    required 
-                },
-                make: { required },
-                model: { required },
+                date: { required },
+                mileage: { required },
+                services: { required },
+                technician: { required },
+                cost: { required }
             }
         },
         methods: {
@@ -39,14 +38,16 @@
 
                 // otherwise, submit form
                 // gather data from form
-                const vehicleProps = {
-                    year: this.$refs.year.value, 
-                    make: this.$refs.make.value, 
-                    model: this.$refs.model.value
+                const workItemProps = {
+                    date: this.$refs.date.value, 
+                    mileage: this.$refs.mileage.value, 
+                    services: this.$refs.services.value,
+                    technician: this.$refs.technician.value, 
+                    cost: this.$refs.cost.value
                 }
 
                 // json the data from form
-                const data = JSON.stringify({vehicleProps})
+                const data = JSON.stringify({workItemProps})
                 const config = {
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,7 +76,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Add a New Vehicle
+                            Add a New Work Item
                         </slot>
                     </div>
 
@@ -89,31 +90,31 @@
                                 <div class="mb-3">
                                     <label for="date">Date</label>
                                     <input type="date" name="date" id="date" class="form-control" v-model="date" ref="date">
-                                    <div class="text-danger" v-if="v$.year.$error">Date field is required.</div>                              
+                                    <div class="text-danger" v-if="v$.date.$error">Date field is required.</div>                              
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="mileage">Mileage</label>
                                     <input type="number" name="mileage" id="mileage" class="form-control" v-model="mileage" ref="mileage">
-                                    <div class="text-danger" v-if="v$.make.$error">Mileage field is required.</div>
+                                    <div class="text-danger" v-if="v$.mileage.$error">Mileage field is required.</div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="model">Service item(s)</label>
+                                    <label for="services">Service item(s)</label>
                                     <input type="text" name="services" id="services" class="form-control" v-model="services" ref="services">
-                                    <div class="text-danger" v-if="v$.model.$error">Service item(s) field is required.</div>                          
+                                    <div class="text-danger" v-if="v$.services.$error">Service item(s) field is required.</div>                          
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="technician">Performed by</label>
                                     <input type="text" name="technician" id="technician" class="form-control" v-model="technician" ref="technician">
-                                    <div class="text-danger" v-if="v$.model.$error">Performed by field is required.</div>    
+                                    <div class="text-danger" v-if="v$.technician.$error">Performed by field is required.</div>    
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="cost">Cost</label>
                                     <input type="number" step=0.01 name="cost" id="cost" class="form-control" v-model="cost" ref="cost">
-                                    <div class="text-danger" v-if="v$.model.$error">Cost field is required.</div>    
+                                    <div class="text-danger" v-if="v$.cost.$error">Cost field is required.</div>    
                                 </div>
 
                                 <div class="text-end">
