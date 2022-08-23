@@ -11,6 +11,7 @@
         },
         data () {
             return {
+                vehicleid: "",
                 date: "",
                 mileage: "",
                 services: "",
@@ -39,6 +40,7 @@
                 // otherwise, submit form
                 // gather data from form
                 const workItemProps = {
+                    vehicle_id: this.$attrs.data.vehicleid,
                     date: this.$refs.date.value, 
                     mileage: this.$refs.mileage.value, 
                     services: this.$refs.services.value,
@@ -57,11 +59,11 @@
                 }
 
                 // submit data to laravel
-                axios.post('addworkitem', data, config)
+                axios.post('../addworkitem', data, config)
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)
-                        window.location.href = '/';
+                        window.location.href = '/vehicle/' + workItemProps.vehicle_id;
                     })
                     .catch(error => console.log(error));
             }
@@ -83,10 +85,6 @@
                     <div class="card-body">
                         <slot name="body">
                             <form action="submitForm" method="POST">
-
-                                <!-- hidden field(s) -->
-                                <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ $vehicle->id }}">
-
                                 <div class="mb-3">
                                     <label for="date">Date</label>
                                     <input type="date" name="date" id="date" class="form-control" v-model="date" ref="date">

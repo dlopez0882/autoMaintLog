@@ -100,7 +100,7 @@
                         type="button"
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
-                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}'"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicle->id }}"
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>
 
@@ -110,7 +110,7 @@
     </div>
 
     <transition name="modal">
-        <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute}"></add-work-item-modal-component>
+        <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-work-item-modal-component>
     </transition>
 
 </div>
