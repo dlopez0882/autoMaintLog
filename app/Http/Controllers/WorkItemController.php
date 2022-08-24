@@ -31,24 +31,19 @@ class WorkItemController extends Controller
      * Create a new work item.
      *
      * @param  Request  $request
-     * @return Response
+     * @return void
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            // 'mileage' => 'required|max:7',
-            '*' => 'required',
-        ]);
-        
+    {        
         WorkItems::create([
-            'service_date' => $request->date,
-            'vehicle_id' => $request->vehicle_id,
-            'mileage' => $request->mileage,
-            'services' => $request->services,
-            'technician' => $request->technician,
-            'cost' => $request->cost,
+            'service_date' => $request->workItemProps['date'],
+            'vehicle_id' => $request->workItemProps['vehicle_id'],
+            'mileage' => $request->workItemProps['mileage'],
+            'services' => $request->workItemProps['services'],
+            'technician' => $request->workItemProps['technician'],
+            'cost' => $request->workItemProps['cost'],
         ]);
      
-        return redirect('vehicle/' . $request->vehicle_id);
+        return;
     }
 }
