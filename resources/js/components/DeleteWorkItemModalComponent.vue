@@ -37,18 +37,6 @@
     </div>
 </template>
 
-<script>
-// export default {
-//   data() {
-//     return {
-//       data: this.$attrs.data,
-//       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-//     }
-//   }
-// }
-</script>
-
-
 <style>
 .modal-mask {
     position: fixed;
