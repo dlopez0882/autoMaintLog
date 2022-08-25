@@ -19,8 +19,8 @@
                             <th>Date</th>
                             <th>Mileage</th>
                             <th>Service item(s)</th>
-                            <th>Performed by</th>
-                            <th>Cost</th>
+                            <th class="d-none d-md-table-cell">Performed by</th>
+                            <th class="d-none d-md-table-cell">Cost</th>
                             <th>&nbsp;</th>
                         </thead>
 
@@ -36,10 +36,10 @@
                                 <td class="table-text">
                                     <div>{{ $workOrder->services }}</div>
                                 </td>
-                                <td class="table-text">
+                                <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}
                                 </td>
-                                <td class="table-text">
+                                <td class="table-text d-none d-md-table-cell">
                                     ${{ $workOrder->cost }}
                                 </td>
                                 <td>
