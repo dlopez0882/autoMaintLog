@@ -10,6 +10,10 @@
                 <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
                 <div class="card-body">
                     <div><a href="{{ url('/') }}" class="link-secondary">Go Back to Vehicle List</a></div>
+
+                    @if($workOrders->count() == 0)
+                    <div class="mt-2 mb-2">No work items found!</div>
+                    @else
                     <table class="table table-striped task-table">
                         <thead>
                             <th>Date</th>
@@ -47,8 +51,8 @@
                             </tr>
                             @endforeach
                         </tbody>
-
                     </table>
+                    @endif
 
                     <button 
                         type="button"

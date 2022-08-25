@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('My Vehicles') }}</div>
 
                 <div class="card-body">
+                    @if($vehicles->count() == 0)
+                    <div class="mb-2">No vehicles found!</div>
+                    @else
                     <table class="table table-striped task-table">
                         <!-- Table Headings -->
                         <thead>
@@ -42,6 +45,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @endif
                     
                     <button 
                         type="button"
