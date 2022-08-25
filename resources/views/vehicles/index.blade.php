@@ -40,7 +40,7 @@
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
-                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $vehicle->id) }}'"
+                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicle->id }}"
                                     
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
@@ -68,7 +68,7 @@
     </transition>
 
     <transition name="modal">
-        <delete-work-item-modal-component v-if="showDeleteWorkItemConfirmModal" @close="showDeleteWorkItemConfirmModal = false" v-bind:data = "{postroute:postroute}">
+        <delete-work-item-modal-component v-if="showDeleteWorkItemConfirmModal" @close="showDeleteWorkItemConfirmModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}">
             <template v-slot:header>
                 <h3>Confirm</h3>
             </template>

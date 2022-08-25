@@ -50,12 +50,21 @@ class WorkItemController extends Controller
     /**
      * Delete a work item.
      *
-     * @param  Request  $request
-     * @return void
+     * @param  Request  $id
+     * @param  $id
+     * @return Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {        
-     
-        return;
+        /** get vehicle from post request data
+         * get vehicle from post request data
+         * use dd($vehicle) to see post request data
+        */ 
+        $vehicleid = $request->vehicleid; 
+
+        // sql: DELETE FROM work_items WHERE id = $id;
+        WorkItems::where('id', $id)->delete();
+
+        return redirect('/vehicle/' . $vehicleid);
     }
 }

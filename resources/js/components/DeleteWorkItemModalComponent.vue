@@ -20,6 +20,7 @@
               <form :action="`${data.postroute}`" method="POST">
                 <input type="hidden" name="_token" :value="csrf">
                 <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="vehicleid" :value="`${data.vehicleid}`">
 
                 <button type="button" class="btn btn-light me-2" @click="$emit('close')">
                   Cancel
