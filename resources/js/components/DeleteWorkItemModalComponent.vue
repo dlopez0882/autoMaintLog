@@ -17,10 +17,10 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <form :action="`${data.postroute}`" method="POST">
-                <input type="hidden" name="_token" :value="csrf">
+              <form :action="`${this.$attrs.data.postroute}`" method="POST">
+                <input type="hidden" name="_token" :value="`${this.$attrs.data.csrftoken}`">
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="vehicleid" :value="`${data.vehicleid}`">
+                <input type="hidden" name="vehicleid" :value="`${this.$attrs.data.vehicleid}`">
 
                 <button type="button" class="btn btn-light me-2" @click="$emit('close')">
                   Cancel
@@ -38,14 +38,14 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      data: this.$attrs.data,
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    }
-  }
-}
+// export default {
+//   data() {
+//     return {
+//       data: this.$attrs.data,
+//       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+//     }
+//   }
+// }
 </script>
 
 
