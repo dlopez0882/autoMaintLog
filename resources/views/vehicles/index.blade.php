@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
                 <div class="card-body">
-                    <div><a href="{{ url('/') }}" class="link-secondary">Go Back to Vehicle List</a></div>
+                    <div><a href="{{ url('/') }}" class="link-secondary" title="Go Back to Vehicle List">Go Back to Vehicle List</a></div>
 
                     @if($workOrders->count() == 0)
                     <div class="mt-2 mb-2">No work items found!</div>
@@ -58,6 +58,7 @@
                         type="button"
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
+                        title="Add Work Item"
                         @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicle->id }}"
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>
