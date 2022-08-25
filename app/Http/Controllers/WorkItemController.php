@@ -46,4 +46,16 @@ class WorkItemController extends Controller
      
         return;
     }
+
+    /**
+     * Delete a work item.
+     *
+     * @param  Request  $request
+     * @return void
+     */
+    public function destroy(Request $request)
+    {        
+     
+        return;
+    }
 }

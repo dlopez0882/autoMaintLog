@@ -38,6 +38,12 @@
                                 <td class="table-text">
                                     ${{ $workOrder->cost }}
                                 </td>
+                                <td>
+                                    <a href="#" title="Delete this work item"
+                                    @click="showDeleteWorkItemConfirmModal = true"
+                                    
+                                    ><i class="fa fa-trash"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -59,6 +65,14 @@
 
     <transition name="modal">
         <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-work-item-modal-component>
+    </transition>
+
+    <transition name="modal">
+        <delete-work-item-modal-component v-if="showDeleteWorkItemConfirmModal" @close="showDeleteWorkItemConfirmModal = false">
+            <template v-slot:header>
+                <h3>Confirm</h3>
+            </template>
+        </delete-work-item-modal-component>
     </transition>
 
 </div>
