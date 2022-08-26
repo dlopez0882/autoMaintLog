@@ -34,7 +34,8 @@
                                     <div>{{ number_format($workOrder->mileage) }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->services }}</div>
+                                    {{-- formatted to render html --}}
+                                    <div>{!! $workOrder->services !!}</div>
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}
