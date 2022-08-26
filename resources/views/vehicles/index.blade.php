@@ -18,7 +18,7 @@
                         <thead>
                             <th>Date</th>
                             <th>Mileage</th>
-                            <th>Service item(s)</th>
+                            <th>Service summary</th>
                             <th class="d-none d-md-table-cell">Performed by</th>
                             <th class="d-none d-md-table-cell">Cost</th>
                             <th>&nbsp;</th>
@@ -35,7 +35,7 @@
                                 </td>
                                 <td class="table-text">
                                     {{-- formatted to render html --}}
-                                    <div>{!! $workOrder->services !!}</div>
+                                    <div>{!! $workOrder->service_summary !!}</div>
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}

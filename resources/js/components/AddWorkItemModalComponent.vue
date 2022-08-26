@@ -14,7 +14,7 @@
                 vehicleid: "",
                 date: "",
                 mileage: "",
-                services: "",
+                service_summary: "",
                 technician: "",
                 cost: ""
             }
@@ -25,7 +25,7 @@
             return {
                 date: { required },
                 mileage: { required },
-                services: { required },
+                service_summary: { required },
                 technician: { required },
                 cost: { required }
             }
@@ -43,7 +43,7 @@
                     vehicle_id: this.$attrs.data.vehicleid,
                     date: this.$refs.date.value, 
                     mileage: this.$refs.mileage.value, 
-                    services: this.$refs.services.value,
+                    service_summary: this.$refs.service_summary.value,
                     technician: this.$refs.technician.value, 
                     cost: this.$refs.cost.value
                 }
@@ -98,9 +98,9 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="services">Service item(s)</label>
-                                    <input type="text" name="services" id="services" class="form-control" v-model="services" ref="services">
-                                    <div class="text-danger" v-if="v$.services.$error">Service item(s) field is required.</div>                          
+                                    <label for="service_summary">Service summary</label>
+                                    <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="service_summary" ref="service_summary">
+                                    <div class="text-danger" v-if="v$.service_summary.$error">Service summary field is required.</div>                          
                                 </div>
 
                                 <div class="mb-3">

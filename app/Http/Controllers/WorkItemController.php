@@ -39,7 +39,7 @@ class WorkItemController extends Controller
             'service_date' => $request->workItemProps['date'],
             'vehicle_id' => $request->workItemProps['vehicle_id'],
             'mileage' => $request->workItemProps['mileage'],
-            'services' => $request->workItemProps['services'],
+            'service_summary' => $request->workItemProps['service_summary'],
             'technician' => $request->workItemProps['technician'],
             'cost' => $request->workItemProps['cost'],
         ]);
