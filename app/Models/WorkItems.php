@@ -19,6 +19,7 @@ class WorkItems extends Model
         'vehicle_id',
         'mileage',
         'service_summary',
+        'service_details',
         'cost',
         'technician',
     ];

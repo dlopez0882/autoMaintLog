@@ -15,6 +15,7 @@
                 date: "",
                 mileage: "",
                 service_summary: "",
+                service_details: "",
                 technician: "",
                 cost: ""
             }
@@ -44,6 +45,7 @@
                     date: this.$refs.date.value, 
                     mileage: this.$refs.mileage.value, 
                     service_summary: this.$refs.service_summary.value,
+                    service_details: this.$refs.service_details.value,
                     technician: this.$refs.technician.value, 
                     cost: this.$refs.cost.value
                 }
@@ -101,6 +103,12 @@
                                     <label for="service_summary">Service summary</label>
                                     <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="service_summary" ref="service_summary">
                                     <div class="text-danger" v-if="v$.service_summary.$error">Service summary field is required.</div>                          
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="service_details">Service details</label>
+                                    <textarea name="service_details" id="service_details" class="form-control" rows="3" placeholder="Optional field - fill in to add more details about this service." v-model="service_details" ref="service_details"></textarea>
+                                    <!-- <div class="text-danger" v-if="v$.services.$error">Service details field is required.</div> -->
                                 </div>
 
                                 <div class="mb-3">
