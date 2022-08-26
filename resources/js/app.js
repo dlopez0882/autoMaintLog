@@ -20,6 +20,7 @@ const app = createApp({
             showAddVehicleModal: false,
             showAddWorkItemModal: false,
             showDeleteWorkItemConfirmModal: false,
+            showWorkItemDetailsModal: false,
         }
     }
 });
@@ -38,6 +39,9 @@ app.component('add-work-item-modal-component', AddWorkItemModalComponent);
 
 import DeleteWorkItemModalComponent from './components/DeleteWorkItemModalComponent.vue';
 app.component('delete-work-item-modal-component', DeleteWorkItemModalComponent);
+
+import WorkItemDetailsModalComponent from './components/WorkItemDetailsModalComponent.vue';
+app.component('work-item-details-modal-component', WorkItemDetailsModalComponent);
 
 /**
  * The following block of code may be used to automatically register your
