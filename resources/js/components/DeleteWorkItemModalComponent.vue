@@ -1,7 +1,7 @@
 <template>
       <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container-confirm">
+        <div class="modal-container modal-container-confirm">
 
           <div class="modal-header">
             <slot name="header">

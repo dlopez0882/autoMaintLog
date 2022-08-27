@@ -71,7 +71,7 @@
 <template>
     <div class="modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container-form">
+            <div class="modal-container modal-container-form">
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
