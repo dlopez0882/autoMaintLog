@@ -9,7 +9,7 @@
             
         },
         mounted () {
-            var workItemID = this.$attrs.data.workItemID;
+            let workItemID = this.$attrs.data.workItemID;
             axios.get('../workitems/' + workItemID)
             .then(response => {
                 // console.log(response)
