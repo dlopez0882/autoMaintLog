@@ -22,11 +22,10 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/addvehicle', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
 Route::get('/vehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicle');
-
-Route::post('/addworkitem', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');
-Route::delete('/deleteworkitem/{workitem}', [App\Http\Controllers\WorkItemController::class, 'destroy'])->name('workitems.destoy');
-
 Route::delete('/deletevehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicle.destoy');
 
-Route::post('/addvehicle', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
+Route::post('/addworkitem', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');
+Route::get('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'show'])->name('workitems.show');
+Route::delete('/deleteworkitem/{workitem}', [App\Http\Controllers\WorkItemController::class, 'destroy'])->name('workitems.destoy');

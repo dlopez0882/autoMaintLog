@@ -30,7 +30,7 @@
                                 <td class="table-text">
                                     <div>
                                         <a href="#" title="See service details" 
-                                        @click="showWorkItemDetailsModal = true"
+                                        @click="showWorkItemDetailsModal = true, workItemID={{ $workOrder->id }}"
                                         >{{ $workOrder->service_date }}</a>
                                     </div>
                                 </td>
@@ -85,7 +85,7 @@
     </transition>
 
     <transition name="modal">
-        <work-item-details-modal-component v-if="showWorkItemDetailsModal" @close="showWorkItemDetailsModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></work-item-details-modal-component>
+        <work-item-details-modal-component v-if="showWorkItemDetailsModal" @close="showWorkItemDetailsModal = false" v-bind:data = "{workItemID:workItemID}"></work-item-details-modal-component>
     </transition>
 
 </div>

@@ -57,7 +57,7 @@ class WorkItemController extends Controller
      */
     public function destroy(Request $request, $id)
     {        
-        /** get vehicle from post request data
+        /**
          * get vehicle from post request data
          * use dd($vehicle) to see post request data
         */ 
@@ -67,5 +67,17 @@ class WorkItemController extends Controller
         WorkItems::where('id', $id)->delete();
 
         return redirect('/vehicle/' . $vehicleid);
+    }
+
+    /**
+     * Get a specific work item.
+     *
+     * @param  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $data = WorkItems::where('id', $id)->first();
+        return $data;
     }
 }

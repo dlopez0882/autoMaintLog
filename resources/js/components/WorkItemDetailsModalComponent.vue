@@ -1,5 +1,23 @@
 <script>
+    import axios from 'axios';
 
+    export default {
+        data () {
+            return {
+                results: []
+            }
+            
+        },
+        mounted () {
+            var workItemID = this.$attrs.data.workItemID;
+            axios.get('../workitems/' + workItemID)
+            .then(response => {
+                // console.log(response)
+                this.results = response.data
+            })
+            .catch(error => console.log(error));
+        }
+    }
 </script>
 
 <template>
@@ -15,47 +33,22 @@
 
                     <div class="card-body">
                         <slot name="body">
-                            <!-- <form action="submitForm" method="POST">
-                                <div class="mb-3">
-                                    <label for="date">Date</label>
-                                    <input type="date" name="date" id="date" class="form-control" v-model="date" ref="date">                           
-                                </div>
+                            <div class="mb-3">Date: {{ results.service_date }} </div>
+                            <div class="mb-3">Mileage: {{ results.mileage }}</div>
+                            <div class="mb-3">Service summary: {{ results.service_summary }}</div>
+                            <div class="mb-3">Service details: 
+                                <div v-html="results.service_details"></div>
+                            </div>
+                            <div class="mb-3">Performed by: {{ results.technician }}</div>
+                            <div class="mb-3">Cost: ${{ results.cost }}</div>
 
-                                <div class="mb-3">
-                                    <label for="mileage">Mileage</label>
-                                    <input type="number" name="mileage" id="mileage" class="form-control" v-model="mileage" ref="mileage">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="service_summary">Service summary</label>
-                                    <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="service_summary" ref="service_summary">                         
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="service_details">Service details</label>
-                                    <textarea name="service_details" id="service_details" class="form-control" rows="3" placeholder="Optional field - fill in to add more details about this service." v-model="service_details" ref="service_details"></textarea>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="technician">Performed by</label>
-                                    <input type="text" name="technician" id="technician" class="form-control" v-model="technician" ref="technician">  
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="cost">Cost</label>
-                                    <input type="number" step=0.01 name="cost" id="cost" class="form-control" v-model="cost" ref="cost"> 
-                                </div> -->
-
-                                <div class="text-end">
-                                    <slot name="footer">
-                                        <button type="button" class="btn btn-light me-2" @click="$emit('close')">
-                                            Cancel
-                                        </button>
-
-                                        <!-- <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Work Item</button> -->
-                                    </slot>
-                                </div>
-                            <!-- </form> -->
+                            <div class="text-end">
+                                <slot name="footer">
+                                    <button type="button" class="btn btn-light me-2" @click="$emit('close')">
+                                        Close
+                                    </button>
+                                </slot>
+                            </div>
                         </slot>
                     </div>
                 </div>
