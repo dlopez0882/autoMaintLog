@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import numeral from 'numeral';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -20,9 +21,19 @@ const app = createApp({
             showAddVehicleModal: false,
             showAddWorkItemModal: false,
             showDeleteWorkItemConfirmModal: false,
+            showWorkItemDetailsModal: false,
         }
     }
 });
+
+app.config.globalProperties.$filters = {
+    currencyUSD(value) {
+        return numeral(value).format("$0,0.00");
+    }, 
+    formatNumber(value) {
+        return numeral(value).format("0,0");
+    }
+  }
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
@@ -38,6 +49,9 @@ app.component('add-work-item-modal-component', AddWorkItemModalComponent);
 
 import DeleteWorkItemModalComponent from './components/DeleteWorkItemModalComponent.vue';
 app.component('delete-work-item-modal-component', DeleteWorkItemModalComponent);
+
+import WorkItemDetailsModalComponent from './components/WorkItemDetailsModalComponent.vue';
+app.component('work-item-details-modal-component', WorkItemDetailsModalComponent);
 
 /**
  * The following block of code may be used to automatically register your

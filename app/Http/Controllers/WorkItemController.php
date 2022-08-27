@@ -39,7 +39,8 @@ class WorkItemController extends Controller
             'service_date' => $request->workItemProps['date'],
             'vehicle_id' => $request->workItemProps['vehicle_id'],
             'mileage' => $request->workItemProps['mileage'],
-            'services' => $request->workItemProps['services'],
+            'service_summary' => $request->workItemProps['service_summary'],
+            'service_details' => $request->workItemProps['service_details'],
             'technician' => $request->workItemProps['technician'],
             'cost' => $request->workItemProps['cost'],
         ]);
@@ -56,7 +57,7 @@ class WorkItemController extends Controller
      */
     public function destroy(Request $request, $id)
     {        
-        /** get vehicle from post request data
+        /**
          * get vehicle from post request data
          * use dd($vehicle) to see post request data
         */ 
@@ -66,5 +67,17 @@ class WorkItemController extends Controller
         WorkItems::where('id', $id)->delete();
 
         return redirect('/vehicle/' . $vehicleid);
+    }
+
+    /**
+     * Get a specific work item.
+     *
+     * @param  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $data = WorkItems::where('id', $id)->first();
+        return $data;
     }
 }

@@ -18,7 +18,7 @@
                         <thead>
                             <th>Date</th>
                             <th>Mileage</th>
-                            <th>Service item(s)</th>
+                            <th>Service summary</th>
                             <th class="d-none d-md-table-cell">Performed by</th>
                             <th class="d-none d-md-table-cell">Cost</th>
                             <th>&nbsp;</th>
@@ -28,13 +28,17 @@
                             @foreach ($workOrders as $workOrder)
                             <tr>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->service_date }}</div>
+                                    <div>
+                                        <a href="#" title="See service details" 
+                                        @click="showWorkItemDetailsModal = true, workItemID={{ $workOrder->id }}"
+                                        >{{ $workOrder->service_date }}</a>
+                                    </div>
                                 </td>
                                 <td class="table-text">
                                     <div>{{ number_format($workOrder->mileage) }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->services }}</div>
+                                    <div>{{ $workOrder->service_summary }}</div>
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}
@@ -45,7 +49,6 @@
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
                                     @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicle->id }}, csrftoken='{{ csrf_token() }}'"
-                                    
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -78,6 +81,10 @@
                 <h3>Confirm</h3>
             </template>
         </delete-work-item-modal-component>
+    </transition>
+
+    <transition name="modal">
+        <work-item-details-modal-component v-if="showWorkItemDetailsModal" @close="showWorkItemDetailsModal = false" v-bind:data = "{workItemID:workItemID}"></work-item-details-modal-component>
     </transition>
 
 </div>
