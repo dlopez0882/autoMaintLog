@@ -34,13 +34,13 @@
                     <div class="card-body">
                         <slot name="body">
                             <div class="mb-3">Date: {{ results.service_date }} </div>
-                            <div class="mb-3">Mileage: {{ results.mileage }}</div>
+                            <div class="mb-3">Mileage: {{ $filters.formatNumber(results.mileage) }}</div>
                             <div class="mb-3">Service summary: {{ results.service_summary }}</div>
                             <div class="mb-3">Service details: 
                                 <div v-html="results.service_details"></div>
                             </div>
                             <div class="mb-3">Performed by: {{ results.technician }}</div>
-                            <div class="mb-3">Cost: ${{ results.cost }}</div>
+                            <div class="mb-3">Cost: {{ $filters.currencyUSD(results.cost) }}</div>
 
                             <div class="text-end">
                                 <slot name="footer">

@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import numeral from 'numeral';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -24,6 +25,15 @@ const app = createApp({
         }
     }
 });
+
+app.config.globalProperties.$filters = {
+    currencyUSD(value) {
+        return numeral(value).format("$0,0.00");
+    }, 
+    formatNumber(value) {
+        return numeral(value).format("0,0");
+    }
+  }
 
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
