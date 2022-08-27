@@ -100,18 +100,6 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="service_summary">Service summary</label>
-                                    <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="service_summary" ref="service_summary">
-                                    <div class="text-danger" v-if="v$.service_summary.$error">Service summary field is required.</div>                          
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="service_details">Service details</label>
-                                    <textarea name="service_details" id="service_details" class="form-control" rows="3" placeholder="Optional field - fill in to add more details about this service." v-model="service_details" ref="service_details"></textarea>
-                                    <!-- <div class="text-danger" v-if="v$.services.$error">Service details field is required.</div> -->
-                                </div>
-
-                                <div class="mb-3">
                                     <label for="technician">Performed by</label>
                                     <input type="text" name="technician" id="technician" class="form-control" v-model="technician" ref="technician">
                                     <div class="text-danger" v-if="v$.technician.$error">Performed by field is required.</div>    
@@ -121,6 +109,17 @@
                                     <label for="cost">Cost</label>
                                     <input type="number" step=0.01 name="cost" id="cost" class="form-control" v-model="cost" ref="cost">
                                     <div class="text-danger" v-if="v$.cost.$error">Cost field is required.</div>    
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="service_summary">Service summary</label>
+                                    <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="service_summary" ref="service_summary">
+                                    <div class="text-danger" v-if="v$.service_summary.$error">Service summary field is required.</div>                          
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="service_details">Service details</label>
+                                    <textarea name="service_details" id="service_details" class="form-control" rows="3" placeholder="Optional field - fill in to add more details about this service." v-model="service_details" ref="service_details"></textarea>
                                 </div>
 
                                 <div class="text-end">
