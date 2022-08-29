@@ -2,6 +2,7 @@
     import useVuelidate from '@vuelidate/core';
     import { required } from '@vuelidate/validators';
     import axios from 'axios';
+    import Editor from '@tinymce/tinymce-vue';
 
     export default {
         setup () {
@@ -31,6 +32,9 @@
                 cost: { required }
             }
         },
+        components: {
+            'editor': Editor
+        },
         methods: {
             async submitForm () {
                 const isFormCorrect = await this.v$.$validate()
@@ -45,7 +49,7 @@
                     date: this.$refs.date.value, 
                     mileage: this.$refs.mileage.value, 
                     service_summary: this.$refs.service_summary.value,
-                    service_details: this.$refs.service_details.value,
+                    service_details: (this.$data.service_details) ? this.$data.service_details : "n/a",
                     technician: this.$refs.technician.value, 
                     cost: this.$refs.cost.value
                 }
@@ -119,7 +123,18 @@
 
                                 <div class="mb-3">
                                     <label for="service_details">Service details</label>
-                                    <textarea name="service_details" id="service_details" class="form-control" rows="3" placeholder="Optional field - fill in to add more details about this service." v-model="service_details" ref="service_details"></textarea>
+                                    <editor 
+                                        api-key="no-api-key"
+                                        v-model="service_details" 
+                                        ref="service_details"
+                                        :init="{
+                                            height: 300,
+                                            menubar: false,
+                                            plugins: 'link autolink lists export',
+                                            toolbar: 'styles bold italic numlist bullist link export',
+                                            branding: false,
+                                        }">
+                                    </editor>
                                 </div>
 
                                 <div class="text-end">
