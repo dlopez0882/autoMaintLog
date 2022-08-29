@@ -130,8 +130,8 @@
                                         :init="{
                                             height: 300,
                                             menubar: false,
-                                            plugins: 'link autolink lists export',
-                                            toolbar: 'styles bold italic numlist bullist link export',
+                                            plugins: 'link autolink lists',
+                                            toolbar: 'styles bold italic numlist bullist link',
                                             branding: false,
                                         }">
                                     </editor>
