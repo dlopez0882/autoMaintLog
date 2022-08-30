@@ -1,37 +1,42 @@
 <script>
-    // import useVuelidate from '@vuelidate/core';
-    // import { required } from '@vuelidate/validators';
+    import useVuelidate from '@vuelidate/core';
+    import { required } from '@vuelidate/validators';
     import axios from 'axios';
     import Editor from '@tinymce/tinymce-vue';
 
     export default {
         setup () {
             return { 
-                // v$: useVuelidate(),
+                v$: useVuelidate(),
             }
         },
         data () {
             return {
                 results: [],
-                // vehicleid: "",
-                // date: "",
-                // mileage: "",
-                // service_summary: "",
-                // service_details: "",
-                // technician: "",
-                // cost: ""
             }
         },
         // vuelidate validation rules
-        // validations () {
-        //     return {
-        //         date: { required },
-        //         mileage: { required },
-        //         service_summary: { required },
-        //         technician: { required },
-        //         cost: { required }
-        //     }
-        // },
+        validations () {
+            return {
+                results: {
+                    service_date: {
+                        required
+                    },
+                    mileage: { 
+                        required
+                    },
+                    technician: {
+                        required
+                    },
+                    cost: {
+                        required
+                    },
+                    service_summary: {
+                        required
+                    },
+                }
+            }
+        },
         components: {
             'editor': Editor
         },
@@ -39,7 +44,7 @@
             let workItemID = this.$attrs.data.workItemID;
             axios.get('../workitems/' + workItemID)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 this.results = response.data
             })
             .catch(error => console.log(error));
@@ -48,10 +53,10 @@
             async submitForm () {
                 let workItemID = this.$attrs.data.workItemID;
                 let vehicleID = this.$attrs.data.vehicleid;
-                // const isFormCorrect = await this.v$.$validate()
+                const isFormCorrect = await this.v$.$validate()
 
                 // if validation returns errors, do nothing
-                // if (!isFormCorrect) return
+                if (!isFormCorrect) return
 
                 // otherwise, submit form
                 // gather data from form
@@ -106,31 +111,31 @@
                                 <div class="mb-3">
                                     <label for="date">Date</label>
                                     <input type="date" name="date" id="date" class="form-control" v-model="results.service_date" ref="date">
-                                    <!-- <div class="text-danger" v-if="v$.service_date.$error">Date field is required.</div>                               -->
+                                    <div class="text-danger" v-if="v$.results.service_date.$error">Date field is required.</div>                              
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="mileage">Mileage</label>
                                     <input type="number" name="mileage" id="mileage" class="form-control" v-model="results.mileage" ref="mileage">
-                                    <!-- <div class="text-danger" v-if="v$.mileage.$error">Mileage field is required.</div> -->
+                                    <div class="text-danger" v-if="v$.results.mileage.$error">Mileage field is required.</div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="technician">Performed by</label>
                                     <input type="text" name="technician" id="technician" class="form-control" v-model="results.technician" ref="technician">
-                                    <!-- <div class="text-danger" v-if="v$.technician.$error">Performed by field is required.</div>     -->
+                                    <div class="text-danger" v-if="v$.results.technician.$error">Performed by field is required.</div>    
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="cost">Cost</label>
                                     <input type="number" step=0.01 name="cost" id="cost" class="form-control" v-model="results.cost" ref="cost">
-                                    <!-- <div class="text-danger" v-if="v$.cost.$error">Cost field is required.</div>     -->
+                                    <div class="text-danger" v-if="v$.results.cost.$error">Cost field is required.</div>    
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="service_summary">Service summary</label>
                                     <input type="text" name="service_summary" id="service_summary" class="form-control" v-model="results.service_summary" ref="service_summary">
-                                    <!-- <div class="text-danger" v-if="v$.service_summary.$error">Service summary field is required.</div>                           -->
+                                    <div class="text-danger" v-if="v$.results.service_summary.$error">Service summary field is required.</div>                          
                                 </div>
 
                                 <div class="mb-3">
@@ -155,7 +160,7 @@
                                             Cancel
                                         </button>
 
-                                        <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Work Item</button>
+                                        <button class="btn btn-primary" @click.prevent="submitForm">Edit Work Item</button>
                                     </slot>
                                 </div>
                             </form>
