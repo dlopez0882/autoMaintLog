@@ -51,7 +51,7 @@ class WorkItemController extends Controller
     /**
      * Delete a work item.
      *
-     * @param  Request  $id
+     * @param  Request  $request
      * @param  $id
      * @return Response
      */
@@ -84,6 +84,7 @@ class WorkItemController extends Controller
     /**
      * Update a specific work item.
      *
+     * @param  Request  $request
      * @param  $id
      * @return Response
      */
