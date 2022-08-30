@@ -20,6 +20,7 @@ const app = createApp({
             showModal: false,
             showAddVehicleModal: false,
             showAddWorkItemModal: false,
+            showEditWorkItemModal: false,
             showDeleteWorkItemConfirmModal: false,
             showWorkItemDetailsModal: false,
         }
@@ -46,6 +47,9 @@ app.component('add-vehicle-modal-component', AddVehicleModalComponent);
 
 import AddWorkItemModalComponent from './components/AddWorkItemModalComponent.vue';
 app.component('add-work-item-modal-component', AddWorkItemModalComponent);
+
+import EditWorkItemModalComponent from './components/EditWorkItemModalComponent.vue';
+app.component('edit-work-item-modal-component', EditWorkItemModalComponent);
 
 import DeleteWorkItemModalComponent from './components/DeleteWorkItemModalComponent.vue';
 app.component('delete-work-item-modal-component', DeleteWorkItemModalComponent);

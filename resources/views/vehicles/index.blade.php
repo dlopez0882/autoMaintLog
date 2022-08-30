@@ -51,6 +51,11 @@
                                     @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicle->id }}, csrftoken='{{ csrf_token() }}'"
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
+                                <td>
+                                    <a href="javascript:void(0)" title="Edit this work item"
+                                    @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicle->id }}"
+                                    ><i class="fa fa-pencil"></i></a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -73,6 +78,10 @@
 
     <transition name="modal">
         <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-work-item-modal-component>
+    </transition>
+
+    <transition name="modal">
+        <edit-work-item-modal-component v-if="showEditWorkItemModal" @close="showEditWorkItemModal = false" v-bind:data = "{workItemID:workItemID, vehicleid:vehicleid}"></edit-work-item-modal-component>
     </transition>
 
     <transition name="modal">
