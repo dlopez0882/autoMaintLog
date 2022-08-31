@@ -29,7 +29,7 @@
                                     
                                     <td>
                                         {{-- Show records button button --}}
-                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary" title="See Maintenance Log"><i class="fa fa-gear"></i> See Maintenance Log</a>
+                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary" title="See Maintenance Log"><i class="fa fa-gear"></i> See Service Log</a>
                                     </td>
     
                                     <td>
@@ -54,7 +54,7 @@
                         id="show-add-vehicle-modal"
                         class="btn btn-primary"
                         title="Add Vehicle"
-                        @click="showAddVehicleModal = true, postroute='{{ url("addvehicle") }}'"
+                        @click="showAddVehicleModal = true, postroute='{{ url("/vehicles/store") }}'"
                         @keydown.esc="showAddVehicleModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Vehicle</button>

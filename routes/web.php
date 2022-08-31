@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/addvehicle', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
+Route::post('/vehicles/store', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
 Route::get('/vehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicle');
 Route::delete('/deletevehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicle.destoy');
 
