@@ -38,7 +38,7 @@
                                             id="show-modal" 
                                             class="btn btn-danger" 
                                             title="Delete Vehicle"
-                                            @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}'"
+                                            @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("vehicles/" . $vehicle->id) }}'"
                                             @keydown.esc="showModal = false" 
                                         >
                                         <i class="fa fa-trash"></i> Delete Vehicle</button>
