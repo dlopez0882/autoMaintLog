@@ -86,7 +86,7 @@
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)
-                        window.location.href = '/vehicle/' + vehicleID;
+                        window.location.href = '/vehicles/' + vehicleID;
                     })
                     .catch(error => console.log(error));
             }

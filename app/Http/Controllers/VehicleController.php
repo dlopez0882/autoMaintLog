@@ -29,19 +29,19 @@ class VehicleController extends Controller
     }
 
     /**
-     * Display a list of all of the user's vehicles.
+     * Display vehicle-specific info page.
      *
      * @param  Request  $request
      * @param  Vehicle  $vehicle
      * @return Response
      */
-    public function index(Request $request, Vehicle $vehicle)
+    public function show(Request $request, Vehicle $vehicle)
     {
-        $vehicle = $this->vehicle->forUserSingle($request->user(), $vehicle);
+        $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
         $workOrders = WorkItems::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
         return view('vehicles.index', [
-            'vehicle' => $vehicle,
+            'vehicleData' => $vehicleData,
             'workOrders' => $workOrders,
         ]);
     }

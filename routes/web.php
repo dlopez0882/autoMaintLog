@@ -23,7 +23,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('')
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/vehicles/store', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicle.store');
-Route::get('/vehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicle');
+Route::get('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'show'])->name('vehicles.show');
 Route::delete('/deletevehicle/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicle.destoy');
 
 Route::post('/addworkitem', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');

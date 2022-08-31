@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-11">
             <div class="card">
-                <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
+                <div class="card-header">Work Items for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
                 <div class="card-body">
                     <div><a href="{{ url('/') }}" class="link-secondary" title="Go Back to Vehicle List">Go Back to Vehicle List</a></div>
 
@@ -50,13 +50,13 @@
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Edit this work item"
-                                    @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicle->id }}"
+                                    @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicleData->id }}"
                                     @keydown.esc="showEditWorkItemModal = false" 
                                     ><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
-                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicle->id }}, csrftoken='{{ csrf_token() }}'"
+                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
                                     @keydown.esc="showDeleteWorkItemConfirmModal = false" 
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
@@ -71,7 +71,7 @@
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
                         title="Add Work Item"
-                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicle->id }}"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicleData->id }}"
                         @keydown.esc="showAddWorkItemModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>

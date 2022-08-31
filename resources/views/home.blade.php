@@ -29,7 +29,7 @@
                                     
                                     <td>
                                         {{-- Show records button button --}}
-                                        <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary" title="See Maintenance Log"><i class="fa fa-gear"></i> See Service Log</a>
+                                        <a href="{{ url("vehicles/". $vehicle->id) }}" class="btn btn-primary" title="See Service Log"><i class="fa fa-gear"></i> See Service Log</a>
                                     </td>
     
                                     <td>
