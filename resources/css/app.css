@@ -23,14 +23,16 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     /* font-family: Helvetica, Arial, sans-serif; */
+    overflow-y: auto;
+    max-height: 700px;
 }
 
 .modal-container-confirm {
-    width: 380px;
+    width: 40%;
 }
 
 .modal-container-form {
-    width: 800px;
+    width: 65%;
 }
 
 .modal-header h3 {

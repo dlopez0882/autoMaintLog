@@ -128,7 +128,7 @@
                                         v-model="service_details" 
                                         ref="service_details"
                                         :init="{
-                                            height: 300,
+                                            height: 150,
                                             menubar: false,
                                             plugins: 'link autolink lists',
                                             toolbar: 'styles bold italic numlist bullist link',

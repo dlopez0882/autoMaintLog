@@ -2,10 +2,10 @@
 
 @section('content')
 
-<!-- table of maintenance records -->
+{{-- table of maintenance records --}}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-11">
             <div class="card">
                 <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
                 <div class="card-body">
@@ -30,8 +30,9 @@
                             <tr>
                                 <td class="table-text">
                                     <div>
-                                        <a href="#" title="See service details" 
+                                        <a href="javascript:void(0)" title="See service details" 
                                         @click="showWorkItemDetailsModal = true, workItemID={{ $workOrder->id }}"
+                                        @keydown.esc="showWorkItemDetailsModal = false" 
                                         >{{ $workOrder->service_date }}</a>
                                     </div>
                                 </td>
@@ -39,7 +40,7 @@
                                     <div>{{ number_format($workOrder->mileage) }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->service_summary }}</div>
+                                    <div class="text-break">{{ $workOrder->service_summary }}</div>
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}
@@ -50,11 +51,13 @@
                                 <td>
                                     <a href="javascript:void(0)" title="Edit this work item"
                                     @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicle->id }}"
+                                    @keydown.esc="showEditWorkItemModal = false" 
                                     ><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
                                     @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("deleteworkitem/" . $workOrder->id) }}', vehicleid={{ $vehicle->id }}, csrftoken='{{ csrf_token() }}'"
+                                    @keydown.esc="showDeleteWorkItemConfirmModal = false" 
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -69,6 +72,7 @@
                         class="btn btn-primary"
                         title="Add Work Item"
                         @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicle->id }}"
+                        @keydown.esc="showAddWorkItemModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>
 
