@@ -51,7 +51,7 @@ class WorkItemController extends Controller
     /**
      * Delete a work item.
      *
-     * @param  Request  $id
+     * @param  Request  $request
      * @param  $id
      * @return Response
      */
@@ -79,5 +79,26 @@ class WorkItemController extends Controller
     {
         $data = WorkItems::where('id', $id)->first();
         return $data;
+    }
+
+    /**
+     * Update a specific work item.
+     *
+     * @param  Request  $request
+     * @param  $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        WorkItems:: where('id', $id)->update([
+            'service_date' => $request->workItemProps['date'],
+            'mileage' => $request->workItemProps['mileage'],
+            'service_summary' => $request->workItemProps['service_summary'],
+            'service_details' => $request->workItemProps['service_details'],
+            'technician' => $request->workItemProps['technician'],
+            'cost' => $request->workItemProps['cost'],
+        ]);
+     
+        return;
     }
 }

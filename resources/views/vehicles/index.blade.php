@@ -5,7 +5,7 @@
 <!-- table of maintenance records -->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
                 <div class="card-body">
@@ -21,6 +21,7 @@
                             <th>Service summary</th>
                             <th class="d-none d-md-table-cell">Performed by</th>
                             <th class="d-none d-md-table-cell">Cost</th>
+                            <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </thead>
 
@@ -45,6 +46,11 @@
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     ${{ $workOrder->cost }}
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" title="Edit this work item"
+                                    @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicle->id }}"
+                                    ><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
@@ -73,6 +79,10 @@
 
     <transition name="modal">
         <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-work-item-modal-component>
+    </transition>
+
+    <transition name="modal">
+        <edit-work-item-modal-component v-if="showEditWorkItemModal" @close="showEditWorkItemModal = false" v-bind:data = "{workItemID:workItemID, vehicleid:vehicleid}"></edit-work-item-modal-component>
     </transition>
 
     <transition name="modal">
