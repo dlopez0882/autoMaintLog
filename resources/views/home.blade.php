@@ -12,14 +12,14 @@
                     <div class="mb-2">No vehicles found!</div>
                     @else
                     <table class="table table-striped task-table">
-                        <!-- Table Headings -->
+                        {{-- Table Headings --}}
                         <thead>
                             <th>Vehicle</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </thead>
     
-                        <!-- Table Body -->
+                        {{-- Table Body --}}
                         <tbody>
                             @foreach ($vehicles as $vehicle)
                                 <tr>
@@ -28,17 +28,18 @@
                                     </td>
                                     
                                     <td>
-                                        <!-- Show records button button -->
+                                        {{-- Show records button button --}}
                                         <a href="{{ url("vehicle/". $vehicle->id) }}" class="btn btn-primary" title="See Maintenance Log"><i class="fa fa-gear"></i> See Maintenance Log</a>
                                     </td>
     
                                     <td>
-                                        <!-- Button to open delete confirmation modal -->
+                                        {{-- Button to open delete confirmation modal --}}
                                         <button 
                                             id="show-modal" 
                                             class="btn btn-danger" 
                                             title="Delete Vehicle"
                                             @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("deletevehicle/" . $vehicle->id) }}'"
+                                            @keydown.esc="showModal = false" 
                                         >
                                         <i class="fa fa-trash"></i> Delete Vehicle</button>
                                     </td>
@@ -54,6 +55,7 @@
                         class="btn btn-primary"
                         title="Add Vehicle"
                         @click="showAddVehicleModal = true, postroute='{{ url("addvehicle") }}'"
+                        @keydown.esc="showAddVehicleModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Vehicle</button>
 
