@@ -5,7 +5,7 @@
 <!-- table of maintenance records -->
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-11">
             <div class="card">
                 <div class="card-header">Work Items for {{ $vehicle->year }} {{ $vehicle->make }} {{ $vehicle->model }}</div>
                 <div class="card-body">
@@ -39,7 +39,7 @@
                                     <div>{{ number_format($workOrder->mileage) }}</div>
                                 </td>
                                 <td class="table-text">
-                                    <div>{{ $workOrder->service_summary }}</div>
+                                    <div class="text-break">{{ $workOrder->service_summary }}</div>
                                 </td>
                                 <td class="table-text d-none d-md-table-cell">
                                     {{ $workOrder->technician }}

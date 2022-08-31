@@ -26,11 +26,11 @@
 }
 
 .modal-container-confirm {
-    width: 380px;
+    width: 40%;
 }
 
 .modal-container-form {
-    width: 800px;
+    width: 65%;
 }
 
 .modal-header h3 {
