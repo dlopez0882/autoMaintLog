@@ -56,7 +56,7 @@
                 }
 
                 // submit data to laravel
-                axios.post('vehicles/store', data, config)
+                axios.post('vehicles', data, config)
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)

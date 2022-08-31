@@ -54,7 +54,7 @@
                         id="show-add-vehicle-modal"
                         class="btn btn-primary"
                         title="Add Vehicle"
-                        @click="showAddVehicleModal = true, postroute='{{ url("/vehicles/store") }}'"
+                        @click="showAddVehicleModal = true, postroute='{{ url("/vehicles") }}'"
                         @keydown.esc="showAddVehicleModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Vehicle</button>
