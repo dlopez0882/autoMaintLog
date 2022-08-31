@@ -71,7 +71,7 @@
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
                         title="Add Work Item"
-                        @click="showAddWorkItemModal = true, postroute='{{ url("addworkitem") }}', vehicleid={{ $vehicleData->id }}"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("workitems") }}', vehicleid={{ $vehicleData->id }}"
                         @keydown.esc="showAddWorkItemModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>
