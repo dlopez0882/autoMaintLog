@@ -65,11 +65,11 @@
                 }
 
                 // submit data to laravel
-                axios.post('../addworkitem', data, config)
+                axios.post('../workitems', data, config)
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)
-                        window.location.href = '/vehicle/' + workItemProps.vehicle_id;
+                        window.location.href = '/vehicles/' + workItemProps.vehicle_id;
                     })
                     .catch(error => console.log(error));
             }

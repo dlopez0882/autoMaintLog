@@ -66,7 +66,7 @@ class WorkItemController extends Controller
         // sql: DELETE FROM work_items WHERE id = $id;
         WorkItems::where('id', $id)->delete();
 
-        return redirect('/vehicle/' . $vehicleid);
+        return redirect('/vehicles/' . $vehicleid);
     }
 
     /**
