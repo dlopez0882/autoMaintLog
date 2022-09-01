@@ -26,7 +26,7 @@ Route::post('/vehicles', [App\Http\Controllers\VehicleController::class, 'store'
 Route::get('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'show'])->name('vehicles.show');
 Route::delete('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicles.destoy');
 
-Route::post('/workitems', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');
-Route::post('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'update'])->name('workitems.update');
-Route::get('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'show'])->name('workitems.show');
-Route::delete('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'destroy'])->name('workitems.destoy');
+Route::post('/serviceitems', [App\Http\Controllers\ServiceItemController::class, 'store'])->name('serviceitems.store');
+Route::post('/serviceitems/{serviceitem}', [App\Http\Controllers\ServiceItemController::class, 'update'])->name('serviceitems.update');
+Route::get('/serviceitems/{serviceitem}', [App\Http\Controllers\ServiceItemController::class, 'show'])->name('serviceitems.show');
+Route::delete('/serviceitems/{serviceitem}', [App\Http\Controllers\ServiceItemController::class, 'destroy'])->name('serviceitems.destoy');

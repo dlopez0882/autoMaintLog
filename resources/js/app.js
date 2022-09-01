@@ -19,10 +19,10 @@ const app = createApp({
         return {
             showModal: false,
             showAddVehicleModal: false,
-            showAddWorkItemModal: false,
-            showEditWorkItemModal: false,
-            showDeleteWorkItemConfirmModal: false,
-            showWorkItemDetailsModal: false,
+            showAddServiceItemModal: false,
+            showEditServiceItemModal: false,
+            showDeleteServiceItemConfirmModal: false,
+            showServiceItemDetailsModal: false,
         }
     }
 });
@@ -45,17 +45,17 @@ app.component('modal-component', ModalComponent);
 import AddVehicleModalComponent from './components/AddVehicleModalComponent.vue';
 app.component('add-vehicle-modal-component', AddVehicleModalComponent);
 
-import AddWorkItemModalComponent from './components/AddWorkItemModalComponent.vue';
-app.component('add-work-item-modal-component', AddWorkItemModalComponent);
+import AddServiceItemModalComponent from './components/AddServiceItemModalComponent.vue';
+app.component('add-service-item-modal-component', AddServiceItemModalComponent);
 
-import EditWorkItemModalComponent from './components/EditWorkItemModalComponent.vue';
-app.component('edit-work-item-modal-component', EditWorkItemModalComponent);
+import EditServiceItemModalComponent from './components/EditServiceItemModalComponent.vue';
+app.component('edit-service-item-modal-component', EditServiceItemModalComponent);
 
-import DeleteWorkItemModalComponent from './components/DeleteWorkItemModalComponent.vue';
-app.component('delete-work-item-modal-component', DeleteWorkItemModalComponent);
+import DeleteServiceItemModalComponent from './components/DeleteServiceItemModalComponent.vue';
+app.component('delete-service-item-modal-component', DeleteServiceItemModalComponent);
 
-import WorkItemDetailsModalComponent from './components/WorkItemDetailsModalComponent.vue';
-app.component('work-item-details-modal-component', WorkItemDetailsModalComponent);
+import ServiceItemDetailsModalComponent from './components/ServiceItemDetailsModalComponent.vue';
+app.component('service-item-details-modal-component', ServiceItemDetailsModalComponent);
 
 /**
  * The following block of code may be used to automatically register your

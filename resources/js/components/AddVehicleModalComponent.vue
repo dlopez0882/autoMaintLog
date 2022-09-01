@@ -107,7 +107,7 @@
                                             Cancel
                                         </button>
 
-                                        <button class="btn btn-primary" @click.prevent="submitForm"><i class="fa fa-plus"></i> Add Vehicle</button>
+                                        <button class="btn btn-primary" @click.prevent="submitForm">Submit</button>
                                     </slot>
                                 </div>
                             </form>
