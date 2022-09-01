@@ -27,6 +27,6 @@ Route::get('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class
 Route::delete('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicles.destoy');
 
 Route::post('/workitems', [App\Http\Controllers\WorkItemController::class, 'store'])->name('workitems.store');
-Route::post('/updateworkitem/{workitem}', [App\Http\Controllers\WorkItemController::class, 'update'])->name('workitems.update');
+Route::post('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'update'])->name('workitems.update');
 Route::get('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'show'])->name('workitems.show');
-Route::delete('/deleteworkitem/{workitem}', [App\Http\Controllers\WorkItemController::class, 'destroy'])->name('workitems.destoy');
+Route::delete('/workitems/{workitem}', [App\Http\Controllers\WorkItemController::class, 'destroy'])->name('workitems.destoy');

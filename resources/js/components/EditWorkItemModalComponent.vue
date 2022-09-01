@@ -82,7 +82,7 @@
                 }
 
                 // submit data to laravel
-                axios.post('../updateworkitem/' + workItemID, data, config)
+                axios.post('../workitems/' + workItemID, data, config)
                     // .then(response => console.log(response))
                     .then(response => {
                         // console.log(response)
