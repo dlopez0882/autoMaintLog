@@ -29,7 +29,7 @@
                                     
                                     <td>
                                         {{-- Show records button button --}}
-                                        <a href="{{ url("vehicles/". $vehicle->id) }}" class="btn btn-primary" title="See Service Log"><i class="fa fa-gear"></i> See Service Log</a>
+                                        <a href="{{ url("/vehicles/{$vehicle->id}") }}" class="btn btn-primary" title="See Service Log"><i class="fa fa-gear"></i> See Service Log</a>
                                     </td>
     
                                     <td>
@@ -38,7 +38,7 @@
                                             id="show-modal" 
                                             class="btn btn-danger" 
                                             title="Delete Vehicle"
-                                            @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("vehicles/" . $vehicle->id) }}'"
+                                            @click="showModal = true, vehicle={{ json_encode($vehicle) }}, postroute='{{ url("/vehicles/{$vehicle->id}") }}'"
                                             @keydown.esc="showModal = false" 
                                         >
                                         <i class="fa fa-trash"></i> Delete Vehicle</button>

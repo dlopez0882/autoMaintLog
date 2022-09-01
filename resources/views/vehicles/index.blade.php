@@ -56,7 +56,7 @@
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this work item"
-                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("workitems/" . $workOrder->id) }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
+                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("/workitems/{$workOrder->id}") }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
                                     @keydown.esc="showDeleteWorkItemConfirmModal = false" 
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
@@ -71,7 +71,7 @@
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
                         title="Add Work Item"
-                        @click="showAddWorkItemModal = true, postroute='{{ url("workitems") }}', vehicleid={{ $vehicleData->id }}"
+                        @click="showAddWorkItemModal = true, postroute='{{ url("/workitems") }}', vehicleid={{ $vehicleData->id }}"
                         @keydown.esc="showAddWorkItemModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Work Item</button>
