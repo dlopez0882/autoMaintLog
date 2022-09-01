@@ -2,17 +2,13 @@
 
 ## Description
 
-As a maticulous vehicle owner, I like to keep a running log of all the services that my vehicle(s) go through.  Prior to this, I was using a spreadsheet to keep track of all my services. I decided to build a small CRUD application to take care of this. 
+As a maticulous vehicle owner, I like to keep a running log of all the services that my vehicle(s) go through.  Prior to this, I was using a spreadsheet to keep track of all my services. I decided to build a small CRUD application and modernize the way I go about logging my vehicles maintenance records. 
 
-This application is build using [Laravel 9](https://laravel.com/) and [Vue3](https://vuejs.org/). I decided to use Laravel because I have used other PHP frameworks in the past with great success. I wanted to give Laravel a try as it seems to be widely used today.
-
-In addition to modernize the way I keep track of my vehicle's maintenance records, I wanted to make this application to:
-1. Help me learn a modern PHP framework (such as [Laravel](https://laravel.com/)), and
-2. Help me learn a modern Javascript framework (such as [VueJS](https://vuejs.org/)).
+This application is built using [Laravel 9](https://laravel.com/) and [Vue 3](https://vuejs.org/). I decided to use Laravel because I have used other PHP frameworks in the past with great success. I wanted to give Laravel a try as it seems to be widely used today, according to [JetBrains](https://www.jetbrains.com/lp/devecosystem-2021/php/) and [Kinsta](https://kinsta.com/blog/php-frameworks/).
 
 ## How to Install and Run the Project
 1. Clone this project locally.
-2. cd to project directory.
+2. ```cd {project_directory}```.
 3. Install composer dependencies (note: must have Composer installed).
 4. Install NPM dependicies (note: must have npm installed).
 5. Run ```cp .env.example .env```
@@ -21,7 +17,13 @@ In addition to modernize the way I keep track of my vehicle's maintenance record
 8. Run ```php artisan key:generate```
 9. Run ```php artisan migrate```
 10. Run ```php artisan serve```
+11. Run ```npm run dev```
 11. Navigate to outputted URL (example: http://localhost:8000/)
+12. After stopping the project, all you will need to do is
+    * ```cd {project_directory}```
+    * Run ```php artisan serve```
+    * Run ```npm run dev```
+
 
 ## How to Use the Project
 
