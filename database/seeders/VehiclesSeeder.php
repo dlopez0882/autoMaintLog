@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class VehicleSeeder extends Seeder
+class VehiclesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

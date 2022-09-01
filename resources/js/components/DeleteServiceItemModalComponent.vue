@@ -11,7 +11,7 @@
 
           <div class="modal-body">
             <slot name="body">
-                Delete this work item?
+                Delete this service log item?
             </slot>
           </div>
 

@@ -9,8 +9,8 @@
             
         },
         mounted () {
-            let workItemID = this.$attrs.data.workItemID;
-            axios.get('../workitems/' + workItemID)
+            let serviceItemID = this.$attrs.data.serviceItemID;
+            axios.get('../serviceitems/' + serviceItemID)
             .then(response => {
                 // console.log(response)
                 this.results = response.data
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Service details
+                            Service Log Item Details
                         </slot>
                     </div>
 
