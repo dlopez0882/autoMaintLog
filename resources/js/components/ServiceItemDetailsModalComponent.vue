@@ -9,8 +9,8 @@
             
         },
         mounted () {
-            let workItemID = this.$attrs.data.workItemID;
-            axios.get('../workitems/' + workItemID)
+            let ServiceItemID = this.$attrs.data.ServiceItemID;
+            axios.get('../ServiceItems/' + ServiceItemID)
             .then(response => {
                 // console.log(response)
                 this.results = response.data

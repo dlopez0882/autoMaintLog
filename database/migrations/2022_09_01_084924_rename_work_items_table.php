@@ -13,9 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('service_items', function (Blueprint $table) {
-            $table->mediumText('service_details')->nullable()->after('service_summary');
-        });
+        Schema::rename('work_items', 'service_items');
     }
 
     /**
@@ -25,8 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('service_items', function (Blueprint $table) {
-            $table->dropColumn('service_details');
-        });
+        Schema::rename('service_items', 'work_items');
     }
 };

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\VehicleRepository;
 use App\Models\Vehicle;
-use App\Models\WorkItems;
+use App\Models\ServiceItem;
 
 class VehicleController extends Controller
 {
@@ -38,7 +38,7 @@ class VehicleController extends Controller
     public function show(Request $request, Vehicle $vehicle)
     {
         $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
-        $workOrders = WorkItems::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
+        $workOrders = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
         return view('vehicles.index', [
             'vehicleData' => $vehicleData,
@@ -68,15 +68,15 @@ class VehicleController extends Controller
      *
      * @param  Request  $request
      * @param  Vehicle  $vehicle
-     * @param  WorkItems  $workItems  
+     * @param  ServiceItem  $ServiceItem  
      * @return Response
      */
-    public function destroy(Request $request, Vehicle $vehicle, WorkItems $workItems)
+    public function destroy(Request $request, Vehicle $vehicle, ServiceItem $ServiceItem)
     {
         $this->authorize('destroy', $vehicle);
 
         $vehicle->delete();
-        $workItems->where('vehicle_id', $vehicle->id)->delete();
+        $ServiceItem->where('vehicle_id', $vehicle->id)->delete();
 
         return redirect('/');
     }
