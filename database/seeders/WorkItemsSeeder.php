@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class ServiceItemsSeeder extends Seeder
+class WorkItemsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class ServiceItemsSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i < 10; $i++) { 
-            DB::table('service_items')->insert([
+            DB::table('work_items')->insert([
                 'service_date' => now()->format('Y-m-d H:i:s'),
                 'vehicle_id' => 32,
                 'mileage' => rand(30000,100000),

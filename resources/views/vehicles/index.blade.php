@@ -31,8 +31,8 @@
                                 <td class="table-text">
                                     <div>
                                         <a href="javascript:void(0)" title="See service log item details" 
-                                        @click="showServiceItemDetailsModal = true, ServiceItemID={{ $workOrder->id }}"
-                                        @keydown.esc="showServiceItemDetailsModal = false" 
+                                        @click="showWorkItemDetailsModal = true, workItemID={{ $workOrder->id }}"
+                                        @keydown.esc="showWorkItemDetailsModal = false" 
                                         >{{ $workOrder->service_date }}</a>
                                     </div>
                                 </td>
@@ -50,14 +50,14 @@
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Edit this service log item"
-                                    @click="showEditServiceItemModal = true, ServiceItemID={{ $workOrder->id }}, vehicleid={{ $vehicleData->id }}"
-                                    @keydown.esc="showEditServiceItemModal = false" 
+                                    @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicleData->id }}"
+                                    @keydown.esc="showEditWorkItemModal = false" 
                                     ><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td>
                                     <a href="javascript:void(0)" title="Delete this service log item"
-                                    @click="showDeleteServiceItemConfirmModal = true, postroute='{{ url("/ServiceItems/{$workOrder->id}") }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
-                                    @keydown.esc="showDeleteServiceItemConfirmModal = false" 
+                                    @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("/workitems/{$workOrder->id}") }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
+                                    @keydown.esc="showDeleteWorkItemConfirmModal = false" 
                                     ><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
@@ -68,11 +68,11 @@
 
                     <button 
                         type="button"
-                        id="show-add-service-item-modal"
+                        id="show-add-work-item-modal"
                         class="btn btn-primary"
                         title="Add Service Item"
-                        @click="showAddServiceItemModal = true, postroute='{{ url("/ServiceItems") }}', vehicleid={{ $vehicleData->id }}"
-                        @keydown.esc="showAddServiceItemModal = false" 
+                        @click="showAddWorkItemModal = true, postroute='{{ url("/workitems") }}', vehicleid={{ $vehicleData->id }}"
+                        @keydown.esc="showAddWorkItemModal = false" 
                     >
                     <i class="fa fa-plus"></i> Add Service</button>
 
@@ -82,23 +82,23 @@
     </div>
 
     <transition name="modal">
-        <add-service-item-modal-component v-if="showAddServiceItemModal" @close="showAddServiceItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-service-item-modal-component>
+        <add-work-item-modal-component v-if="showAddWorkItemModal" @close="showAddWorkItemModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid}"></add-work-item-modal-component>
     </transition>
 
     <transition name="modal">
-        <edit-service-item-modal-component v-if="showEditServiceItemModal" @close="showEditServiceItemModal = false" v-bind:data = "{ServiceItemID:ServiceItemID, vehicleid:vehicleid}"></edit-service-item-modal-component>
+        <edit-work-item-modal-component v-if="showEditWorkItemModal" @close="showEditWorkItemModal = false" v-bind:data = "{workItemID:workItemID, vehicleid:vehicleid}"></edit-work-item-modal-component>
     </transition>
 
     <transition name="modal">
-        <delete-service-item-modal-component v-if="showDeleteServiceItemConfirmModal" @close="showDeleteServiceItemConfirmModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid, csrftoken:csrftoken}">
+        <delete-work-item-modal-component v-if="showDeleteWorkItemConfirmModal" @close="showDeleteWorkItemConfirmModal = false" v-bind:data = "{postroute:postroute, vehicleid:vehicleid, csrftoken:csrftoken}">
             <template v-slot:header>
                 <h3>Confirm</h3>
             </template>
-        </delete-service-item-modal-component>
+        </delete-work-item-modal-component>
     </transition>
 
     <transition name="modal">
-        <service-item-details-modal-component v-if="showServiceItemDetailsModal" @close="showServiceItemDetailsModal = false" v-bind:data = "{ServiceItemID:ServiceItemID}"></service-item-details-modal-component>
+        <work-item-details-modal-component v-if="showWorkItemDetailsModal" @close="showWorkItemDetailsModal = false" v-bind:data = "{workItemID:workItemID}"></work-item-details-modal-component>
     </transition>
 
 </div>

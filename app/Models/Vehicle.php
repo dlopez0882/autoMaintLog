@@ -26,8 +26,8 @@ class Vehicle extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ServiceItem()
+    public function workItems()
     {
-        return $this-hasMany(ServiceItem::class);
+        return $this-hasMany(WorkItems::class);
     }
 }
