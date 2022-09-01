@@ -7,12 +7,12 @@
     <div class="row justify-content-center">
         <div class="col-11">
             <div class="card">
-                <div class="card-header">Work Items for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
+                <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
                 <div class="card-body">
-                    <div><a href="{{ url('/') }}" class="link-secondary" title="Go Back to Vehicle List">Go Back to Vehicle List</a></div>
+                    <div><a href="{{ url('/') }}" class="link-secondary" title="Go back to vehicle list">Go back to vehicle list</a></div>
 
                     @if($workOrders->count() == 0)
-                    <div class="mt-2 mb-2">No work items found!</div>
+                    <div class="mt-2 mb-2">No service log found!</div>
                     @else
                     <table class="table table-striped task-table">
                         <thead>
@@ -30,7 +30,7 @@
                             <tr>
                                 <td class="table-text">
                                     <div>
-                                        <a href="javascript:void(0)" title="See service details" 
+                                        <a href="javascript:void(0)" title="See service log item details" 
                                         @click="showWorkItemDetailsModal = true, workItemID={{ $workOrder->id }}"
                                         @keydown.esc="showWorkItemDetailsModal = false" 
                                         >{{ $workOrder->service_date }}</a>
@@ -49,13 +49,13 @@
                                     ${{ $workOrder->cost }}
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)" title="Edit this work item"
+                                    <a href="javascript:void(0)" title="Edit this service log item"
                                     @click="showEditWorkItemModal = true, workItemID={{ $workOrder->id }}, vehicleid={{ $vehicleData->id }}"
                                     @keydown.esc="showEditWorkItemModal = false" 
                                     ><i class="fa fa-pencil"></i></a>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0)" title="Delete this work item"
+                                    <a href="javascript:void(0)" title="Delete this service log item"
                                     @click="showDeleteWorkItemConfirmModal = true, postroute='{{ url("/workitems/{$workOrder->id}") }}', vehicleid={{ $vehicleData->id }}, csrftoken='{{ csrf_token() }}'"
                                     @keydown.esc="showDeleteWorkItemConfirmModal = false" 
                                     ><i class="fa fa-trash"></i></a>
@@ -70,11 +70,11 @@
                         type="button"
                         id="show-add-work-item-modal"
                         class="btn btn-primary"
-                        title="Add Work Item"
+                        title="Add Service Item"
                         @click="showAddWorkItemModal = true, postroute='{{ url("/workitems") }}', vehicleid={{ $vehicleData->id }}"
                         @keydown.esc="showAddWorkItemModal = false" 
                     >
-                    <i class="fa fa-plus"></i> Add Work Item</button>
+                    <i class="fa fa-plus"></i> Add Service</button>
 
                 </div>
             </div>

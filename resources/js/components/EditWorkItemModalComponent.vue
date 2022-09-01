@@ -101,7 +101,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Edit Work Item
+                            Edit Service Log Item
                         </slot>
                     </div>
 
@@ -160,7 +160,7 @@
                                             Cancel
                                         </button>
 
-                                        <button class="btn btn-primary" @click.prevent="submitForm">Edit Work Item</button>
+                                        <button class="btn btn-primary" @click.prevent="submitForm">Update</button>
                                     </slot>
                                 </div>
                             </form>

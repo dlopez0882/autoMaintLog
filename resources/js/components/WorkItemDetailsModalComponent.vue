@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Service details
+                            Service Log Item Details
                         </slot>
                     </div>
 
