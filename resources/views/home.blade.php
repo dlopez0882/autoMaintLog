@@ -72,11 +72,18 @@
         </modal-component>
     </transition>
 
-    <transition name="modal">
+    {{-- <transition name="modal">
         <add-vehicle-modal-component v-if="showAddVehicleModal" @close="showAddVehicleModal = false" v-bind:data = "{postroute:postroute}"></add-vehicle-modal-component>
-    </transition>
+    </transition> --}}
 
 </div>
 
+<table-component 
+    :items="{{ $vehicles }}" 
+    :table-name="'vehicles'" 
+    :columns="['year', 'make', 'model']"
+    :options="['view', 'delete']"
+    :inputmodal="'add-vehicle-modal-component'"
+></table-component>
 
 @endsection

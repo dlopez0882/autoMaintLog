@@ -57,6 +57,10 @@ app.component('delete-service-item-modal-component', DeleteServiceItemModalCompo
 import ServiceItemDetailsModalComponent from './components/ServiceItemDetailsModalComponent.vue';
 app.component('service-item-details-modal-component', ServiceItemDetailsModalComponent);
 
+
+import TableComponent from './components/TableComponent.vue';
+app.component('table-component', TableComponent);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
