@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -12,14 +12,14 @@
                     <div class="mb-2">No vehicles found!</div>
                     @else
                     <table class="table table-striped task-table">
-                        {{-- Table Headings --}}
+                        <!-- Table Headings -->
                         <thead>
                             <th>Vehicle</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </thead>
     
-                        {{-- Table Body --}}
+                        <!-- Table Body -->
                         <tbody>
                             @foreach ($vehicles as $vehicle)
                                 <tr>
@@ -28,12 +28,12 @@
                                     </td>
                                     
                                     <td>
-                                        {{-- Show records button button --}}
+                                        <!-- Show records button button -->
                                         <a href="{{ url("/vehicles/{$vehicle->id}") }}" class="btn btn-primary" title="See Service History"><i class="fa fa-gear"></i> See Service History</a>
                                     </td>
     
                                     <td>
-                                        {{-- Button to open delete confirmation modal --}}
+                                        <!-- Button to open delete confirmation modal -->
                                         <button 
                                             id="show-modal" 
                                             class="btn btn-danger" 
@@ -72,11 +72,11 @@
         </modal-component>
     </transition>
 
-    {{-- <transition name="modal">
+    <!-- <transition name="modal">
         <add-vehicle-modal-component v-if="showAddVehicleModal" @close="showAddVehicleModal = false" v-bind:data = "{postroute:postroute}"></add-vehicle-modal-component>
-    </transition> --}}
+    </transition> -->
 
-</div>
+</div> --}}
 
 <table-component 
     :items="{{ $vehicles }}" 

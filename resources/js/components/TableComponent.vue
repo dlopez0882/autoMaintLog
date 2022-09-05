@@ -106,7 +106,7 @@
         data() {
             return {
                 showAddVehicleModal: false,
-                currentComponent: this.$attrs.inputmodal
+                currentComponent: this.$props.inputmodal
             }
         },
         props: {
@@ -114,10 +114,11 @@
             tableName: [String, Number],
             columns: Array,
             options: Array,
+            inputmodal: String,
         },
         mounted() {
             console.log("Table component mounted");
-            console.log(this.$attrs.inputmodal);
+            console.log(this.$props.inputmodal);
         }
 
     }
