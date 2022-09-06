@@ -12,8 +12,17 @@
                 <slot name="body">
                     {{ message }}
                     <form action="#" method="POST">
-                        <input type="text" name="fname" value="">
-                        <input type="text" name="lanem" value="">
+                    <div v-for="field in fields" class="mb-3">
+                        <label :for="field">{{ field }}</label>
+                        <input
+                            type="text" 
+                            :name="field" 
+                            :id="field"
+                            class="form-control" 
+                            value=""
+                        >
+                        <!-- <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>  -->
+                    </div>
                     </form>
                 </slot>
                 </div>
@@ -40,6 +49,7 @@
     export default {
         props: {
             message: String,
+            fields: Array,
         },
         data() {
             return {

@@ -24,6 +24,7 @@
                         <FormModal
                             v-else-if="displayFormModal"
                             :message="message" 
+                            :fields="fields"
                             @close="closeFormModal">
                         </FormModal>
                     </transition>
@@ -45,19 +46,19 @@ import FormModal from './FormModal.vue';
                 displayConfirmationModal: false,
                 displayFormModal: false,
                 message: '',
-                fields: '',
+                fields: [],
             }
         },
         methods: {
             showFormModal() {
                 this.displayFormModal = true;
                 this.message = 'This is a form modal';
-                this.fields = '';
+                this.fields = ['year', 'make', 'model'];
             },
             closeFormModal() {
                 this.displayFormModal = false;
                 this.message = '';
-                this.fields = '';
+                this.fields = [];
             },
             showConfirmationModal() {
                 this.displayConfirmationModal = true;
