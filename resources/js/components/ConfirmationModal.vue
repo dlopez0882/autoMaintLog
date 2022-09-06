@@ -11,7 +11,7 @@
 
           <div class="modal-body">
             <slot name="body">
-              {{ message }}
+                Are you sure that you want to delete your {{ table }}?
             </slot>
           </div>
 
@@ -19,7 +19,7 @@
             <slot name="footer">
               <form action="#" method="POST">
                 <input type="hidden" name="_token" value="csrf">
-                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_method" :value="method">
 
                 <button type="button" class="btn btn-light me-2" @click="$emit('close')">
                   Cancel
@@ -39,11 +39,12 @@
 <script>
     export default {
         props: {
-            message: String,
+            table: String,
+            method: String,
         },
         data() {
             return {
-                // message: ''
+                //
             }
             
         }

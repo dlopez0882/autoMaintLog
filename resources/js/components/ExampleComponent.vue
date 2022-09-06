@@ -7,10 +7,10 @@
 
                     <div class="card-body">
                         <p><button @click="showFormModal('vehicle', ['year', 'make', 'model'])">Add Vehicle Form modal</button></p>
-                        <p><button @click="showConfirmationModal">Delete Vehicle Confirmation modal</button></p>
+                        <p><button @click="showConfirmationModal('vehicles', 'delete')">Delete Vehicle Confirmation modal</button></p>
 
                         <p><button @click="showFormModal('service_item', ['date', 'mileage', 'technician', 'cost', 'service_summary', 'service_details'])">Add Service Item Form modal</button></p>
-                        <p><button @click="showConfirmationModal">Delete Service Item Confirmation modal</button></p>
+                        <p><button @click="showConfirmationModal('service_items', 'delete')">Delete Service Item Confirmation modal</button></p>
                     </div>
 
                     <!-- 
@@ -20,7 +20,8 @@
                     <transition name="modal">
                         <ConfirmationModal 
                             v-if="displayConfirmationModal"
-                            :message="message" 
+                            :table="table"
+                            :method="method" 
                             @close="closeConfirmationModal">
                             <template v-slot:header>
                                 <h3>Confirm</h3>
@@ -52,8 +53,9 @@ import FormModal from './FormModal.vue';
                 displayConfirmationModal: false,
                 displayFormModal: false,
                 headerString: '',
-                message: '',
                 fields: [],
+                table: '',
+                method: '',
             }
         },
         methods: {
@@ -67,13 +69,15 @@ import FormModal from './FormModal.vue';
                 this.headerString = '';
                 this.fields = [];
             },
-            showConfirmationModal() {
+            showConfirmationModal(table, method) {
                 this.displayConfirmationModal = true;
-                this.message = 'This is a confirmation modal';
+                this.table = table;
+                this.method = method;
             },
             closeConfirmationModal() {
                 this.displayConfirmationModal = false;
-                this.message = '';
+                this.table = '';
+                this.method = '';
             },
         },
         mounted() {
