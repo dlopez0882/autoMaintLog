@@ -59,9 +59,9 @@ import FormModal from './FormModal.vue';
             }
         },
         methods: {
-            showFormModal(type, fields) {
+            showFormModal(formTable, fields) {
                 this.displayFormModal = true;
-                this.headerString = type.replaceAll('_', ' ');
+                this.headerString = formTable.replaceAll('_', ' ');
                 this.fields = fields;
             },
             closeFormModal() {
