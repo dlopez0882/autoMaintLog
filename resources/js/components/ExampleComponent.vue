@@ -6,10 +6,10 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        <p><button @click="showFormModal('vehicle')">Add Vehicle Form modal</button></p>
+                        <p><button @click="showFormModal('vehicle', ['year', 'make', 'model'])">Add Vehicle Form modal</button></p>
                         <p><button @click="showConfirmationModal">Delete Vehicle Confirmation modal</button></p>
 
-                        <p><button @click="showFormModal('service_item')">Add Service Item Form modal</button></p>
+                        <p><button @click="showFormModal('service_item', ['date', 'mileage', 'technician', 'cost', 'service_summary', 'service_details'])">Add Service Item Form modal</button></p>
                         <p><button @click="showConfirmationModal">Delete Service Item Confirmation modal</button></p>
                     </div>
 
@@ -57,10 +57,10 @@ import FormModal from './FormModal.vue';
             }
         },
         methods: {
-            showFormModal(type) {
+            showFormModal(type, fields) {
                 this.displayFormModal = true;
                 this.headerString = type.replaceAll('_', ' ');
-                this.fields = ['year', 'make', 'model'];
+                this.fields = fields;
             },
             closeFormModal() {
                 this.displayFormModal = false;
