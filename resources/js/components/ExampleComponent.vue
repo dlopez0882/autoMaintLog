@@ -15,12 +15,17 @@
                         message: v-bind state data
                      -->
                     <transition name="modal">
-                        <ChildComponent 
-                            v-if="displayModal"
+                        <ConfirmationModal 
+                            v-if="displayConfirmationModal"
                             :message="message" 
-                            :modalType="modalType"
-                            @close="resetModal">
-                        </ChildComponent>
+                            @close="closeConfirmationModal">
+                        </ConfirmationModal>
+
+                        <FormModal
+                            v-else-if="displayFormModal"
+                            :message="message" 
+                            @close="closeFormModal">
+                        </FormModal>
                     </transition>
                     
 
@@ -32,38 +37,40 @@
 </template>
 
 <script>
-import ChildComponent from './ChildComponent.vue';
+import ConfirmationModal from './ConfirmationModal.vue';
+import FormModal from './FormModal.vue';
     export default {
         data() {
             return {
-                displayModal: false,
+                displayConfirmationModal: false,
+                displayFormModal: false,
                 message: '',
-                modalType: '',
                 fields: '',
             }
         },
         methods: {
             showFormModal() {
-                this.displayModal = true;
-                this.message = 'form';
-                this.modalType = 'form';
+                this.displayFormModal = true;
+                this.message = 'This is a form modal';
+                this.fields = '';
+            },
+            closeFormModal() {
+                this.displayFormModal = false;
+                this.message = '';
                 this.fields = '';
             },
             showConfirmationModal() {
-                this.displayModal = true;
-                this.message = 'confirmation';
-                this.modalType = 'confirmation';
-                this.fields = '';
+                this.displayConfirmationModal = true;
+                this.message = 'This is a confirmation modal';
             },
-            resetModal() {
-                this.displayModal = false;
+            closeConfirmationModal() {
+                this.displayConfirmationModal = false;
                 this.message = '';
-                this.modalType = '';
             },
         },
         mounted() {
             console.log("Component mounted.");
         },
-        components: { ChildComponent }
+        components: { ConfirmationModal, FormModal }
     }
 </script>
