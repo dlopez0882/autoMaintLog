@@ -6,8 +6,11 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        <button @click="showFormModal">Form modal</button>
-                        <button @click="showConfirmationModal">Confirmation modal</button>
+                        <p><button @click="showFormModal('vehicle')">Add Vehicle Form modal</button></p>
+                        <p><button @click="showConfirmationModal">Delete Vehicle Confirmation modal</button></p>
+
+                        <p><button @click="showFormModal('service_item')">Add Service Item Form modal</button></p>
+                        <p><button @click="showConfirmationModal">Delete Service Item Confirmation modal</button></p>
                     </div>
 
                     <!-- 
@@ -19,11 +22,14 @@
                             v-if="displayConfirmationModal"
                             :message="message" 
                             @close="closeConfirmationModal">
+                            <template v-slot:header>
+                                <h3>Confirm</h3>
+                            </template>
                         </ConfirmationModal>
 
                         <FormModal
                             v-else-if="displayFormModal"
-                            :message="message" 
+                            :headerString="headerString" 
                             :fields="fields"
                             @close="closeFormModal">
                         </FormModal>
@@ -45,19 +51,20 @@ import FormModal from './FormModal.vue';
             return {
                 displayConfirmationModal: false,
                 displayFormModal: false,
+                headerString: '',
                 message: '',
                 fields: [],
             }
         },
         methods: {
-            showFormModal() {
+            showFormModal(type) {
                 this.displayFormModal = true;
-                this.message = 'This is a form modal';
+                this.headerString = type.replaceAll('_', ' ');
                 this.fields = ['year', 'make', 'model'];
             },
             closeFormModal() {
                 this.displayFormModal = false;
-                this.message = '';
+                this.headerString = '';
                 this.fields = [];
             },
             showConfirmationModal() {
