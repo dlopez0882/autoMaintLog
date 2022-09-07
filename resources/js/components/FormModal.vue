@@ -11,9 +11,10 @@
 
                   <div class="card-body">
                       <slot name="body">
-                          <form :action="postroute" method="POST">
+                          <form action="submitForm" method="POST">
                               <div v-for="(type, field) in fields" class="mb-3">
                                   <label :for="field">{{ field }}</label>
+                                  <!-- TODO: figure out how to get field values to data properly -->
                                   <input
                                       :type="type" 
                                       :name="field" 
@@ -29,8 +30,8 @@
                                           Cancel
                                       </button>
                                       
-                                      <button type="submit" class="btn btn-primary" @click="$emit('close')">
-                                          OK
+                                      <button type="submit" class="btn btn-primary" @click.prevent="submitForm">
+                                          Submit
                                       </button>
                                   </slot>
                               </div>
@@ -52,9 +53,45 @@
       },
       data() {
           return {
-              // headerString: ''
+            // TODO: figure out how to get field values to data properly
           }
           
-      }
+      },
+      methods: {
+            async submitForm () {
+                // const isFormCorrect = await this.v$.$validate()
+
+                // if validation returns errors, do nothing
+                // if (!isFormCorrect) return
+
+                // otherwise, submit form
+                // gather data from form
+                const vehicleProps = {
+                    year: this.$refs.year.value, 
+                    make: this.$refs.make.value, 
+                    model: this.$refs.model.value
+                }
+
+                // json the data from form
+                const data = JSON.stringify({vehicleProps})
+                console.log(data)
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    }
+                }
+
+                // submit data to laravel
+                axios.post(this.postroute, data, config)
+                    // .then(response => console.log(response))
+                    .then(response => {
+                        // console.log(response)
+                        window.location.href = '/';
+                    })
+                    .catch(error => console.log(error));
+            }
+        }
    }
 </script>
