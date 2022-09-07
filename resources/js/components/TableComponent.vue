@@ -107,6 +107,8 @@
         <ConfirmationModal
             v-if="displayConfirmationModal"
             @close="closeConfirmationModal"
+            :table="tableName"
+            :method="'delete'"
         ></ConfirmationModal>
 
         <FormModal

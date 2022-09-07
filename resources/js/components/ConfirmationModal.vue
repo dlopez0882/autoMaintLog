@@ -11,14 +11,14 @@
 
         <div class="modal-body">
           <slot name="body">
-              Are you sure that you want to delete your {{ table }}?
+              Are you sure that you want to delete this {{ table }}?
           </slot>
         </div>
 
         <div class="modal-footer">
           <slot name="footer">
             <form action="#" method="POST">
-              <input type="hidden" name="_token" value="csrf">
+              <input type="hidden" name="_token" :value="csrfToken">
               <input type="hidden" name="_method" :value="method">
 
               <button type="button" class="btn btn-light me-2" @click="$emit('close')">
@@ -44,7 +44,7 @@
       },
       data() {
           return {
-              //
+            csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           }
           
       }
