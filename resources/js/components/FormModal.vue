@@ -5,7 +5,7 @@
               <div class="card">
                   <div class="card-header">
                       <slot name="header">
-                          Add a new {{ headerString }}
+                          Add a new {{ table }}
                       </slot>
                   </div>  
 
@@ -46,8 +46,8 @@
 <script>
   export default {
       props: {
-          headerString: String,
-          fields: Object,
+        table: String,
+        fields: Object,
       },
       data() {
           return {

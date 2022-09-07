@@ -82,8 +82,8 @@
                         type="button"
                         class="btn btn-primary"
                         title="Add"
-                        @click="showFormModal()"
-                    ><i class="fa fa-plus"></i> Add {{  }}</button>
+                        @click="showFormModal({'year':'number', 'make':'text', 'model':'text'})"
+                    ><i class="fa fa-plus"></i> Add {{ tableName }}</button>
 
                 </div>
             </div>
@@ -114,6 +114,8 @@
         <FormModal
             v-else-if="displayFormModal"
             @close="closeFormModal"
+            :table="tableName"
+            :fields="fields"
         ></FormModal>
     </transition>
 
@@ -134,6 +136,7 @@
 
                 displayConfirmationModal: false,
                 displayFormModal: false,
+                fields: '',
             };
         },
         props: {
@@ -150,11 +153,13 @@
             closeConfirmationModal() {
                 this.displayConfirmationModal = false;
             },
-            showFormModal() {
+            showFormModal(fields) {
                 this.displayFormModal = true;
+                this.fields = fields;
             },
             closeFormModal() {
                 this.displayFormModal = false;
+                this.fields = '';
             }
         },
         mounted() {
