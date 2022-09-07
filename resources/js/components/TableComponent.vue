@@ -52,7 +52,9 @@
 
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id" class="btn btn-primary" title="view record">View {{item.id}}</a>
-                                        <button v-else-if="option == 'delete'" type="button" class="btn btn-danger" title="delete record">Delete</button>
+                                        <!-- <button v-else-if="option == 'delete'" type="button" class="btn btn-danger" title="delete record">Delete</button> -->
+
+                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal()" type="button" class="btn btn-danger" title="delete record">Delete</button>
                                     </td>
 
                                 </tr>
@@ -89,11 +91,16 @@
         >
         </add-vehicle-modal-component> -->
 
-        <component :is=currentComponent
+        <!-- <component :is=currentComponent
         v-if="showAddVehicleModal" 
             @close="showAddVehicleModal = false" 
             v-bind:data = "{postroute:postroute}"
-        ></component>
+        ></component> -->
+
+        <ConfirmationModal
+            v-if="displayConfirmationModal"
+            @close="closeConfirmationModal"
+        ></ConfirmationModal>
     </transition>
 
 </div>
@@ -102,12 +109,16 @@
 
 
 <script>
+    import ConfirmationModal from './ConfirmationModal.vue';
+
     export default {
         data() {
             return {
                 showAddVehicleModal: false,
-                currentComponent: this.$props.inputmodal
-            }
+                currentComponent: this.$props.inputmodal,
+
+                displayConfirmationModal: false,
+            };
         },
         props: {
             items: Object,
@@ -116,10 +127,18 @@
             options: Array,
             inputmodal: String,
         },
+        methods: {
+            showConfirmationModal() {
+                this.displayConfirmationModal = true;
+            },
+            closeConfirmationModal() {
+                this.displayConfirmationModal = false;
+            }
+        },
         mounted() {
             console.log("Table component mounted");
             console.log(this.$props.inputmodal);
-        }
-
+        },
+        components: { ConfirmationModal }
     }
 </script>
