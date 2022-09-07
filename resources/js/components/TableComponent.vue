@@ -71,12 +71,19 @@
                         @click="showAddVehicleModal = true, postroute='{{ url("/vehicles") }}'"
                         @keydown.esc="showAddVehicleModal = false" 
                     > -->
-                    <button
+                    <!-- <button
                         type="button"
                         class="btn btn-primary"
                         title="Add"
                         @click="showAddVehicleModal = true, postroute=tableName + '/'"
-                    ><i class="fa fa-plus"></i> Add {{ tableName }}</button>
+                    ><i class="fa fa-plus"></i> Add {{ tableName }}</button> -->
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        title="Add"
+                        @click="showFormModal()"
+                    ><i class="fa fa-plus"></i> Add {{  }}</button>
 
                 </div>
             </div>
@@ -101,6 +108,11 @@
             v-if="displayConfirmationModal"
             @close="closeConfirmationModal"
         ></ConfirmationModal>
+
+        <FormModal
+            v-else-if="displayFormModal"
+            @close="closeFormModal"
+        ></FormModal>
     </transition>
 
 </div>
@@ -110,6 +122,7 @@
 
 <script>
     import ConfirmationModal from './ConfirmationModal.vue';
+    import FormModal from './FormModal.vue';
 
     export default {
         data() {
@@ -118,6 +131,7 @@
                 currentComponent: this.$props.inputmodal,
 
                 displayConfirmationModal: false,
+                displayFormModal: false,
             };
         },
         props: {
@@ -133,12 +147,18 @@
             },
             closeConfirmationModal() {
                 this.displayConfirmationModal = false;
+            },
+            showFormModal() {
+                this.displayFormModal = true;
+            },
+            closeFormModal() {
+                this.displayFormModal = false;
             }
         },
         mounted() {
             console.log("Table component mounted");
             console.log(this.$props.inputmodal);
         },
-        components: { ConfirmationModal }
+        components: { ConfirmationModal, FormModal }
     }
 </script>
