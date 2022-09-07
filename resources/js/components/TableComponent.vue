@@ -82,7 +82,10 @@
                         type="button"
                         class="btn btn-primary"
                         title="Add"
-                        @click="showFormModal({'year':'number', 'make':'text', 'model':'text'})"
+                        @click="showFormModal(
+                                    {'year':'number', 'make':'text', 'model':'text'},
+                                    '/vehicles',
+                                )"
                     ><i class="fa fa-plus"></i> Add {{ tableName }}</button>
 
                 </div>
@@ -116,6 +119,7 @@
             @close="closeFormModal"
             :table="tableName"
             :fields="fields"
+            :postroute="postroute"
         ></FormModal>
     </transition>
 
@@ -137,6 +141,7 @@
                 displayConfirmationModal: false,
                 displayFormModal: false,
                 fields: '',
+                postroute: ''
             };
         },
         props: {
@@ -153,13 +158,15 @@
             closeConfirmationModal() {
                 this.displayConfirmationModal = false;
             },
-            showFormModal(fields) {
+            showFormModal(fields, postroute) {
                 this.displayFormModal = true;
                 this.fields = fields;
+                this.postroute = postroute;
             },
             closeFormModal() {
                 this.displayFormModal = false;
                 this.fields = '';
+                this.postroute = '';
             }
         },
         mounted() {

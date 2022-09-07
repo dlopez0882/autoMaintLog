@@ -11,7 +11,7 @@
 
                   <div class="card-body">
                       <slot name="body">
-                          <form action="#" method="POST">
+                          <form :action="postroute" method="POST">
                               <div v-for="(type, field) in fields" class="mb-3">
                                   <label :for="field">{{ field }}</label>
                                   <input
@@ -48,6 +48,7 @@
       props: {
         table: String,
         fields: Object,
+        postroute: String,
       },
       data() {
           return {
