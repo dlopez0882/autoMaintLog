@@ -6,10 +6,10 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        <p><button @click="showFormModal('vehicle', ['year', 'make', 'model'])">Add Vehicle Form modal</button></p>
+                        <p><button @click="showFormModal('vehicle', {'year':'number', 'make':'text', 'model':'text'})">Add Vehicle Form modal</button></p>
                         <p><button @click="showConfirmationModal('vehicles', 'delete')">Delete Vehicle Confirmation modal</button></p>
 
-                        <p><button @click="showFormModal('service_item', ['date', 'mileage', 'technician', 'cost', 'service_summary', 'service_details'])">Add Service Item Form modal</button></p>
+                        <p><button @click="showFormModal('service_item', {'date':'date', 'mileage':'number', 'technician':'text', 'cost':'number', 'service_summary':'text', 'service_details':'textarea'})">Add Service Item Form modal</button></p>
                         <p><button @click="showConfirmationModal('service_items', 'delete')">Delete Service Item Confirmation modal</button></p>
                     </div>
 

@@ -12,10 +12,10 @@
                     <div class="card-body">
                         <slot name="body">
                             <form action="#" method="POST">
-                                <div v-for="field in fields" class="mb-3">
+                                <div v-for="(type, field) in fields" class="mb-3">
                                     <label :for="field">{{ field }}</label>
                                     <input
-                                        type="text" 
+                                        :type="type" 
                                         :name="field" 
                                         :id="field"
                                         class="form-control" 
@@ -47,7 +47,7 @@
     export default {
         props: {
             headerString: String,
-            fields: Array,
+            fields: Object,
         },
         data() {
             return {
