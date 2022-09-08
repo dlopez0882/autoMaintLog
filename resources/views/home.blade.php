@@ -83,7 +83,7 @@
     :table-name="'vehicles'" 
     :columns="['year', 'make', 'model']"
     :options="['view', 'delete']"
-    :inputmodal="'add-vehicle-modal-component'"
+    {{-- :inputmodal="'add-vehicle-modal-component'" --}}
 ></table-component>
 
 @endsection

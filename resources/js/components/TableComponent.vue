@@ -139,8 +139,8 @@
     export default {
         data() {
             return {
-                showAddVehicleModal: false,
-                currentComponent: this.$props.inputmodal,
+                // showAddVehicleModal: false,
+                // currentComponent: this.$props.inputmodal,
 
                 displayConfirmationModal: false,
                 displayFormModal: false,
@@ -153,7 +153,7 @@
             tableName: [String, Number],
             columns: Array,
             options: Array,
-            inputmodal: String,
+            // inputmodal: String,
         },
         methods: {
             showConfirmationModal() {
@@ -175,7 +175,7 @@
         },
         mounted() {
             console.log("Table component mounted");
-            console.log(this.$props.inputmodal);
+            // console.log(this.$props.inputmodal);
         },
         components: { ConfirmationModal, FormModal }
     }

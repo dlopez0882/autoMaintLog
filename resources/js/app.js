@@ -18,7 +18,7 @@ const app = createApp({
     data: function() {
         return {
             showModal: false,
-            showAddVehicleModal: false,
+            // showAddVehicleModal: false,
             showAddServiceItemModal: false,
             showEditServiceItemModal: false,
             showDeleteServiceItemConfirmModal: false,
@@ -42,8 +42,8 @@ app.component('example-component', ExampleComponent);
 import ModalComponent from './components/ModalComponent.vue';
 app.component('modal-component', ModalComponent);
 
-import AddVehicleModalComponent from './components/AddVehicleModalComponent.vue';
-app.component('add-vehicle-modal-component', AddVehicleModalComponent);
+// import AddVehicleModalComponent from './components/AddVehicleModalComponent.vue';
+// app.component('add-vehicle-modal-component', AddVehicleModalComponent);
 
 import AddServiceItemModalComponent from './components/AddServiceItemModalComponent.vue';
 app.component('add-service-item-modal-component', AddServiceItemModalComponent);
