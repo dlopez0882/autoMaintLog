@@ -58,22 +58,29 @@
       },
       methods: {
             async submitForm () {
-                // const isFormCorrect = await this.v$.$validate()
+                /* DO NOT DELETE
+                const isFormCorrect = await this.v$.$validate()
 
                 // if validation returns errors, do nothing
-                // if (!isFormCorrect) return
+                if (!isFormCorrect) return
+                */
 
                 // otherwise, submit form
                 // gather data from form
-                const vehicleProps = {
-                    year: this.$refs.year.value, 
-                    make: this.$refs.make.value, 
-                    model: this.$refs.model.value
-                }
+                const formDataArray = this.$props.fields;
+
+                // use proxy to extract since data is observable object (for reactivity)
+                const myProxy = new Proxy(formDataArray, {});
 
                 // json the data from form
-                const data = JSON.stringify({vehicleProps})
-                console.log(data)
+                const myProxyTarget = JSON.parse(JSON.stringify(myProxy));
+
+                // prepare data for axios post
+                const data = {};
+                for(let i = 0; i < myProxyTarget.length; i++) {
+                    data[myProxyTarget[i].name] = myProxyTarget[i].value;
+                }
+
                 const config = {
                     headers: {
                         'Content-Type': 'application/json',
