@@ -84,6 +84,10 @@
     :columns="['year', 'make', 'model']"
     :options="['view', 'delete']"
     {{-- :inputmodal="'add-vehicle-modal-component'" --}}
+    :fields="[    
+        {'name': 'year', 'type': 'number', 'value': ''},
+        {'name': 'make', 'type': 'text', 'value': ''},
+        {'name': 'model', 'type': 'text', 'value': ''},]"
 ></table-component>
 
 @endsection

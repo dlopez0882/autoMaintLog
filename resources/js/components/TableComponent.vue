@@ -82,14 +82,7 @@
                         type="button"
                         class="btn btn-primary"
                         title="Add"
-                        @click="showFormModal(
-                                    [
-                                        {name: 'year', type: 'number', value: ''},
-                                        {name: 'make', type: 'text', value: ''},
-                                        {name: 'model', type: 'text', value: ''},
-                                    ],
-                                    '/vehicles',
-                                )"
+                        @click="showFormModal('/vehicles')"
                     ><i class="fa fa-plus"></i> Add {{ tableName }}</button>
 
                 </div>
@@ -144,7 +137,7 @@
 
                 displayConfirmationModal: false,
                 displayFormModal: false,
-                fields: '',
+                // fields: ''
                 postroute: ''
             };
         },
@@ -154,6 +147,7 @@
             columns: Array,
             options: Array,
             // inputmodal: String,
+            fields: Array,
         },
         methods: {
             showConfirmationModal() {
@@ -162,14 +156,14 @@
             closeConfirmationModal() {
                 this.displayConfirmationModal = false;
             },
-            showFormModal(fields, postroute) {
+            showFormModal(postroute) {
                 this.displayFormModal = true;
-                this.fields = fields;
+                // this.fields = fields;
                 this.postroute = postroute;
             },
             closeFormModal() {
                 this.displayFormModal = false;
-                this.fields = '';
+                // this.fields = '';
                 this.postroute = '';
             }
         },
