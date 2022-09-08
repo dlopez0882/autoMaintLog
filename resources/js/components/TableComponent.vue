@@ -83,7 +83,11 @@
                         class="btn btn-primary"
                         title="Add"
                         @click="showFormModal(
-                                    {'year':'number', 'make':'text', 'model':'text'},
+                                    [
+                                        {name: 'year', type: 'number', value: ''},
+                                        {name: 'make', type: 'text', value: ''},
+                                        {name: 'model', type: 'text', value: ''},
+                                    ],
                                     '/vehicles',
                                 )"
                     ><i class="fa fa-plus"></i> Add {{ tableName }}</button>

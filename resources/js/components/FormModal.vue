@@ -12,15 +12,14 @@
                   <div class="card-body">
                       <slot name="body">
                           <form action="submitForm" method="POST">
-                              <div v-for="(type, field) in fields" class="mb-3">
-                                  <label :for="field">{{ field }}</label>
-                                  <!-- TODO: figure out how to get field values to data properly -->
+                              <div v-for="field in fields" :key="field.name" class="mb-3">
+                                  <label :for="field.name">{{ field.name }}</label>
                                   <input
-                                      :type="type" 
-                                      :name="field" 
-                                      :id="field"
+                                      :type="field.type" 
+                                      :name="field.name" 
+                                      :id="field.name"
                                       class="form-control" 
-                                      value=""
+                                      v-model="field.value"
                                   >
                                   <!-- <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>  -->
                               </div>
