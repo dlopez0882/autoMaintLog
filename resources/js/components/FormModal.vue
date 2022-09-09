@@ -21,8 +21,9 @@
                                       class="form-control" 
                                       v-model="state[field.name]"
                                   >
-                                  <!-- <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>  -->
+                                  <!-- <div class="text-danger" v-if="v$.year.$error">{{ field.errormsg }}.</div>   -->
                               </div>
+                              <div class="text-danger" v-for="error of v$.$errors" :key="error.$uid">{{ error.$message }}</div> 
                               <div class="text-end">
                                   <slot name="footer">
                                       <button type="button" class="btn btn-light me-2" @click="$emit('close')">
@@ -58,7 +59,6 @@ import useVuelidate from '@vuelidate/core';
         action: String,
       },
       setup(props) {
-        console.log(props.action);
             const state = reactive({
                 // year: '',
                 // make: '',
