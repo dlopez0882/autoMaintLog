@@ -19,7 +19,7 @@
                                       :name="field.name" 
                                       :id="field.name"
                                       class="form-control" 
-                                      v-model="field.value"
+                                      v-model="state[field.name]"
                                   >
                                   <!-- <div class="text-danger" v-if="v$.year.$error">Year field is required and must be between {{ yearMin }} and {{ yearMax }}.</div>  -->
                               </div>
@@ -44,11 +44,43 @@
 </template>
 
 <script>
+    import { computed } from '@vue/reactivity';
+import useVuelidate from '@vuelidate/core';
+    import { between, required, minLength } from '@vuelidate/validators';
+    import axios from 'axios';
+    import { reactive, ref } from 'vue';
+
   export default {
       props: {
         table: String,
         fields: Object,
         postroute: String,
+      },
+      setup() {
+            const state = reactive({
+                // year: '',
+                make: '',
+                model: ''
+            })
+            // const requiredNameLength = ref(2)
+            const rules = computed(() => {
+                return {
+                    // year: {
+                    //     required,
+                    // },
+                    make: {
+                        required,
+                        // minLength: minLength(requiredNameLength.value)
+                    },
+                    model: {
+                        required,
+                    }
+                }
+            })
+            
+            const v$ = useVuelidate(rules, state)
+
+            return { state, /*requiredNameLength,*/ v$ }
       },
       data() {
           return {
@@ -56,47 +88,50 @@
           }
           
       },
-      methods: {
+        methods: {
             async submitForm () {
-                /* DO NOT DELETE
                 const isFormCorrect = await this.v$.$validate()
 
                 // if validation returns errors, do nothing
-                if (!isFormCorrect) return
-                */
+                // if (!isFormCorrect) return
+                if (!isFormCorrect) {
+                    alert("errors");
+                } else {
+                    alert("success");
+                }
 
                 // otherwise, submit form
                 // gather data from form
-                const formDataArray = this.$props.fields;
+                // const formDataArray = this.$props.fields;
 
-                // use proxy to extract since data is observable object (for reactivity)
-                const myProxy = new Proxy(formDataArray, {});
+                // // use proxy to extract since data is observable object (for reactivity)
+                // const myProxy = new Proxy(formDataArray, {});
 
-                // json the data from form
-                const myProxyTarget = JSON.parse(JSON.stringify(myProxy));
+                // // json the data from form
+                // const myProxyTarget = JSON.parse(JSON.stringify(myProxy));
 
-                // prepare data for axios post
-                const data = {};
-                for(let i = 0; i < myProxyTarget.length; i++) {
-                    data[myProxyTarget[i].name] = myProxyTarget[i].value;
-                }
+                // // prepare data for axios post
+                // const data = {};
+                // for(let i = 0; i < myProxyTarget.length; i++) {
+                //     data[myProxyTarget[i].name] = myProxyTarget[i].value;
+                // }
 
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
-                }
+                // const config = {
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'X-Requested-With': 'XMLHttpRequest',
+                //         'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                //     }
+                // }
 
-                // submit data to laravel
-                axios.post(this.postroute, data, config)
-                    // .then(response => console.log(response))
-                    .then(response => {
-                        // console.log(response)
-                        window.location.href = '/';
-                    })
-                    .catch(error => console.log(error));
+                // // submit data to laravel
+                // axios.post(this.postroute, data, config)
+                //     // .then(response => console.log(response))
+                //     .then(response => {
+                //         // console.log(response)
+                //         window.location.href = '/';
+                //     })
+                //     .catch(error => console.log(error));
             }
         }
    }
