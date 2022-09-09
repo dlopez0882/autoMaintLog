@@ -46,34 +46,42 @@
 <script>
     import { computed } from '@vue/reactivity';
 import useVuelidate from '@vuelidate/core';
-    import { between, required, minLength } from '@vuelidate/validators';
+    import { between, required } from '@vuelidate/validators';
     import axios from 'axios';
-    import { reactive, ref } from 'vue';
+    import { reactive } from 'vue';
 
   export default {
       props: {
         table: String,
         fields: Object,
         postroute: String,
+        action: String,
       },
-      setup() {
+      setup(props) {
+        console.log(props.action);
             const state = reactive({
                 // year: '',
-                make: '',
-                model: ''
+                // make: '',
+                // model: ''
             })
-            // const requiredNameLength = ref(2)
+            const yearMin = 1900;
+            const yearMax = new Date().getFullYear() + 1;
             const rules = computed(() => {
-                return {
-                    // year: {
-                    //     required,
-                    // },
-                    make: {
-                        required,
-                        // minLength: minLength(requiredNameLength.value)
-                    },
-                    model: {
-                        required,
+                if(props.action == 'addvehicle') {
+                    return {
+                        year: { 
+                            between: between(yearMin, yearMax),
+                            required 
+                        },
+                        make: { required },
+                        model: { required }
+                    }
+                } else {
+                    return {
+                        year: { 
+                            between: between(yearMin, yearMax),
+                            required 
+                        }
                     }
                 }
             })
