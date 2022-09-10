@@ -11,7 +11,7 @@
 
         <div class="modal-body">
           <slot name="body">
-              Are you sure that you want to delete this {{ table }}?
+              Are you sure that you want to delete this {{ table.slice(0,-1) }}?
           </slot>
         </div>
 
