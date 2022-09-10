@@ -81,8 +81,8 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        title="Add"
-                        @click="showFormModal('/vehicles', 'addvehicle')"
+                        :title="`Add ${tableName.slice(0,-1)}`"
+                        @click="showFormModal(`/${tableName}`, `add${tableName.slice(0,-1)}`)"
                     ><i class="fa fa-plus"></i> Add {{ tableName.slice(0,-1) }}</button>
 
                 </div>
