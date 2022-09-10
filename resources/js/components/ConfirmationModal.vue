@@ -17,7 +17,7 @@
 
         <div class="modal-footer">
           <slot name="footer">
-            <form action="#" method="POST">
+            <form :action="postroute" method="POST">
               <input type="hidden" name="_token" :value="csrfToken">
               <input type="hidden" name="_method" :value="method">
 
@@ -41,6 +41,7 @@
       props: {
           table: String,
           method: String,
+          postroute: String,
       },
       data() {
           return {

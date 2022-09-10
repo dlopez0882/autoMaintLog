@@ -25,8 +25,7 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View {{item.id}}</a>
-
-                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal()"
+                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(`/${tableName}/${item.id}`)"
                                             type="button" class="btn btn-danger" title="delete record">Delete</button>
                                     </td>
                                 </tr>
@@ -43,8 +42,10 @@
         </div>
 
         <transition name="modal">
-            <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" :table="tableName"
-                :method="'delete'"></ConfirmationModal>
+            <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" :table="tableName" :postroute="postroute"
+                :method="'delete'">
+                <template v-slot:header><h3>Confirm</h3></template>
+            </ConfirmationModal>
 
             <FormModal v-else-if="displayFormModal" @close="closeFormModal" :table="tableName" :fields="fields"
                 :postroute="postroute" :action="action"></FormModal>
@@ -76,11 +77,13 @@ export default {
         fields: Array,
     },
     methods: {
-        showConfirmationModal() {
+        showConfirmationModal(postroute) {
             this.displayConfirmationModal = true;
+            this.postroute = postroute;
         },
         closeConfirmationModal() {
             this.displayConfirmationModal = false;
+            this.postroute = ''
         },
         showFormModal(postroute, action) {
             this.displayFormModal = true;
