@@ -16,7 +16,6 @@
                                     <label :for="field.name">{{ field.name }}</label>
                                     <input :type="field.type" :name="field.name" :id="field.name" class="form-control"
                                         v-model="state[field.name]">
-                                    <!-- <div class="text-danger" v-if="v$.year.$error">{{ field.errormsg }}.</div>   -->
                                 </div>
                                 <div class="text-danger" v-for="error of v$.$errors" :key="error.$uid">{{ error.$message
                                 }}</div>

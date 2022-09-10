@@ -85,9 +85,9 @@
     :options="['view', 'delete']"
     {{-- :inputmodal="'add-vehicle-modal-component'" --}}
     :fields="[    
-        {'name': 'year', 'type': 'number', 'value': '', 'errormsg': 'Year field is required and must be between '},
-        {'name': 'make', 'type': 'text', 'value': '', 'errormsg': 'Make field is required.'},
-        {'name': 'model', 'type': 'text', 'value': '', 'errormsg': 'Model field is required'},]"
+        {'name': 'year', 'type': 'number'},
+        {'name': 'make', 'type': 'text'},
+        {'name': 'model', 'type': 'text'}]"
 ></table-component>
 
 @endsection
