@@ -90,45 +90,34 @@ export default {
             const isFormCorrect = await this.v$.$validate()
 
             // if validation returns errors, do nothing
-            // if (!isFormCorrect) return
-            if (!isFormCorrect) {
-                alert("errors");
-            } else {
-                alert("success");
-            }
+            if (!isFormCorrect) return
 
             // otherwise, submit form
             // gather data from form
-            // const formDataArray = this.$props.fields;
+            const formDataArray = this.state;
 
             // // use proxy to extract since data is observable object (for reactivity)
-            // const myProxy = new Proxy(formDataArray, {});
+            const myProxy = new Proxy(formDataArray, {});
 
             // // json the data from form
-            // const myProxyTarget = JSON.parse(JSON.stringify(myProxy));
-
-            // // prepare data for axios post
-            // const data = {};
-            // for(let i = 0; i < myProxyTarget.length; i++) {
-            //     data[myProxyTarget[i].name] = myProxyTarget[i].value;
-            // }
-
-            // const config = {
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'X-Requested-With': 'XMLHttpRequest',
-            //         'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            //     }
-            // }
+            const data = JSON.parse(JSON.stringify(myProxy));
+            
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            }
 
             // // submit data to laravel
-            // axios.post(this.postroute, data, config)
-            //     // .then(response => console.log(response))
-            //     .then(response => {
-            //         // console.log(response)
-            //         window.location.href = '/';
-            //     })
-            //     .catch(error => console.log(error));
+            axios.post(this.postroute, data, config)
+                // .then(response => console.log(response))
+                .then(response => {
+                    // console.log(response)
+                    window.location.href = '/';
+                })
+                .catch(error => console.log(error));
         }
     }
 }
