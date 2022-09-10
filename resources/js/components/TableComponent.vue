@@ -83,7 +83,7 @@
                         class="btn btn-primary"
                         title="Add"
                         @click="showFormModal('/vehicles', 'addvehicle')"
-                    ><i class="fa fa-plus"></i> Add {{ tableName }}</button>
+                    ><i class="fa fa-plus"></i> Add {{ tableName.slice(0,-1) }}</button>
 
                 </div>
             </div>

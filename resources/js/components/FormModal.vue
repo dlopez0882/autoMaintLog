@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Add a new {{ table }}
+                            Add a new {{ table.slice(0,-1) }}
                         </slot>
                     </div>
 
