@@ -12,7 +12,7 @@
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
-                                    <th v-for="column in columns">{{ column }}</th>
+                                    <th v-for="column in columns">{{ column.charAt(0).toUpperCase() + column.slice(1) }}</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                 </tr>
@@ -24,9 +24,9 @@
                                     <td class="table-text" v-for="column in columns">{{ item[column] }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
-                                            class="btn btn-primary" title="view record">View {{item.id}}</a>
+                                            class="btn btn-primary" title="view record">View record</a>
                                         <button v-else-if="option == 'delete'" @click="showConfirmationModal(`/${tableName}/${item.id}`)"
-                                            type="button" class="btn btn-danger" title="delete record">Delete</button>
+                                            type="button" class="btn btn-danger" title="delete record">Delete record</button>
                                     </td>
                                 </tr>
                             </tbody>

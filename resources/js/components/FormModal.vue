@@ -13,7 +13,7 @@
                         <slot name="body">
                             <form action="submitForm" method="POST">
                                 <div v-for="field in fields" :key="field.name" class="mb-3">
-                                    <label :for="field.name">{{ field.name }}</label>
+                                    <label :for="field.name">{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</label>
                                     <input :type="field.type" :name="field.name" :id="field.name" class="form-control"
                                         v-model="state[field.name]">
                                 </div>
