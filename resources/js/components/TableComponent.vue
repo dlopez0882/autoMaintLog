@@ -90,6 +90,7 @@ export default {
         closeFormModal() {
             this.displayFormModal = false;
             this.postroute = '';
+            this.action = '';
         }
     },
     mounted() {
