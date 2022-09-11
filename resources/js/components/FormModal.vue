@@ -47,12 +47,6 @@ import axios from 'axios';
 import { reactive } from 'vue';
 
 export default {
-    props: {
-        table: String,
-        fields: Object,
-        postroute: String,
-        action: String,
-    },
     setup(props) {
         const state = reactive({
             // year: '',
@@ -83,6 +77,12 @@ export default {
         const v$ = useVuelidate(rules, state)
 
         return { state, /*requiredNameLength,*/ v$ }
+    },
+    props: {
+        table: String,
+        fields: Object,
+        postroute: String,
+        action: String,
     },
     methods: {
         async submitForm() {

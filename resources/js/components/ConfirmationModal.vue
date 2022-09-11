@@ -38,16 +38,15 @@
 
 <script>
   export default {
-      props: {
-          table: String,
-          method: String,
-          postroute: String,
-      },
       data() {
           return {
             csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
           }
-          
+      },
+      props: {
+          table: String,
+          method: String,
+          postroute: String,
       }
    }
 </script>
