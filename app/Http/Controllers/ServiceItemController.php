@@ -61,7 +61,7 @@ class ServiceItemController extends Controller
          * get vehicle from post request data
          * use dd($vehicle) to see post request data
         */ 
-        $vehicleid = $request->vehicleid; 
+        $vehicleid = $request->vehicle_id; 
 
         // sql: DELETE FROM service_items WHERE id = $id;
         ServiceItem::where('id', $id)->delete();

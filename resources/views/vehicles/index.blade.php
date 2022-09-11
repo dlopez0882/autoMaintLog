@@ -116,7 +116,7 @@
             {'name': 'service_summary', 'type': 'text'},
             {'name': 'service_details', 'type': 'tinymce'}
         ]"
-        :hidden-fields="[{'name': 'vehicleid', 'value': {{ $vehicleData->id}}}]"
+        :hidden-fields="[{'name': 'vehicle_id', 'value': {{ $vehicleData->id }}}]"
         >
         <template v-slot:card-header>
             <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
