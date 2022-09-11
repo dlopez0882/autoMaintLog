@@ -35,7 +35,7 @@
                         </table>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1).replaceAll('_', ' ')}`" 
-                            @click="showFormModal(`/${tableName}`, `add${tableName.slice(0,-1)}`)"><i 
+                            @click="showFormModal(`/${tableName.replaceAll('_', '')}`, `add${tableName.slice(0,-1)}`)"><i 
                                 class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
 
                     </div>
