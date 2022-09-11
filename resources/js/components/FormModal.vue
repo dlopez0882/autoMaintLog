@@ -14,7 +14,19 @@
                             <form action="submitForm" method="POST">
                                 <div v-for="field in fields" :key="field.name" class="mb-3">
                                     <label :for="field.name">{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</label>
-                                    <input :type="field.type" :name="field.name" :id="field.name" class="form-control"
+                                    <!-- if type is "tinymce", inject tinymce component -->
+                                    <editor v-if="field.type == 'tinymce'" 
+                                        api-key="no-api-key"
+                                        v-model="state[field.name]"
+                                        :init="{
+                                            height: 150,
+                                            menubar: false,
+                                            plugins: 'link autolink lists',
+                                            toolbar: 'styles bold italic numlist bullist link',
+                                            branding: false,
+                                        }">
+                                    </editor>
+                                    <input v-else :type="field.type" :name="field.name" :id="field.name" class="form-control"
                                         v-model="state[field.name]">
                                 </div>
                                 <div class="text-danger" v-for="error of v$.$errors" :key="error.$uid">{{ error.$message
@@ -45,6 +57,7 @@ import useVuelidate from '@vuelidate/core';
 import { between, helpers, required } from '@vuelidate/validators';
 import axios from 'axios';
 import { reactive } from 'vue';
+import Editor from '@tinymce/tinymce-vue';
 
 export default {
     setup(props) {
@@ -84,6 +97,9 @@ export default {
         fields: Object,
         postroute: String,
         action: String,
+    },
+    components: {
+        'editor': Editor
     },
     methods: {
         async submitForm() {
