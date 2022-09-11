@@ -103,4 +103,15 @@
 
 </div>
 
+<table-component
+        :items="{{ $workOrders }}"
+        :table-name="'service_items'"
+        :columns="['service_date', 'mileage', 'service_summary', 'technician', 'cost']"
+        :options="['view', 'delete']"
+        >
+        <template v-slot:card-header>
+            <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
+        </template>
+</table-component>
+
 @endsection

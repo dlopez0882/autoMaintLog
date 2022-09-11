@@ -3,10 +3,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">My {{ tableName }}</div>
+                    <slot name="card-header">
+                        <div class="card-header">My {{ tableName }}</div>
+                    </slot>
 
                     <div class="card-body">
-                        <div v-if="!items.length" class="mb-2">No {{ tableName }} found!</div>
+                        <div v-if="!items.length" class="mb-2">No {{ tableName.replaceAll('_', ' ') }} found!</div>
 
                         <table class="table table-striped task-table">
                             <!-- Table Headings -->
@@ -25,7 +27,7 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
-                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(`/${tableName}/${item.id}`)"
+                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(`/${tableName.replaceAll('_','')}/${item.id}`)"
                                             type="button" class="btn btn-danger" title="delete record">Delete record</button>
                                     </td>
                                 </tr>
