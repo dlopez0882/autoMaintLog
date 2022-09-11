@@ -20,6 +20,7 @@
             <form :action="postroute" method="POST">
               <input type="hidden" name="_token" :value="csrfToken">
               <input type="hidden" name="_method" :value="method">
+              <slot name="hiddenfields"></slot>
 
               <button type="button" class="btn btn-light me-2" @click="$emit('close')">
                 Cancel

@@ -47,6 +47,17 @@
             <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" :table="tableName" :postroute="postroute"
                 :method="'delete'">
                 <template v-slot:header><h3>Confirm</h3></template>
+
+                <!--
+                    add extra hidden fields as needed
+                    ex. modals that require redirecting to a specific page 
+                -->
+                <template v-slot:hiddenfields>
+                    <input v-for="field of hiddenFields"
+                    type="hidden" 
+                    :name="field.name" 
+                    :value="field.value">
+                </template>
             </ConfirmationModal>
 
             <FormModal v-else-if="displayFormModal" @close="closeFormModal" :table="tableName" :fields="fields"
@@ -77,6 +88,7 @@ export default {
         columns: Array,
         options: Array,
         fields: Array,
+        hiddenFields: Array,
     },
     methods: {
         showConfirmationModal(postroute) {
