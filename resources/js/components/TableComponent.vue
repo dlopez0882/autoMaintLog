@@ -34,9 +34,9 @@
                             </tbody>
                         </table>
 
-                        <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1)}`"
-                            @click="showFormModal(`/${tableName}`, `add${tableName.slice(0,-1)}`)"><i
-                                class="fa fa-plus"></i> Add {{ tableName.slice(0,-1) }}</button>
+                        <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1).replaceAll('_', ' ')}`" 
+                            @click="showFormModal(`/${tableName}`, `add${tableName.slice(0,-1)}`)"><i 
+                                class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
 
                     </div>
                 </div>
