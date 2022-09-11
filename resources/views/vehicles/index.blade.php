@@ -108,6 +108,13 @@
         :table-name="'service_items'"
         :columns="['service_date', 'mileage', 'service_summary', 'technician', 'cost']"
         :options="['view', 'delete']"
+        :fields="[
+            {'name': 'date', 'type': 'date'},
+            {'name': 'mileage', 'type': 'number'},
+            {'name': 'technician', 'type': 'text'},
+            {'name': 'cost', 'type': 'number'},
+            {'name': 'service_summary', 'type': 'text'},
+            {'name': 'service_details', 'type': 'textarea'}]"
         :hidden-fields="[{'name': 'vehicleid', 'value': {{ $vehicleData->id}}}]"
         >
         <template v-slot:card-header>

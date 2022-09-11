@@ -64,19 +64,20 @@ export default {
                     make: { required: helpers.withMessage('Make field is required', required) },
                     model: { required: helpers.withMessage('Model field is required', required) }
                 }
-            } else {
+            } else if (props.action == 'addservice_item') {
                 return {
-                    year: {
-                        between: between(yearMin, yearMax),
-                        required: helpers.withMessage('Year field is required', required)
-                    }
+                    date: { required: helpers.withMessage('Date field is required', required) },
+                    mileage: { required: helpers.withMessage('Mileage field is required', required) },
+                    service_summary: { required: helpers.withMessage('Service summary field is required', required) },
+                    technician: { required: helpers.withMessage('Technician field is required', required) },
+                    cost: { required: helpers.withMessage('Cost field is required', required) }
                 }
             }
         })
 
         const v$ = useVuelidate(rules, state)
 
-        return { state, /*requiredNameLength,*/ v$ }
+        return { state, v$ }
     },
     props: {
         table: String,
