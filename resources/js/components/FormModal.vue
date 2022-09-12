@@ -105,6 +105,7 @@ export default {
         postroute: String,
         action: String,
         hiddenFields: Object,
+        redirectUrl: String,
     },
     components: {
         'editor': Editor
@@ -126,7 +127,8 @@ export default {
             // json the data from form
             const data = JSON.parse(JSON.stringify(myProxy));
 
-            // if there are hidden fields, add to them to data array
+            // if there are hidden fields, add them to data array
+            // TODO: figure out why hiddenFields works as prop too
             const hiddenFields = document.getElementById('formModal').querySelectorAll('input[type="hidden"]');
             if(hiddenFields.length > 0)
                 hiddenFields.forEach(element => data[element.name] = element.value);
@@ -139,12 +141,11 @@ export default {
                 }
             }
 
-            // // submit data to laravel
+            // submit data to laravel
             axios.post(this.postroute, data, config)
-                // .then(response => console.log(response))
                 .then(response => {
                     // console.log(response)
-                    window.location.href = '/';
+                    window.location.href = this.redirectUrl;
                 })
                 .catch(error => console.log(error));
         }

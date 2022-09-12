@@ -11,6 +11,8 @@
         {'name': 'year', 'type': 'number'},
         {'name': 'make', 'type': 'text'},
         {'name': 'model', 'type': 'text'}]"
+    :hidden-fields="[]"
+    :redirect-url="'/'"
 ></table-component>
 
 @endsection

@@ -65,7 +65,8 @@
                 :fields="fields"
                 :hiddenFields="hiddenFields"
                 :postroute="postroute" 
-                :action="action">
+                :action="action"
+                :redirectUrl="redirectUrl">
             </FormModal>
         </transition>
 
@@ -94,6 +95,7 @@ export default {
         options: Array,
         fields: Array,
         hiddenFields: Array,
+        redirectUrl: String,
     },
     methods: {
         showConfirmationModal(postroute) {
