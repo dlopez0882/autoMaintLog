@@ -128,7 +128,6 @@ export default {
             const data = JSON.parse(JSON.stringify(myProxy));
 
             // if there are hidden fields, add them to data array
-            // TODO: figure out why hiddenFields works as prop too
             const hiddenFields = document.getElementById('formModal').querySelectorAll('input[type="hidden"]');
             if(hiddenFields.length > 0)
                 hiddenFields.forEach(element => data[element.name] = element.value);
