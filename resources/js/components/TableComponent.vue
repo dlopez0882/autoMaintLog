@@ -27,8 +27,8 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
-                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(item.id)"
-                                            type="button" class="btn btn-danger" title="delete record">Delete record</button>
+                                        <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showConfirmationModal(item.id)"
+                                            title="delete record"><i class="fa fa-trash"></i></a>   
                                     </td>
                                 </tr>
                             </tbody>
