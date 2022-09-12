@@ -35,7 +35,7 @@
                         </table>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1).replaceAll('_', ' ')}`" 
-                            @click="showFormModal(`/${tableName.replaceAll('_', '')}`, `add${tableName.slice(0,-1)}`)"><i 
+                            @click="showFormModal(`/${tableName.replaceAll('_', '')}`)"><i 
                                 class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
 
                     </div>
@@ -65,8 +65,8 @@
                 :fields="fields"
                 :hiddenFields="hiddenFields"
                 :postroute="postroute" 
-                :action="action"
-                :redirectUrl="redirectUrl">
+                :redirectUrl="redirectUrl"
+                :ruleSet="ruleSet">
             </FormModal>
         </transition>
 
@@ -85,7 +85,6 @@ export default {
             displayConfirmationModal: false,
             displayFormModal: false,
             postroute: '',
-            action: '',
         };
     },
     props: {
@@ -96,6 +95,7 @@ export default {
         fields: Array,
         hiddenFields: Array,
         redirectUrl: String,
+        ruleSet: String,
     },
     methods: {
         showConfirmationModal(postroute) {
@@ -106,15 +106,13 @@ export default {
             this.displayConfirmationModal = false;
             this.postroute = ''
         },
-        showFormModal(postroute, action) {
+        showFormModal(postroute) {
             this.displayFormModal = true;
             this.postroute = postroute;
-            this.action = action;
         },
         closeFormModal() {
             this.displayFormModal = false;
             this.postroute = '';
-            this.action = '';
         }
     },
     mounted() {

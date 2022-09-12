@@ -13,6 +13,7 @@
         {'name': 'model', 'type': 'text'}]"
     :hidden-fields="[]"
     :redirect-url="'/'"
+    :rule-set="'addvehicle'"
 ></table-component>
 
 @endsection

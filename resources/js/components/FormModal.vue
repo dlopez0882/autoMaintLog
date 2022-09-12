@@ -75,7 +75,7 @@ export default {
         })
 
         const rules = computed(() => {
-            if (props.action == 'addvehicle') {
+            if (props.ruleSet == 'addvehicle') {
                 return {
                     year: {
                         between: between(1900, new Date().getFullYear() + 1),
@@ -84,7 +84,7 @@ export default {
                     make: { required: helpers.withMessage('Make field is required', required) },
                     model: { required: helpers.withMessage('Model field is required', required) }
                 }
-            } else if (props.action == 'addservice_item') {
+            } else if (props.ruleSet == 'addserviceitem') {
                 return {
                     date: { required: helpers.withMessage('Date field is required', required) },
                     mileage: { required: helpers.withMessage('Mileage field is required', required) },
@@ -103,9 +103,9 @@ export default {
         table: String,
         fields: Object,
         postroute: String,
-        action: String,
         hiddenFields: Object,
         redirectUrl: String,
+        ruleSet: String,
     },
     components: {
         'editor': Editor

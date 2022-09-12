@@ -119,7 +119,8 @@
         :hidden-fields="[
             {'name': 'vehicle_id', 'value': {{ $vehicleData->id }}}
         ]"
-        :redirect-url="'../vehicles/' + {{ $vehicleData->id }}" 
+        :redirect-url="'../vehicles/' + {{ $vehicleData->id }}"
+        :rule-set="'addserviceitem'" 
         >
         <template v-slot:card-header>
             <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
