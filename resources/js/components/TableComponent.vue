@@ -35,8 +35,8 @@
                         </table>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1).replaceAll('_', ' ')}`" 
-                            @click="showFormModal(`/${tableName.replaceAll('_', '')}`)"><i 
-                                class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
+                            @click="showFormModal()">
+                            <i class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
 
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 :table="tableName" 
                 :fields="fields"
                 :hiddenFields="hiddenFields"
-                :postroute="postroute" 
+                :axiosPostUrl="axiosPostUrl" 
                 :redirectUrl="redirectUrl"
                 :ruleSet="ruleSet">
             </FormModal>
@@ -94,6 +94,7 @@ export default {
         options: Array,
         fields: Array,
         hiddenFields: Array,
+        axiosPostUrl: String,
         redirectUrl: String,
         ruleSet: String,
     },
@@ -106,13 +107,11 @@ export default {
             this.displayConfirmationModal = false;
             this.postroute = ''
         },
-        showFormModal(postroute) {
+        showFormModal() {
             this.displayFormModal = true;
-            this.postroute = postroute;
         },
         closeFormModal() {
             this.displayFormModal = false;
-            this.postroute = '';
         }
     },
     mounted() {

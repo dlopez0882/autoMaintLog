@@ -12,6 +12,7 @@
         {'name': 'make', 'type': 'text'},
         {'name': 'model', 'type': 'text'}]"
     :hidden-fields="[]"
+    :axios-post-url="'/vehicles'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
 ></table-component>
