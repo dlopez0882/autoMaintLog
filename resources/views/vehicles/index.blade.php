@@ -119,7 +119,7 @@
         :hidden-fields="[
             {'name': 'vehicle_id', 'value': {{ $vehicleData->id }}}
         ]"
-        :axios-post-url="'/serviceitems'"
+        :axios-form-post-url="'/serviceitems'"
         :redirect-url="'../vehicles/' + {{ $vehicleData->id }}"
         :rule-set="'addserviceitem'" 
         >

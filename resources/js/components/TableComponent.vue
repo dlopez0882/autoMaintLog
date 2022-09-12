@@ -64,7 +64,7 @@
                 :table="tableName" 
                 :fields="fields"
                 :hiddenFields="hiddenFields"
-                :axiosPostUrl="axiosPostUrl" 
+                :axiosFormPostUrl="axiosFormPostUrl" 
                 :redirectUrl="redirectUrl"
                 :ruleSet="ruleSet">
             </FormModal>
@@ -94,7 +94,7 @@ export default {
         options: Array,
         fields: Array,
         hiddenFields: Array,
-        axiosPostUrl: String,
+        axiosFormPostUrl: String,
         redirectUrl: String,
         ruleSet: String,
     },

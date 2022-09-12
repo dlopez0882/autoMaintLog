@@ -102,7 +102,7 @@ export default {
     props: {
         table: String,
         fields: Object,
-        axiosPostUrl: String,
+        axiosFormPostUrl: String,
         hiddenFields: Object,
         redirectUrl: String,
         ruleSet: String,
@@ -141,7 +141,7 @@ export default {
             }
 
             // submit data to laravel
-            axios.post(this.axiosPostUrl, data, config)
+            axios.post(this.axiosFormPostUrl, data, config)
                 .then(response => {
                     // console.log(response)
                     window.location.href = this.redirectUrl;
