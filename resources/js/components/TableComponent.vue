@@ -60,8 +60,13 @@
                 </template>
             </ConfirmationModal>
 
-            <FormModal v-else-if="displayFormModal" @close="closeFormModal" :table="tableName" :fields="fields"
-                :postroute="postroute" :action="action"></FormModal>
+            <FormModal v-else-if="displayFormModal" @close="closeFormModal" 
+                :table="tableName" 
+                :fields="fields"
+                :hiddenFields="hiddenFields"
+                :postroute="postroute" 
+                :action="action">
+            </FormModal>
         </transition>
 
     </div>

@@ -11,7 +11,14 @@
 
                     <div class="card-body">
                         <slot name="body">
-                            <form action="submitForm" method="POST">
+                            <form id="formModal" action="submitForm" method="POST">
+                                <!-- hidden fields -->
+                                <input v-for="field in hiddenFields" :key="field.name" 
+                                    :name="field.name"
+                                    type="hidden"
+                                    :value="field.value">
+
+                                <!-- visible fields -->
                                 <div v-for="field in fields" :key="field.name" class="mb-3">
                                     <label :for="field.name">{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</label>
                                     <!-- if type is "tinymce", inject tinymce component -->
@@ -97,6 +104,7 @@ export default {
         fields: Object,
         postroute: String,
         action: String,
+        hiddenFields: Object,
     },
     components: {
         'editor': Editor
@@ -112,11 +120,16 @@ export default {
             // gather data from form
             const formDataArray = this.state;
 
-            // // use proxy to extract since data is observable object (for reactivity)
+            // use proxy to extract since data is observable object (for reactivity)
             const myProxy = new Proxy(formDataArray, {});
 
-            // // json the data from form
+            // json the data from form
             const data = JSON.parse(JSON.stringify(myProxy));
+
+            // if there are hidden fields, add to them to data array
+            const hiddenFields = document.getElementById('formModal').querySelectorAll('input[type="hidden"]');
+            if(hiddenFields.length > 0)
+                hiddenFields.forEach(element => data[element.name] = element.value);
             
             const config = {
                 headers: {
