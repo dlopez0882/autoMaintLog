@@ -17,7 +17,7 @@
 
         <div class="modal-footer">
           <slot name="footer">
-            <form :action="postroute" method="POST">
+            <form id="confirmationModal" :action="confirmPostUrl" method="POST">
               <input type="hidden" name="_token" :value="csrfToken">
               <input type="hidden" name="_method" :value="method">
               <slot name="hiddenfields"></slot>
@@ -47,7 +47,7 @@
       props: {
           table: String,
           method: String,
-          postroute: String,
+          confirmPostUrl: String,
       }
    }
 </script>

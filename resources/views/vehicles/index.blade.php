@@ -122,6 +122,7 @@
         :axios-form-post-url="'/serviceitems'"
         :redirect-url="'../vehicles/' + {{ $vehicleData->id }}"
         :rule-set="'addserviceitem'" 
+        :delete-confirm-post-url="'/serviceitems/'"
         >
         <template v-slot:card-header>
             <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>

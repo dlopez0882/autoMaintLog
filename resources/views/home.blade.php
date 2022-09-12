@@ -15,6 +15,7 @@
     :axios-form-post-url="'/vehicles'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
+    :delete-confirm-post-url="'/vehicles/'"
 ></table-component>
 
 @endsection

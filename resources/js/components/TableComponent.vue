@@ -27,7 +27,7 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
-                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(`/${tableName.replaceAll('_','')}/${item.id}`)"
+                                        <button v-else-if="option == 'delete'" @click="showConfirmationModal(item.id)"
                                             type="button" class="btn btn-danger" title="delete record">Delete record</button>
                                     </td>
                                 </tr>
@@ -44,7 +44,9 @@
         </div>
 
         <transition name="modal">
-            <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" :table="tableName" :postroute="postroute"
+            <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" 
+                :table="tableName" 
+                :confirmPostUrl="deleteConfirmPostUrl + itemId"
                 :method="'delete'">
                 <template v-slot:header><h3>Confirm</h3></template>
 
@@ -66,7 +68,8 @@
                 :hiddenFields="hiddenFields"
                 :axiosFormPostUrl="axiosFormPostUrl" 
                 :redirectUrl="redirectUrl"
-                :ruleSet="ruleSet">
+                :ruleSet="ruleSet"
+                :deleteConfirmPostUrl="deleteConfirmPostUrl">
             </FormModal>
         </transition>
 
@@ -84,7 +87,7 @@ export default {
         return {
             displayConfirmationModal: false,
             displayFormModal: false,
-            postroute: '',
+            itemId: '',
         };
     },
     props: {
@@ -97,15 +100,16 @@ export default {
         axiosFormPostUrl: String,
         redirectUrl: String,
         ruleSet: String,
+        deleteConfirmPostUrl: String,
     },
     methods: {
-        showConfirmationModal(postroute) {
+        showConfirmationModal(id) {
             this.displayConfirmationModal = true;
-            this.postroute = postroute;
+            this.itemId = id;
         },
         closeConfirmationModal() {
             this.displayConfirmationModal = false;
-            this.postroute = ''
+            this.itemId = ''
         },
         showFormModal() {
             this.displayFormModal = true;
