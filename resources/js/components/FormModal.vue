@@ -76,6 +76,7 @@ export default {
             if(props.itemId) { 
                 let itemId = props.itemId;
 
+                // TODO: parameterize url
                 axios.get('../serviceitems/' + itemId)
                 .then(response => {
                     // console.log(response)
