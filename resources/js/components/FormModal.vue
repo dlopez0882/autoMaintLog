@@ -76,8 +76,7 @@ export default {
             if(props.itemId) { 
                 let itemId = props.itemId;
 
-                // TODO: parameterize url
-                axios.get('../serviceitems/' + itemId)
+                axios.get(props.axiosUpdateUrl + itemId)
                 .then(response => {
                     // console.log(response)
                     state.formData = response.data;
@@ -150,6 +149,7 @@ export default {
         table: String,
         fields: Object,
         axiosFormPostUrl: String,
+        axiosUpdateUrl: String,
         hiddenFields: Object,
         redirectUrl: String,
         ruleSet: String,

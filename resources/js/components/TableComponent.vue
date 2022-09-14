@@ -72,6 +72,7 @@
                 :fields="fields"
                 :hiddenFields="hiddenFields"
                 :axiosFormPostUrl="axiosFormPostUrl" 
+                :axiosUpdateUrl="axiosUpdateUrl"
                 :redirectUrl="redirectUrl"
                 :ruleSet="ruleSet"
                 :deleteConfirmPostUrl="deleteConfirmPostUrl"
@@ -104,6 +105,7 @@ export default {
         fields: Array,
         hiddenFields: Array,
         axiosFormPostUrl: String,
+        axiosUpdateUrl: String,
         redirectUrl: String,
         ruleSet: String,
         deleteConfirmPostUrl: String,

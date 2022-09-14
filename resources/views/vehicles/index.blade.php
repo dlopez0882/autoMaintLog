@@ -120,6 +120,7 @@
             {'name': 'vehicle_id', 'value': {{ $vehicleData->id }}}
         ]"
         :axios-form-post-url="'/serviceitems'"
+        :axios-update-url="'../serviceitems/'"
         :redirect-url="'../vehicles/' + {{ $vehicleData->id }}"
         :rule-set="'addserviceitem'" 
         :delete-confirm-post-url="'/serviceitems/'"
