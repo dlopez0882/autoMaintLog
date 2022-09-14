@@ -107,7 +107,7 @@ export default {
             } else if (props.ruleSet == 'addserviceitem') {
                 return {
                     formData: {
-                        date: { required: helpers.withMessage('Date field is required', required) },
+                        service_date: { required: helpers.withMessage('Date field is required', required) },
                         mileage: { required: helpers.withMessage('Mileage field is required', required) },
                         service_summary: { required: helpers.withMessage('Service summary field is required', required) },
                         technician: { required: helpers.withMessage('Technician field is required', required) },

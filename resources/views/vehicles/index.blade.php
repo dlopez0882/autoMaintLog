@@ -109,7 +109,7 @@
         :columns="['service_date', 'mileage', 'service_summary', 'technician', 'cost']"
         :options="['edit', 'delete']"
         :fields="[
-            {'name': 'date', 'type': 'date'},
+            {'name': 'service_date', 'type': 'date'},
             {'name': 'mileage', 'type': 'number'},
             {'name': 'technician', 'type': 'text'},
             {'name': 'cost', 'type': 'number'},

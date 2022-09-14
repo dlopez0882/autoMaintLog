@@ -36,7 +36,7 @@ class ServiceItemController extends Controller
     public function store(Request $request)
     {        
         ServiceItem::create([
-            'service_date' => $request->formData['date'],
+            'service_date' => $request->formData['service_date'],
             'vehicle_id' => $request->formData['vehicle_id'],
             'mileage' => $request->formData['mileage'],
             'service_summary' => $request->formData['service_summary'],
@@ -91,7 +91,7 @@ class ServiceItemController extends Controller
     public function update(Request $request, $id)
     {
         ServiceItem::where('id', $id)->update([
-            'service_date' => $request->formData['date'],
+            'service_date' => $request->formData['service_date'],
             'mileage' => $request->formData['mileage'],
             'service_summary' => $request->formData['service_summary'],
             'service_details' => $request->formData['service_details'],
