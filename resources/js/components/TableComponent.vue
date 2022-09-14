@@ -27,6 +27,11 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
+
+                                        <!-- add option for v-else-if="option == 'edit'" -->
+                                        <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
+                                            title="edit record"><i class="fa fa-pencil"></i></a>   
+
                                         <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showConfirmationModal(item.id)"
                                             title="delete record"><i class="fa fa-trash"></i></a>   
                                     </td>
@@ -69,7 +74,8 @@
                 :axiosFormPostUrl="axiosFormPostUrl" 
                 :redirectUrl="redirectUrl"
                 :ruleSet="ruleSet"
-                :deleteConfirmPostUrl="deleteConfirmPostUrl">
+                :deleteConfirmPostUrl="deleteConfirmPostUrl"
+                :itemId="itemId">
             </FormModal>
         </transition>
 
@@ -109,13 +115,19 @@ export default {
         },
         closeConfirmationModal() {
             this.displayConfirmationModal = false;
-            this.itemId = ''
+            this.itemId = '';
         },
-        showFormModal() {
+        showFormModal(id=null) {
             this.displayFormModal = true;
+            if(id) {
+                this.itemId = id;
+            }
         },
         closeFormModal() {
             this.displayFormModal = false;
+            if(this.itemId) {
+                this.itemId = '';
+            }
         }
     },
     mounted() {

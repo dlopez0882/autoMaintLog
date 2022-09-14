@@ -36,13 +36,13 @@ class ServiceItemController extends Controller
     public function store(Request $request)
     {        
         ServiceItem::create([
-            'service_date' => $request['date'],
-            'vehicle_id' => $request['vehicle_id'],
-            'mileage' => $request['mileage'],
-            'service_summary' => $request['service_summary'],
-            'service_details' => $request['service_details'],
-            'technician' => $request['technician'],
-            'cost' => $request['cost'],
+            'service_date' => $request->formData['date'],
+            'vehicle_id' => $request->formData['vehicle_id'],
+            'mileage' => $request->formData['mileage'],
+            'service_summary' => $request->formData['service_summary'],
+            'service_details' => $request->formData['service_details'],
+            'technician' => $request->formData['technician'],
+            'cost' => $request->formData['cost'],
         ]);
      
         return;
@@ -91,12 +91,12 @@ class ServiceItemController extends Controller
     public function update(Request $request, $id)
     {
         ServiceItem::where('id', $id)->update([
-            'service_date' => $request->serviceItemProps['date'],
-            'mileage' => $request->serviceItemProps['mileage'],
-            'service_summary' => $request->serviceItemProps['service_summary'],
-            'service_details' => $request->serviceItemProps['service_details'],
-            'technician' => $request->serviceItemProps['technician'],
-            'cost' => $request->serviceItemProps['cost'],
+            'service_date' => $request->formData['date'],
+            'mileage' => $request->formData['mileage'],
+            'service_summary' => $request->formData['service_summary'],
+            'service_details' => $request->formData['service_details'],
+            'technician' => $request->formData['technician'],
+            'cost' => $request->formData['cost'],
         ]);
      
         return;
