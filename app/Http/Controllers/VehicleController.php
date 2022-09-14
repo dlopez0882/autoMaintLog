@@ -55,9 +55,9 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $request->user()->vehicles()->create([
-            'year' => $request['year'],
-            'make' => $request['make'],
-            'model' => $request['model'],
+            'year' => $request->formData['year'],
+            'make' => $request->formData['make'],
+            'model' => $request->formData['model'],
         ]);
      
         return;
