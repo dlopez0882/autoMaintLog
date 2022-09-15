@@ -110,9 +110,9 @@
         :options="['view-modal', 'edit', 'delete']"
         :fields="[
             {'name': 'service_date', 'type': 'date'},
-            {'name': 'mileage', 'type': 'number'},
+            {'name': 'mileage', 'type': 'number', 'format': 'number'},
             {'name': 'technician', 'type': 'text'},
-            {'name': 'cost', 'type': 'number'},
+            {'name': 'cost', 'type': 'number', 'format': 'currency'},
             {'name': 'service_summary', 'type': 'text'},
             {'name': 'service_details', 'type': 'tinymce'}
         ]"
