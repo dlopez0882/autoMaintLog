@@ -17,6 +17,7 @@
                                     <th v-for="column in columns">{{ column.charAt(0).toUpperCase() + column.slice(1) }}</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
                                 </tr>
                             </thead>
 
@@ -27,6 +28,9 @@
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
+
+                                        <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
+                                            @click="showModal(item.id)" title="view record"><i class="fa fa-info"></i></a>
 
                                         <!-- add option for v-else-if="option == 'edit'" -->
                                         <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
@@ -78,6 +82,19 @@
                 :deleteConfirmPostUrl="deleteConfirmPostUrl"
                 :itemId="itemId">
             </FormModal>
+
+            <Modal v-else-if="displayModal" @close="closeModal">
+                <template v-slot:header>
+                    {{ tableName.charAt(0).toUpperCase() + tableName.slice(1,-1).replaceAll('_', ' ') }} details
+                </template>
+
+                <template v-slot:body>
+                    <DetailsBody
+                        :fields="fields"
+                        :itemId="itemId">
+                    </DetailsBody>
+                </template>
+            </Modal>
         </transition>
 
     </div>
@@ -88,12 +105,15 @@
 <script>
 import ConfirmationModal from './ConfirmationModal.vue';
 import FormModal from './FormModal.vue';
+import Modal from './Modal.vue'
+import DetailsBody from './DetailsBody.vue';
 
 export default {
     data() {
         return {
             displayConfirmationModal: false,
             displayFormModal: false,
+            displayModal: false,
             itemId: '',
         };
     },
@@ -130,11 +150,19 @@ export default {
             if(this.itemId) {
                 this.itemId = '';
             }
-        }
+        },
+        showModal(id) {
+            this.displayModal = true;
+            this.itemId = id;
+        },
+        closeModal() {
+            this.displayModal = false;
+            this.itemId = '';
+        },
     },
     mounted() {
         console.log("Table component mounted");
     },
-    components: { ConfirmationModal, FormModal }
+    components: { ConfirmationModal, FormModal, Modal, DetailsBody }
 }
 </script>

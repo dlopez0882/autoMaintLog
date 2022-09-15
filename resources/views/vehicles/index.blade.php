@@ -107,7 +107,7 @@
         :items="{{ $workOrders }}"
         :table-name="'service_items'"
         :columns="['service_date', 'mileage', 'service_summary', 'technician', 'cost']"
-        :options="['edit', 'delete']"
+        :options="['view-modal', 'edit', 'delete']"
         :fields="[
             {'name': 'service_date', 'type': 'date'},
             {'name': 'mileage', 'type': 'number'},
