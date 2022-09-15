@@ -14,7 +14,7 @@
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
-                                    <th v-for="column in columns">{{ column.charAt(0).toUpperCase() + column.slice(1) }}</th>
+                                    <th v-for="column in columns">{{ formatLabel(column) }}</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
@@ -107,6 +107,7 @@ import ConfirmationModal from './ConfirmationModal.vue';
 import FormModal from './FormModal.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
+import { uppercaseFirstLetterAndRemoveUnderscores } from '../modules/utilities'
 
 export default {
     data() {
@@ -159,6 +160,9 @@ export default {
             this.displayModal = false;
             this.itemId = '';
         },
+        formatLabel(label) {
+            return uppercaseFirstLetterAndRemoveUnderscores(label);
+        }
     },
     mounted() {
         console.log("Table component mounted");

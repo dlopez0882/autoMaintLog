@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Add a new {{ table.slice(0,-1) }}
+                            Add a new {{ formatFormHeader(table) }}
                         </slot>
                     </div>
 
@@ -20,7 +20,7 @@
 
                                 <!-- visible fields -->
                                 <div v-for="field in fields" :key="field.name" class="mb-3">
-                                    <label :for="field.name">{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</label>
+                                    <label :for="field.name">{{ formatLabel(field.name) }}</label>
                                     <!-- if type is "tinymce", inject tinymce component -->
                                     <editor v-if="field.type == 'tinymce'" 
                                         api-key="no-api-key"
@@ -65,6 +65,7 @@ import { between, helpers, required } from '@vuelidate/validators';
 import axios from 'axios';
 import { onMounted, reactive } from 'vue';
 import Editor from '@tinymce/tinymce-vue';
+import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular } from '../modules/utilities'
 
 export default {
     setup(props) {
@@ -159,6 +160,12 @@ export default {
         'editor': Editor
     },
     methods: {
+        formatLabel(label) {
+            return uppercaseFirstLetterAndRemoveUnderscores(label);
+        },
+        formatFormHeader(header) {
+            return removeUnderscores(makeSingular(header));
+        },
         async submitForm() {
             const isFormCorrect = await this.v$.$validate()
 
