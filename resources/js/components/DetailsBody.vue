@@ -1,6 +1,6 @@
 <!-- a modal body used for displaying record-specific details -->
 <template>
-    <div v-for="field in fields" class="mb-3">{{ field.name }}:
+    <div v-for="field in fields" class="mb-3">{{ beautifyString(field.name) }}:
         <div v-if="details[field.type] == 'tinymce'" v-html="details[field.name]"></div>
         <div v-else v-html="formatter(details[field.name], field.format)"></div>
     </div>
@@ -27,6 +27,9 @@
                 } else {
                     return value;
                 }
+            },
+            beautifyString(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1).replaceAll('_', ' ')
             }
         },
         mounted() {
