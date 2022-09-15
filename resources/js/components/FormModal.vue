@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <slot name="header">
-                            Add a new {{ formatFormHeader(table) }}
+                            Add a new {{ makeSingularAndRemoveUnderscores(table) }}
                         </slot>
                     </div>
 
@@ -20,7 +20,7 @@
 
                                 <!-- visible fields -->
                                 <div v-for="field in fields" :key="field.name" class="mb-3">
-                                    <label :for="field.name">{{ formatLabel(field.name) }}</label>
+                                    <label :for="field.name">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}</label>
                                     <!-- if type is "tinymce", inject tinymce component -->
                                     <editor v-if="field.type == 'tinymce'" 
                                         api-key="no-api-key"
@@ -160,11 +160,11 @@ export default {
         'editor': Editor
     },
     methods: {
-        formatLabel(label) {
-            return uppercaseFirstLetterAndRemoveUnderscores(label);
+        uppercaseFirstLetterAndRemoveUnderscores(string) {
+            return uppercaseFirstLetterAndRemoveUnderscores(string);
         },
-        formatFormHeader(header) {
-            return removeUnderscores(makeSingular(header));
+        makeSingularAndRemoveUnderscores(string) {
+            return removeUnderscores(makeSingular(string));
         },
         async submitForm() {
             const isFormCorrect = await this.v$.$validate()

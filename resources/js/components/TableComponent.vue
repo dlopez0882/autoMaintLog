@@ -8,13 +8,13 @@
                     </slot>
 
                     <div class="card-body">
-                        <div v-if="!items.length" class="mb-2">No {{ tableName.replaceAll('_', ' ') }} found!</div>
+                        <div v-if="!items.length" class="mb-2">No {{ removeUnderscores(tableName) }} found!</div>
 
                         <table class="table table-striped task-table">
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
-                                    <th v-for="column in columns">{{ formatLabel(column) }}</th>
+                                    <th v-for="column in columns">{{ uppercaseFirstLetterAndRemoveUnderscores(column) }}</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
@@ -43,9 +43,9 @@
                             </tbody>
                         </table>
 
-                        <button type="button" class="btn btn-primary" :title="`Add ${tableName.slice(0,-1).replaceAll('_', ' ')}`" 
+                        <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
                             @click="showFormModal()">
-                            <i class="fa fa-plus"></i> Add {{ tableName.slice(0,-1).replaceAll('_', ' ') }}</button>
+                            <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
 
                     </div>
                 </div>
@@ -107,7 +107,7 @@ import ConfirmationModal from './ConfirmationModal.vue';
 import FormModal from './FormModal.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
-import { uppercaseFirstLetterAndRemoveUnderscores } from '../modules/utilities'
+import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular } from '../modules/utilities'
 
 export default {
     data() {
@@ -160,9 +160,15 @@ export default {
             this.displayModal = false;
             this.itemId = '';
         },
-        formatLabel(label) {
-            return uppercaseFirstLetterAndRemoveUnderscores(label);
-        }
+        uppercaseFirstLetterAndRemoveUnderscores(string) {
+            return uppercaseFirstLetterAndRemoveUnderscores(string);
+        },
+        removeUnderscores(string) {
+            return removeUnderscores(string);
+        },
+        makeSingularAndRemoveUnderscores(string) {
+            return removeUnderscores(makeSingular(string));
+        },
     },
     mounted() {
         console.log("Table component mounted");
