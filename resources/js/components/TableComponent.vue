@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div v-if="!items.length" class="mb-2">No {{ removeUnderscores(tableName) }} found!</div>
 
-                        <table class="table table-striped task-table">
+                        <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
