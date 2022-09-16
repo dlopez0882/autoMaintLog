@@ -9,7 +9,7 @@
         :columns="[
             {'name': 'service_date', 'css_classes': 'table-text'},
             {'name': 'mileage', 'format': 'number', 'css_classes': 'table-text'}, 
-            {'name': 'service_summary', 'css_classes': 'table-text'},
+            {'name': 'service_summary', 'css_classes': 'table-text text-break'},
             {'name': 'technician', 'css_classes': 'table-text d-none d-md-table-cell'},
             {'name': 'cost', 'format': 'currency', 'css_classes': 'table-text d-none d-md-table-cell'}
         ]"
