@@ -31,8 +31,8 @@
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
                                             @click="showModal(item.id, 'recordDetails')" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
 
-                                        <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
-                                            title="edit record" @keydown.esc="displayFormModal=false"><i class="fa fa-pencil"></i></a>   
+                                        <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showModal(item.id, 'form')"
+                                            title="edit record" @keydown.esc="displayModal=false"><i class="fa fa-pencil"></i></a>   
 
                                         <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showModal(item.id, 'confirmation')"
                                             title="delete record" @keydown.esc="displayModal=false"><i class="fa fa-trash"></i></a>   
@@ -42,8 +42,8 @@
                         </table>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
-                            @click="showFormModal()"
-                            @keydown.esc="displayFormModal=false">
+                            @click="showModal('', 'form')"
+                            @keydown.esc="displayModal=false">
                             <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
 
                     </div>
@@ -52,18 +52,6 @@
         </div>
 
         <transition name="modal">
-            <!-- <FormModalComponent v-else-if="displayFormModal" @close="closeFormModal" 
-                :table="tableName" 
-                :fields="fields"
-                :hiddenFields="hiddenFields"
-                :axiosFormPostUrl="axiosFormPostUrl" 
-                :axiosUpdateUrl="axiosUpdateUrl"
-                :redirectUrl="redirectUrl"
-                :ruleSet="ruleSet"
-                :deleteConfirmPostUrl="deleteConfirmPostUrl"
-                :itemId="itemId">
-            </FormModalComponent> -->
-
             <ModalComponent v-if="displayModal">
                 <template v-slot:body>
                     <ConfirmationModalComponent v-if="modalBody == 'confirmation'" @close="closeModal"
@@ -81,6 +69,18 @@
                             :value="field.value">
                         </template>
                     </ConfirmationModalComponent>
+
+                    <FormModalComponent v-else-if="modalBody == 'form'" @close="closeModal" 
+                        :table="tableName" 
+                        :fields="fields"
+                        :hiddenFields="hiddenFields"
+                        :axiosFormPostUrl="axiosFormPostUrl" 
+                        :axiosUpdateUrl="axiosUpdateUrl"
+                        :redirectUrl="redirectUrl"
+                        :ruleSet="ruleSet"
+                        :deleteConfirmPostUrl="deleteConfirmPostUrl"
+                        :itemId="itemId">
+                    </FormModalComponent>
 
                     <DetailsBodyComponent v-else-if="modalBody == 'recordDetails'" @close="closeModal"
                         :fields="fields"
