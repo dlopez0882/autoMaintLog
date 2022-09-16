@@ -52,7 +52,7 @@
         </div>
 
         <transition name="modal">
-            <ConfirmationModal v-if="displayConfirmationModal" @close="closeConfirmationModal" 
+            <ConfirmationModalComponent v-if="displayConfirmationModal" @close="closeConfirmationModal" 
                 :table="tableName" 
                 :confirmPostUrl="deleteConfirmPostUrl + itemId"
                 :method="'delete'">
@@ -68,7 +68,7 @@
                     :name="field.name" 
                     :value="field.value">
                 </template>
-            </ConfirmationModal>
+            </ConfirmationModalComponent>
 
             <FormModalComponent v-else-if="displayFormModal" @close="closeFormModal" 
                 :table="tableName" 
@@ -102,7 +102,7 @@
 
 
 <script>
-import ConfirmationModal from './ConfirmationModal.vue';
+import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
@@ -180,6 +180,6 @@ export default {
             return numberFormatter(value, format);
         },
     },
-    components: { ConfirmationModal, FormModalComponent, Modal, DetailsBody }
+    components: { ConfirmationModalComponent, FormModalComponent, Modal, DetailsBody }
 }
 </script>
