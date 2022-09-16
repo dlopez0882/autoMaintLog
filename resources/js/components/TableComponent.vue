@@ -16,9 +16,7 @@
                             <thead>
                                 <tr>
                                     <th v-for="column in columns">{{ uppercaseFirstLetterAndRemoveUnderscores(column.name) }}</th>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
-                                    <th>&nbsp;</th>
+                                    <th v-for="option in options">&nbsp;</th>
                                 </tr>
                             </thead>
 
