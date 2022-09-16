@@ -5,7 +5,10 @@
 <table-component 
     :items="{{ $vehicles }}" 
     :table-name="'vehicles'" 
-    :columns="['year', 'make', 'model']"
+    :columns="[
+        {'name': 'year'}, 
+        {'name': 'make'}, 
+        {'name': 'model'}]"
     :options="['view', 'delete']"
     :fields="[    
         {'name': 'year', 'type': 'number'},
