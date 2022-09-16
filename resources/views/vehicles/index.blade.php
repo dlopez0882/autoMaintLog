@@ -7,11 +7,11 @@
         :table-name="'service_items'"
         {{-- :columns to be used for table column data --}}
         :columns="[
-            {'name': 'service_date'},
-            {'name': 'mileage', 'format': 'number'}, 
-            {'name': 'service_summary'},
-            {'name': 'technician'},
-            {'name': 'cost', 'format': 'currency'}
+            {'name': 'service_date', 'css_classes': 'table-text'},
+            {'name': 'mileage', 'format': 'number', 'css_classes': 'table-text'}, 
+            {'name': 'service_summary', 'css_classes': 'table-text'},
+            {'name': 'technician', 'css_classes': 'table-text d-none d-md-table-cell'},
+            {'name': 'cost', 'format': 'currency', 'css_classes': 'table-text d-none d-md-table-cell'}
         ]"
         :options="['view-modal', 'edit', 'delete']"
         {{-- :fields to be used for modals --}}

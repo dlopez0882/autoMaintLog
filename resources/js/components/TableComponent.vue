@@ -15,7 +15,7 @@
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
-                                    <th v-for="column in columns">{{ uppercaseFirstLetterAndRemoveUnderscores(column.name) }}</th>
+                                    <th v-for="column in columns" :class="column.css_classes">{{ uppercaseFirstLetterAndRemoveUnderscores(column.name) }}</th>
                                     <th v-for="option in options">&nbsp;</th>
                                 </tr>
                             </thead>
@@ -23,7 +23,7 @@
                             <!-- Table Body -->
                             <tbody>
                                 <tr v-for="item in items" :key="item.id">
-                                    <td class="table-text" v-for="column in columns">{{ numberFormatter(item[column.name], [column.format]) }}</td>
+                                    <td v-for="column in columns" :class="column.css_classes">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
