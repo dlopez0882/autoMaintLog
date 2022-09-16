@@ -82,7 +82,7 @@
                 :itemId="itemId">
             </FormModalComponent>
 
-            <Modal v-else-if="displayModal" @close="closeModal">
+            <ModalComponent v-else-if="displayModal" @close="closeModal">
                 <template v-slot:header>
                     {{ uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(tableName) }} details
                 </template>
@@ -93,7 +93,7 @@
                         :itemId="itemId">
                     </DetailsBody>
                 </template>
-            </Modal>
+            </ModalComponent>
         </transition>
 
     </div>
@@ -104,7 +104,7 @@
 <script>
 import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
-import Modal from './Modal.vue'
+import ModalComponent from './ModalComponent.vue'
 import DetailsBody from './DetailsBody.vue';
 import { 
     uppercaseFirstLetterAndRemoveUnderscores, 
@@ -180,6 +180,6 @@ export default {
             return numberFormatter(value, format);
         },
     },
-    components: { ConfirmationModalComponent, FormModalComponent, Modal, DetailsBody }
+    components: { ConfirmationModalComponent, FormModalComponent, ModalComponent, DetailsBody }
 }
 </script>
