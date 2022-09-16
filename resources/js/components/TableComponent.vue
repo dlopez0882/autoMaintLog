@@ -182,9 +182,6 @@ export default {
             return numberFormatter(value, format);
         },
     },
-    mounted() {
-        console.log("Table component mounted");
-    },
     components: { ConfirmationModal, FormModal, Modal, DetailsBody }
 }
 </script>
