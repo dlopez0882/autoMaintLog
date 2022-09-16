@@ -5,7 +5,7 @@
 
     <div class="modal-body">
         <slot name="body">
-            Are you sure that you want to delete this {{ table.slice(0,-1) }}?
+            Are you sure that you want to delete this {{ makeSingularAndRemoveUnderscores(table) }}?
         </slot>
     </div>
 
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { makeSingular, removeUnderscores } from '../modules/utilities'
+
 export default {
     data() {
         return {
@@ -40,6 +42,11 @@ export default {
         method: String,
         confirmPostUrl: String,
     },
-    emits: ['close']
+    emits: ['close'],
+    methods: {
+        makeSingularAndRemoveUnderscores(string) {
+            return removeUnderscores(makeSingular(string));
+        }
+    }
 }
 </script>
