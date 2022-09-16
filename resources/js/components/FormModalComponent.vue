@@ -1,53 +1,55 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            <slot name="header">
-                Add a new {{ makeSingularAndRemoveUnderscores(table) }}
-            </slot>
-        </div>
+    <div class="modal-container modal-container-form">
+        <div class="card">
+            <div class="card-header">
+                <slot name="header">
+                    Add a new {{ makeSingularAndRemoveUnderscores(table) }}
+                </slot>
+            </div>
 
-        <div class="card-body">
-            <slot name="body">
-                <form id="formModal" action="submitForm" method="POST">
-                    <!-- hidden fields -->
-                    <input v-for="field in hiddenFields" :key="field.name" 
-                        :name="field.name"
-                        type="hidden"
-                        :value="field.value">
+            <div class="card-body">
+                <slot name="body">
+                    <form id="formModal" action="submitForm" method="POST">
+                        <!-- hidden fields -->
+                        <input v-for="field in hiddenFields" :key="field.name" 
+                            :name="field.name"
+                            type="hidden"
+                            :value="field.value">
 
-                    <!-- visible fields -->
-                    <div v-for="field in fields" :key="field.name" class="mb-3">
-                        <label :for="field.name">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}</label>
-                        <!-- if type is "tinymce", inject tinymce component -->
-                        <editor v-if="field.type == 'tinymce'" 
-                            api-key="no-api-key"
-                            v-model="state.formData[field.name]"
-                            :init="{
-                                height: 150,
-                                menubar: false,
-                                plugins: 'link autolink lists',
-                                toolbar: 'styles bold italic numlist bullist link',
-                                branding: false,
-                            }">
-                        </editor>
-                        <input v-else :type="field.type" :name="field.name" :id="field.name" class="form-control"
-                            v-model="state.formData[field.name]">
-                    </div>
-                    <div class="text-danger" v-for="error of v$.formData.$errors" :key="error.$uid">{{ error.$message
-                    }}</div>
-                    <div class="text-end">
-                        <slot name="footer">
-                            <button type="button" class="btn btn-light me-2" @click="$emit('close')">
-                                Cancel
-                            </button>
+                        <!-- visible fields -->
+                        <div v-for="field in fields" :key="field.name" class="mb-3">
+                            <label :for="field.name">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}</label>
+                            <!-- if type is "tinymce", inject tinymce component -->
+                            <editor v-if="field.type == 'tinymce'" 
+                                api-key="no-api-key"
+                                v-model="state.formData[field.name]"
+                                :init="{
+                                    height: 150,
+                                    menubar: false,
+                                    plugins: 'link autolink lists',
+                                    toolbar: 'styles bold italic numlist bullist link',
+                                    branding: false,
+                                }">
+                            </editor>
+                            <input v-else :type="field.type" :name="field.name" :id="field.name" class="form-control"
+                                v-model="state.formData[field.name]">
+                        </div>
+                        <div class="text-danger" v-for="error of v$.formData.$errors" :key="error.$uid">{{ error.$message
+                        }}</div>
+                        <div class="text-end">
+                            <slot name="footer">
+                                <button type="button" class="btn btn-light me-2" @click="$emit('close')">
+                                    Cancel
+                                </button>
 
-                            <button type="submit" class="btn btn-primary" @click.prevent="submitForm">
-                                Submit
-                            </button>
-                        </slot>
-                    </div>
-                </form>
-            </slot>
+                                <button type="submit" class="btn btn-primary" @click.prevent="submitForm">
+                                    Submit
+                                </button>
+                            </slot>
+                        </div>
+                    </form>
+                </slot>
+            </div>
         </div>
     </div>
 </template>

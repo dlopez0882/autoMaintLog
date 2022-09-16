@@ -2,9 +2,7 @@
 <template>
     <div class="modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container modal-container-form">
-                <slot name="body"></slot>
-            </div>
+            <slot name="body"></slot>
         </div>
     </div>
 </template>
