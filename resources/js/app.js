@@ -6,7 +6,6 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import numeral from 'numeral';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -14,49 +13,10 @@ import numeral from 'numeral';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({
-    data: function() {
-        return {
-            showModal: false,
-            // showAddVehicleModal: false,
-            showAddServiceItemModal: false,
-            showEditServiceItemModal: false,
-            showDeleteServiceItemConfirmModal: false,
-            showServiceItemDetailsModal: false,
-        }
-    }
-});
+const app = createApp({});
 
-app.config.globalProperties.$filters = {
-    currencyUSD(value) {
-        return numeral(value).format("$0,0.00");
-    }, 
-    formatNumber(value) {
-        return numeral(value).format("0,0");
-    }
-  }
-
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
-
-import ModalComponent from './components/ModalComponent.vue';
-app.component('modal-component', ModalComponent);
-
-// import AddVehicleModalComponent from './components/AddVehicleModalComponent.vue';
-// app.component('add-vehicle-modal-component', AddVehicleModalComponent);
-
-import AddServiceItemModalComponent from './components/AddServiceItemModalComponent.vue';
-app.component('add-service-item-modal-component', AddServiceItemModalComponent);
-
-import EditServiceItemModalComponent from './components/EditServiceItemModalComponent.vue';
-app.component('edit-service-item-modal-component', EditServiceItemModalComponent);
-
-import DeleteServiceItemModalComponent from './components/DeleteServiceItemModalComponent.vue';
-app.component('delete-service-item-modal-component', DeleteServiceItemModalComponent);
-
-import ServiceItemDetailsModalComponent from './components/ServiceItemDetailsModalComponent.vue';
-app.component('service-item-details-modal-component', ServiceItemDetailsModalComponent);
-
+// import ExampleComponent from './components/ExampleComponent.vue';
+// app.component('example-component', ExampleComponent);
 
 import TableComponent from './components/TableComponent.vue';
 app.component('table-component', TableComponent);
