@@ -31,7 +31,6 @@
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
                                             @click="showModal(item.id)" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
 
-                                        <!-- add option for v-else-if="option == 'edit'" -->
                                         <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
                                             title="edit record" @keydown.esc="displayFormModal=false"><i class="fa fa-pencil"></i></a>   
 
