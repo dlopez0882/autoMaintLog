@@ -70,7 +70,7 @@
                 </template>
             </ConfirmationModal>
 
-            <FormModal v-else-if="displayFormModal" @close="closeFormModal" 
+            <FormModalComponent v-else-if="displayFormModal" @close="closeFormModal" 
                 :table="tableName" 
                 :fields="fields"
                 :hiddenFields="hiddenFields"
@@ -80,7 +80,7 @@
                 :ruleSet="ruleSet"
                 :deleteConfirmPostUrl="deleteConfirmPostUrl"
                 :itemId="itemId">
-            </FormModal>
+            </FormModalComponent>
 
             <Modal v-else-if="displayModal" @close="closeModal">
                 <template v-slot:header>
@@ -103,7 +103,7 @@
 
 <script>
 import ConfirmationModal from './ConfirmationModal.vue';
-import FormModal from './FormModal.vue';
+import FormModalComponent from './FormModalComponent.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
 import { 
@@ -180,6 +180,6 @@ export default {
             return numberFormatter(value, format);
         },
     },
-    components: { ConfirmationModal, FormModal, Modal, DetailsBody }
+    components: { ConfirmationModal, FormModalComponent, Modal, DetailsBody }
 }
 </script>
