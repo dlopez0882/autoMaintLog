@@ -110,8 +110,6 @@ import {
 export default {
     data() {
         return {
-            displayConfirmationModal: false,
-            displayFormModal: false,
             displayModal: false,
             itemId: '',
             modalBody: '',
@@ -131,27 +129,6 @@ export default {
         deleteConfirmPostUrl: String,
     },
     methods: {
-        showConfirmationModal(id) {
-            this.displayConfirmationModal = true;
-            this.itemId = id;
-        },
-        closeConfirmationModal() {
-            this.displayConfirmationModal = false;
-            this.itemId = '';
-        },
-        showFormModal(id=null) {
-            this.displayFormModal = true;
-            if(id) {
-                this.itemId = id;
-            }
-            this.modalBody = modalBody;
-        },
-        closeFormModal() {
-            this.displayFormModal = false;
-            if(this.itemId) {
-                this.itemId = '';
-            }
-        },
         showModal(id, modalBody) {
             this.displayModal = true;
             this.itemId = id;
