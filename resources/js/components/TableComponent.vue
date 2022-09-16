@@ -88,10 +88,10 @@
                 </template>
 
                 <template v-slot:body>
-                    <DetailsBody
+                    <DetailsBodyComponent
                         :fields="fields"
                         :itemId="itemId">
-                    </DetailsBody>
+                    </DetailsBodyComponent>
                 </template>
             </ModalComponent>
         </transition>
@@ -105,7 +105,7 @@
 import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
 import ModalComponent from './ModalComponent.vue'
-import DetailsBody from './DetailsBody.vue';
+import DetailsBodyComponent from './DetailsBodyComponent.vue';
 import { 
     uppercaseFirstLetterAndRemoveUnderscores, 
     uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores,
@@ -180,6 +180,6 @@ export default {
             return numberFormatter(value, format);
         },
     },
-    components: { ConfirmationModalComponent, FormModalComponent, ModalComponent, DetailsBody }
+    components: { ConfirmationModalComponent, FormModalComponent, ModalComponent, DetailsBodyComponent }
 }
 </script>
