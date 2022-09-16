@@ -29,13 +29,13 @@
                                             class="btn btn-primary" title="view record">View record</a>
 
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
-                                            @click="showModal(item.id)" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
+                                            @click="showModal(item.id, 'recordDetails')" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
 
                                         <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
                                             title="edit record" @keydown.esc="displayFormModal=false"><i class="fa fa-pencil"></i></a>   
 
-                                        <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showConfirmationModal(item.id)"
-                                            title="delete record" @keydown.esc="displayConfirmationModal=false"><i class="fa fa-trash"></i></a>   
+                                        <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showModal(item.id, 'confirmation')"
+                                            title="delete record" @keydown.esc="displayModal=false"><i class="fa fa-trash"></i></a>   
                                     </td>
                                 </tr>
                             </tbody>
@@ -52,25 +52,7 @@
         </div>
 
         <transition name="modal">
-            <ConfirmationModalComponent v-if="displayConfirmationModal" @close="closeConfirmationModal" 
-                :table="tableName" 
-                :confirmPostUrl="deleteConfirmPostUrl + itemId"
-                :method="'delete'">
-                <template v-slot:header><h3>Confirm</h3></template>
-
-                <!--
-                    add extra hidden fields as needed
-                    ex. modals that require redirecting to a specific page 
-                -->
-                <template v-slot:hiddenfields>
-                    <input v-for="field of hiddenFields"
-                    type="hidden" 
-                    :name="field.name" 
-                    :value="field.value">
-                </template>
-            </ConfirmationModalComponent>
-
-            <FormModalComponent v-else-if="displayFormModal" @close="closeFormModal" 
+            <!-- <FormModalComponent v-else-if="displayFormModal" @close="closeFormModal" 
                 :table="tableName" 
                 :fields="fields"
                 :hiddenFields="hiddenFields"
@@ -80,17 +62,30 @@
                 :ruleSet="ruleSet"
                 :deleteConfirmPostUrl="deleteConfirmPostUrl"
                 :itemId="itemId">
-            </FormModalComponent>
+            </FormModalComponent> -->
 
-            <ModalComponent v-else-if="displayModal" @close="closeModal">
-                <template v-slot:header>
-                    {{ uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(tableName) }} details
-                </template>
-
+            <ModalComponent v-if="displayModal">
                 <template v-slot:body>
-                    <DetailsBodyComponent
+                    <ConfirmationModalComponent v-if="modalBody == 'confirmation'" @close="closeModal"
+                        :table="tableName" 
+                        :confirmPostUrl="deleteConfirmPostUrl + itemId"
+                        :method="'delete'">
+                        <!--
+                            add extra hidden fields as needed
+                            ex. modals that require redirecting to a specific page 
+                        -->
+                        <template v-slot:hiddenfields>
+                            <input v-for="field of hiddenFields"
+                            type="hidden" 
+                            :name="field.name" 
+                            :value="field.value">
+                        </template>
+                    </ConfirmationModalComponent>
+
+                    <DetailsBodyComponent v-else-if="modalBody == 'recordDetails'" @close="closeModal"
                         :fields="fields"
-                        :itemId="itemId">
+                        :itemId="itemId"
+                        :table="tableName">
                     </DetailsBodyComponent>
                 </template>
             </ModalComponent>
@@ -108,7 +103,6 @@ import ModalComponent from './ModalComponent.vue'
 import DetailsBodyComponent from './DetailsBodyComponent.vue';
 import { 
     uppercaseFirstLetterAndRemoveUnderscores, 
-    uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores,
     removeUnderscores, 
     makeSingular, 
     numberFormatter } from '../modules/utilities'
@@ -120,6 +114,7 @@ export default {
             displayFormModal: false,
             displayModal: false,
             itemId: '',
+            modalBody: '',
         };
     },
     props: {
@@ -149,6 +144,7 @@ export default {
             if(id) {
                 this.itemId = id;
             }
+            this.modalBody = modalBody;
         },
         closeFormModal() {
             this.displayFormModal = false;
@@ -156,19 +152,18 @@ export default {
                 this.itemId = '';
             }
         },
-        showModal(id) {
+        showModal(id, modalBody) {
             this.displayModal = true;
             this.itemId = id;
+            this.modalBody = modalBody;
         },
         closeModal() {
             this.displayModal = false;
             this.itemId = '';
+            this.modalBody = '';
         },
         uppercaseFirstLetterAndRemoveUnderscores(string) {
             return uppercaseFirstLetterAndRemoveUnderscores(string);
-        },
-        uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string) {
-            return uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string);
         },
         removeUnderscores(string) {
             return removeUnderscores(string);
