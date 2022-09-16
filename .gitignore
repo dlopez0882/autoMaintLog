@@ -15,3 +15,4 @@ yarn-error.log
 /.idea
 /.vscode
 /resources/views/home.blade_old.php
+/resources/views/vehicles/index.blade_old.php
