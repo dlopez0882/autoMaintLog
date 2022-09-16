@@ -85,7 +85,7 @@
 
             <Modal v-else-if="displayModal" @close="closeModal">
                 <template v-slot:header>
-                    {{ tableName.charAt(0).toUpperCase() + tableName.slice(1,-1).replaceAll('_', ' ') }} details
+                    {{ uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(tableName) }} details
                 </template>
 
                 <template v-slot:body>
@@ -107,7 +107,12 @@ import ConfirmationModal from './ConfirmationModal.vue';
 import FormModal from './FormModal.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
-import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular, numberFormatter } from '../modules/utilities'
+import { 
+    uppercaseFirstLetterAndRemoveUnderscores, 
+    uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores,
+    removeUnderscores, 
+    makeSingular, 
+    numberFormatter } from '../modules/utilities'
 
 export default {
     data() {
@@ -162,6 +167,9 @@ export default {
         },
         uppercaseFirstLetterAndRemoveUnderscores(string) {
             return uppercaseFirstLetterAndRemoveUnderscores(string);
+        },
+        uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string) {
+            return uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string);
         },
         removeUnderscores(string) {
             return removeUnderscores(string);

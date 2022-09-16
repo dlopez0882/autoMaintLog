@@ -5,6 +5,10 @@ export const uppercaseFirstLetterAndRemoveUnderscores = function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1).replaceAll('_', ' ')
 }
 
+export const uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores = function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1,-1).replaceAll('_', ' ')
+}
+
 export const removeUnderscores = function(string) {
     return string.replaceAll('_', ' ');
 }
