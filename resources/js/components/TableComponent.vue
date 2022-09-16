@@ -1,14 +1,15 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-11">
                 <div class="card">
                     <slot name="card-header">
                         <div class="card-header">My {{ tableName }}</div>
                     </slot>
 
                     <div class="card-body">
-                        <div v-if="!items.length" class="mb-2">No {{ removeUnderscores(tableName) }} found!</div>
+                        <slot name="return-link"></slot>
+                        <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
 
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->

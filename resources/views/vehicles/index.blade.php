@@ -136,6 +136,9 @@
         <template v-slot:card-header>
             <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
         </template>
+        <template v-slot:return-link>
+            <div><a href="/" class="link-secondary" title="Go back to vehicle list">Go back to vehicle list</a></div>
+        </template>
 </table-component>
 
 @endsection
