@@ -6,9 +6,9 @@
     :items="{{ $vehicles }}" 
     :table-name="'vehicles'" 
     :columns="[
-        {'name': 'year'}, 
-        {'name': 'make'}, 
-        {'name': 'model'}]"
+        {'name': 'year', 'css_classes': 'table-text'}, 
+        {'name': 'make', 'css_classes': 'table-text'}, 
+        {'name': 'model', 'css_classes': 'table-text'}]"
     :options="['view', 'delete']"
     :fields="[    
         {'name': 'year', 'type': 'number'},
