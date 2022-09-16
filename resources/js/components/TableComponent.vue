@@ -31,21 +31,22 @@
                                             class="btn btn-primary" title="view record">View record</a>
 
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
-                                            @click="showModal(item.id)" title="view record"><i class="fa fa-info"></i></a>
+                                            @click="showModal(item.id)" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
 
                                         <!-- add option for v-else-if="option == 'edit'" -->
                                         <a v-else-if="option == 'edit'" href="javascript:void(0)" @click="showFormModal(item.id)"
-                                            title="edit record"><i class="fa fa-pencil"></i></a>   
+                                            title="edit record" @keydown.esc="displayFormModal=false"><i class="fa fa-pencil"></i></a>   
 
                                         <a v-else-if="option == 'delete'" href="javascript:void(0)" @click="showConfirmationModal(item.id)"
-                                            title="delete record"><i class="fa fa-trash"></i></a>   
+                                            title="delete record" @keydown.esc="displayConfirmationModal=false"><i class="fa fa-trash"></i></a>   
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
-                            @click="showFormModal()">
+                            @click="showFormModal()"
+                            @keydown.esc="displayFormModal=false">
                             <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
 
                     </div>
