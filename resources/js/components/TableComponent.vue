@@ -14,7 +14,7 @@
                             <!-- Table Headings -->
                             <thead>
                                 <tr>
-                                    <th v-for="column in columns">{{ uppercaseFirstLetterAndRemoveUnderscores(column) }}</th>
+                                    <th v-for="column in columns">{{ uppercaseFirstLetterAndRemoveUnderscores(column.name) }}</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
                                     <th>&nbsp;</th>
@@ -24,7 +24,7 @@
                             <!-- Table Body -->
                             <tbody>
                                 <tr v-for="item in items" :key="item.id">
-                                    <td class="table-text" v-for="column in columns">{{ item[column] }}</td>
+                                    <td class="table-text" v-for="column in columns">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
                                             class="btn btn-primary" title="view record">View record</a>
@@ -107,7 +107,7 @@ import ConfirmationModal from './ConfirmationModal.vue';
 import FormModal from './FormModal.vue';
 import Modal from './Modal.vue'
 import DetailsBody from './DetailsBody.vue';
-import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular } from '../modules/utilities'
+import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular, numberFormatter } from '../modules/utilities'
 
 export default {
     data() {
@@ -168,6 +168,9 @@ export default {
         },
         makeSingularAndRemoveUnderscores(string) {
             return removeUnderscores(makeSingular(string));
+        },
+        numberFormatter(value, format) {
+            return numberFormatter(value, format);
         },
     },
     mounted() {

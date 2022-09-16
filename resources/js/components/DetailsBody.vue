@@ -3,13 +3,12 @@
 <template>
     <div v-for="field in fields" class="mb-3">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}:
         <div v-if="details[field.type] == 'tinymce'" v-html="details[field.name]"></div>
-        <div v-else v-html="formatter(details[field.name], field.format)"></div>
+        <div v-else>{{ numberFormatter(details[field.name], field.format) }}</div>
     </div>
 </template>
 
 <script>
-    import numeral from 'numeral';
-    import { uppercaseFirstLetterAndRemoveUnderscores } from '../modules/utilities'
+    import { uppercaseFirstLetterAndRemoveUnderscores, numberFormatter } from '../modules/utilities'
     export default {
         data () {
             return {
@@ -21,14 +20,8 @@
             itemId: [Number, String]
         },
         methods: {
-            formatter(value, format) {
-                if(format == 'currency') {
-                    return numeral(value).format("$0,0.00");
-                } else if(format == 'number') {
-                    return numeral(value).format("0,0");
-                } else {
-                    return value;
-                }
+            numberFormatter(value, format) {
+                return numberFormatter(value, format);
             },
             uppercaseFirstLetterAndRemoveUnderscores(string) {
                 return uppercaseFirstLetterAndRemoveUnderscores(string);

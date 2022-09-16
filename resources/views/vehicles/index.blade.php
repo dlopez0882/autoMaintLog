@@ -106,8 +106,16 @@
 <table-component
         :items="{{ $workOrders }}"
         :table-name="'service_items'"
-        :columns="['service_date', 'mileage', 'service_summary', 'technician', 'cost']"
+        {{-- :columns to be used for table column data --}}
+        :columns="[
+            {'name': 'service_date'},
+            {'name': 'mileage', 'format': 'number'}, 
+            {'name': 'service_summary'},
+            {'name': 'technician'},
+            {'name': 'cost', 'format': 'currency'}
+        ]"
         :options="['view-modal', 'edit', 'delete']"
+        {{-- :fields to be used for modals --}}
         :fields="[
             {'name': 'service_date', 'type': 'date'},
             {'name': 'mileage', 'type': 'number', 'format': 'number'},
