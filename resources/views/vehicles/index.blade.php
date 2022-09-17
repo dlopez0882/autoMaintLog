@@ -4,7 +4,7 @@
 
 <table-component
     :bootstrap-columns="'col-11'"
-    :items="{{ $workOrders }}"
+    :items="{{ $serviceItems }}"
     :table-name="'service_items'"
     {{-- :columns to be used for table column data --}}
     :columns="[
