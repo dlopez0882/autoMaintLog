@@ -21,7 +21,7 @@
                             <label :for="field.name">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}</label>
                             <!-- if type is "tinymce", inject tinymce component -->
                             <editor v-if="field.type == 'tinymce'" 
-                                api-key="no-api-key"
+                                api-key="6bcwvjzpiqkvgrt7duaxuas6dto4nm6accybu613y7uyrhj5"
                                 v-model="state.formData[field.name]"
                                 :init="{
                                     height: 150,
