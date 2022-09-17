@@ -36,13 +36,13 @@ class ServiceItemController extends Controller
     public function store(Request $request)
     {        
         ServiceItem::create([
-            'service_date' => $request->serviceItemProps['date'],
-            'vehicle_id' => $request->serviceItemProps['vehicle_id'],
-            'mileage' => $request->serviceItemProps['mileage'],
-            'service_summary' => $request->serviceItemProps['service_summary'],
-            'service_details' => $request->serviceItemProps['service_details'],
-            'technician' => $request->serviceItemProps['technician'],
-            'cost' => $request->serviceItemProps['cost'],
+            'service_date' => $request->formData['service_date'],
+            'vehicle_id' => $request->formData['vehicle_id'],
+            'mileage' => $request->formData['mileage'],
+            'service_summary' => $request->formData['service_summary'],
+            'service_details' => $request->formData['service_details'],
+            'technician' => $request->formData['technician'],
+            'cost' => $request->formData['cost'],
         ]);
      
         return;
@@ -61,7 +61,7 @@ class ServiceItemController extends Controller
          * get vehicle from post request data
          * use dd($vehicle) to see post request data
         */ 
-        $vehicleid = $request->vehicleid; 
+        $vehicleid = $request->vehicle_id; 
 
         // sql: DELETE FROM service_items WHERE id = $id;
         ServiceItem::where('id', $id)->delete();
@@ -91,12 +91,12 @@ class ServiceItemController extends Controller
     public function update(Request $request, $id)
     {
         ServiceItem::where('id', $id)->update([
-            'service_date' => $request->serviceItemProps['date'],
-            'mileage' => $request->serviceItemProps['mileage'],
-            'service_summary' => $request->serviceItemProps['service_summary'],
-            'service_details' => $request->serviceItemProps['service_details'],
-            'technician' => $request->serviceItemProps['technician'],
-            'cost' => $request->serviceItemProps['cost'],
+            'service_date' => $request->formData['service_date'],
+            'mileage' => $request->formData['mileage'],
+            'service_summary' => $request->formData['service_summary'],
+            'service_details' => $request->formData['service_details'],
+            'technician' => $request->formData['technician'],
+            'cost' => $request->formData['cost'],
         ]);
      
         return;
