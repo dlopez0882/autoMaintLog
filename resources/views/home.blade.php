@@ -3,6 +3,7 @@
 @section('content')
 
 <table-component 
+    :bootstrap-columns="'col-md-8'"
     :items="{{ $vehicles }}" 
     :table-name="'vehicles'" 
     :columns="[

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-11">
+            <div :class="bootstrapColumns">
                 <div class="card">
                     <slot name="card-header">
                         <div class="card-header">My {{ tableName }}</div>
@@ -26,7 +26,7 @@
                                     <td v-for="column in columns" :class="column.css_classes">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id"
-                                            class="btn btn-primary" title="view record">View record</a>
+                                            title="view record"><i class="fa fa-list"></i></a>
 
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
                                             @click="showModal(item.id, 'recordDetails')" title="view record" @keydown.esc="displayModal=false"><i class="fa fa-info"></i></a>
@@ -116,6 +116,7 @@ export default {
         };
     },
     props: {
+        bootstrapColumns: String,
         items: Object,
         tableName: [String, Number],
         columns: Array,
