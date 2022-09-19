@@ -48,7 +48,7 @@ class ServiceItemController extends Controller
         $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
         $serviceItems = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
-        return view('vehicles.index', [
+        return view('serviceitems.index', [
             'vehicleData' => $vehicleData,
             'serviceItems' => $serviceItems
         ]);

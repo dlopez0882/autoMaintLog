@@ -37,7 +37,7 @@ class VehicleController extends Controller
     {
         $vehicles = $request->user()->vehicles()->get();
 
-        return view('home', [
+        return view('vehicles.index', [
             'vehicles' => $this->vehicle->forUser($request->user()),
         ]);
     }
