@@ -73,7 +73,7 @@ export default {
             if(props.itemId) { 
                 let itemId = props.itemId;
 
-                axios.get(props.axiosUpdateUrl + itemId)
+                axios.get(props.axiosGetUrl + itemId)
                 .then(response => {
                     // console.log(response)
                     state.formData = response.data;
@@ -145,7 +145,9 @@ export default {
     props: {
         table: String,
         fields: Object,
-        axiosFormPostUrl: String,
+        subdirectory1: [Number, String],
+        axiosCreateUrl: String,
+        axiosGetUrl: String,
         axiosUpdateUrl: String,
         hiddenFields: Object,
         redirectUrl: String,
@@ -194,9 +196,9 @@ export default {
             // manipulate axios post url if we are updating a record
             let axiosFormPostUrl = '';
             if(this.$props.itemId) {
-                axiosFormPostUrl = this.axiosFormPostUrl + '/' + this.$props.itemId;
+                axiosFormPostUrl = this.axiosUpdateUrl + this.$props.itemId;
             } else {
-                axiosFormPostUrl = this.axiosFormPostUrl;
+                axiosFormPostUrl = this.axiosCreateUrl;
             }
 
             axios.post(axiosFormPostUrl, data, config)

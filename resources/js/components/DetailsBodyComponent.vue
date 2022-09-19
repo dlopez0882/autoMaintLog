@@ -32,6 +32,7 @@
             fields: Object,
             itemId: [Number, String],
             table: String,
+            axiosGetUrl: String,
         },
         emits: ['close'],
         methods: {
@@ -47,7 +48,7 @@
         },
         mounted() {
             let itemId = this.itemId;
-            axios.get('../serviceitems/' + itemId)
+            axios.get(this.axiosGetUrl + itemId)
                 .then(response => {
                     this.details = response.data
                 })

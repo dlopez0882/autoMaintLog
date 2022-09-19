@@ -6,6 +6,7 @@
     :bootstrap-columns="'col-md-8'"
     :items="{{ $vehicles }}" 
     :table-name="'vehicles'" 
+    :subdirectory1="'/serviceitems'"
     :columns="[
         {'name': 'year', 'css_classes': 'table-text'}, 
         {'name': 'make', 'css_classes': 'table-text'}, 
@@ -16,10 +17,10 @@
         {'name': 'make', 'type': 'text'},
         {'name': 'model', 'type': 'text'}]"
     :hidden-fields="[]"
-    :axios-form-post-url="'/vehicles'"
+    :axios-create-url="'/vehicles/'"
+    :axios-delete-url="'/vehicles/'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
-    :delete-confirm-post-url="'/vehicles/'"
 ></table-component>
 
 @endsection

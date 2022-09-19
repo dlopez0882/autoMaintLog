@@ -25,7 +25,7 @@
                                 <tr v-for="item in items" :key="item.id">
                                     <td v-for="column in columns" :class="column.css_classes">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
-                                        <a v-if="option == 'view'" :href="tableName + '/' + item.id"
+                                        <a v-if="option == 'view'" :href="tableName + '/' + item.id + subdirectory1"
                                             title="view record"><i class="fa fa-list"></i></a>
 
                                         <a v-else-if="option == 'view-modal'" href="javascript:void(0)"
@@ -56,7 +56,7 @@
                 <template v-slot:body>
                     <ConfirmationModalComponent v-if="modalBody == 'confirmation'" @close="closeModal"
                         :table="tableName" 
-                        :confirmPostUrl="deleteConfirmPostUrl + itemId"
+                        :confirmPostUrl="axiosDeleteUrl + itemId"
                         :method="'delete'">
                         <!--
                             add extra hidden fields as needed
@@ -74,18 +74,22 @@
                         :table="tableName" 
                         :fields="fields"
                         :hiddenFields="hiddenFields"
-                        :axiosFormPostUrl="axiosFormPostUrl" 
+                        :subdirectory1 = "subdirectory1"
+                        :axiosCreateUrl="axiosCreateUrl" 
+                        :axiosGetUrl="axiosGetUrl"
                         :axiosUpdateUrl="axiosUpdateUrl"
+                        :axiosDeleteUrl="axiosDeleteUrl"
                         :redirectUrl="redirectUrl"
                         :ruleSet="ruleSet"
-                        :deleteConfirmPostUrl="deleteConfirmPostUrl"
                         :itemId="itemId">
                     </FormModalComponent>
 
                     <DetailsBodyComponent v-else-if="modalBody == 'recordDetails'" @close="closeModal"
                         :fields="fields"
                         :itemId="itemId"
-                        :table="tableName">
+                        :table="tableName"
+                        :axiosGetUrl="axiosGetUrl"
+                        :axiosUpdateUrl="axiosUpdateUrl">
                     </DetailsBodyComponent>
                 </template>
             </ModalComponent>
@@ -119,15 +123,17 @@ export default {
         bootstrapColumns: String,
         items: Object,
         tableName: [String, Number],
+        subdirectory1: [String, Number],
         columns: Array,
         options: Array,
         fields: Array,
         hiddenFields: Array,
-        axiosFormPostUrl: String,
+        axiosCreateUrl: String,
+        axiosGetUrl: String,
         axiosUpdateUrl: String,
+        axiosDeleteUrl: String,
         redirectUrl: String,
         ruleSet: String,
-        deleteConfirmPostUrl: String,
     },
     methods: {
         showModal(id, modalBody) {

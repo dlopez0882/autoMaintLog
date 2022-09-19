@@ -27,11 +27,12 @@
     :hidden-fields="[
         {'name': 'vehicle_id', 'value': {{ $vehicleData->id }}}
     ]"
-    :axios-form-post-url="'/serviceitems'"
-    :axios-update-url="'../serviceitems/'"
-    :redirect-url="'../vehicles/' + {{ $vehicleData->id }}"
+    :axios-create-url="'/vehicles/' + {{ $vehicleData->id }} + '/serviceitems'"
+    :axios-get-url="'/serviceitems/'"
+    :axios-update-url="'/serviceitems/'"
+    :axios-delete-url="'/serviceitems/'"
+    :redirect-url="'/vehicles/' + {{ $vehicleData->id }} + '/serviceitems'"
     :rule-set="'addserviceitem'" 
-    :delete-confirm-post-url="'/serviceitems/'"
     >
     <template v-slot:card-header>
         <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
