@@ -3,28 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\VehicleRepository;
-use App\Models\Vehicle;
 
 class HomeController extends Controller
 {
-    /**
-     * The vehicles repository instance.
-     *
-     * @var VehicleRepository
-     */
-    protected $vehicles;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(VehicleRepository $vehicles)
+    public function __construct()
     {
         $this->middleware('auth');
-
-        $this->vehicles = $vehicles;
     }
 
     /**
@@ -32,12 +21,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        $vehicles = $request->user()->vehicles()->get();
-
-        return view('home', [
-            'vehicles' => $this->vehicles->forUser($request->user()),
-        ]);
+        return view('home');
     }
 }

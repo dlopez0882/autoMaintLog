@@ -29,6 +29,20 @@ class VehicleController extends Controller
     }
 
     /**
+     * Show all the logged-in user's vehicles.
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $vehicles = $request->user()->vehicles()->get();
+
+        return view('home', [
+            'vehicles' => $this->vehicle->forUser($request->user()),
+        ]);
+    }
+
+    /**
      * Display vehicle-specific info page.
      *
      * @param  Request  $request
