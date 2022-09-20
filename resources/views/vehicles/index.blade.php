@@ -11,13 +11,15 @@
         {'name': 'year', 'css_classes': 'table-text'}, 
         {'name': 'make', 'css_classes': 'table-text'}, 
         {'name': 'model', 'css_classes': 'table-text'}]"
-    :options="['view', 'delete']"
+    :options="['view', 'edit', 'delete']"
     :fields="[    
         {'name': 'year', 'type': 'number'},
         {'name': 'make', 'type': 'text'},
         {'name': 'model', 'type': 'text'}]"
     :hidden-fields="[]"
     :axios-create-url="'/vehicles/'"
+    :axios-get-url="'/vehicles/'"
+    :axios-update-url="'/vehicles/'"
     :axios-delete-url="'/vehicles/'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
