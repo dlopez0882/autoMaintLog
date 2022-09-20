@@ -51,13 +51,8 @@ class VehicleController extends Controller
      */
     public function show(Request $request, Vehicle $vehicle)
     {
-        // $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
-        // $serviceItems = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
-
-        // return view('vehicles.index', [
-        //     'vehicleData' => $vehicleData,
-        //     'serviceItems' => $serviceItems,
-        // ]);
+        $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
+        return $vehicleData;
     }
 
     /**

@@ -23,7 +23,7 @@ Route::get('/', [App\Http\Controllers\VehicleController::class, 'index'])->name(
 
 Route::get('/vehicles', [App\Http\Controllers\VehicleController::class, 'index'])->name('vehicles.index');
 Route::post('/vehicles', [App\Http\Controllers\VehicleController::class, 'store'])->name('vehicles.store');
-// Route::get('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'show'])->name('vehicles.show');
+Route::get('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'show'])->name('vehicles.show');
 Route::delete('/vehicles/{vehicle}', [App\Http\Controllers\VehicleController::class, 'destroy'])->name('vehicles.destoy');
 
 Route::get('/vehicles/{vehicle}/serviceitems', [App\Http\Controllers\ServiceItemController::class, 'index'])->name('vehicles.serviceitems.index');
