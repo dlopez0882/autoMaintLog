@@ -89,4 +89,22 @@ class VehicleController extends Controller
 
         return redirect('/');
     }
+
+    /**
+     * Update a specific vehicle record.
+     *
+     * @param  Request  $request
+     * @param  $id
+     * @return void
+     */
+    public function update(Request $request, $id)
+    {
+        Vehicle::where('id', $id)->update([
+            'year' => $request->formData['year'],
+            'make' => $request->formData['make'],
+            'model' => $request->formData['model'],
+        ]);
+     
+        return;
+    }
 }

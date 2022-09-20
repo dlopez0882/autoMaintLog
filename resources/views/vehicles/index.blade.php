@@ -19,6 +19,7 @@
     :hidden-fields="[]"
     :axios-create-url="'/vehicles/'"
     :axios-get-url="'/vehicles/'"
+    :axios-update-url="'/vehicles/'"
     :axios-delete-url="'/vehicles/'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
