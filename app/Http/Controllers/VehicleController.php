@@ -29,6 +29,20 @@ class VehicleController extends Controller
     }
 
     /**
+     * Show all the logged-in user's vehicles.
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $vehicles = $request->user()->vehicles()->get();
+
+        return view('vehicles.index', [
+            'vehicles' => $this->vehicle->forUser($request->user()),
+        ]);
+    }
+
+    /**
      * Display vehicle-specific info page.
      *
      * @param  Request  $request
@@ -37,13 +51,13 @@ class VehicleController extends Controller
      */
     public function show(Request $request, Vehicle $vehicle)
     {
-        $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
-        $serviceItems = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
+        // $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
+        // $serviceItems = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
 
-        return view('vehicles.index', [
-            'vehicleData' => $vehicleData,
-            'serviceItems' => $serviceItems,
-        ]);
+        // return view('vehicles.index', [
+        //     'vehicleData' => $vehicleData,
+        //     'serviceItems' => $serviceItems,
+        // ]);
     }
 
     /**

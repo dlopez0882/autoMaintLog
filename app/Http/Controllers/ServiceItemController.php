@@ -4,27 +4,54 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\ServiceItemRepository;
+use App\Repositories\VehicleRepository;
 use App\Models\ServiceItem;
+use App\Models\Vehicle;
 
 class ServiceItemController extends Controller
 {
     /**
-     * The vehicles repository instance.
+     * The service item's repository instance.
      *
      * @var ServiceItemRepository
      */
     protected $serviceItem;
 
     /**
+     * The vehicle's repository instance.
+     *
+     * @var VehicleRepository
+     */
+    protected $vehicle;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ServiceItemRepository $serviceItem)
+    public function __construct(ServiceItemRepository $serviceItem, VehicleRepository $vehicle)
     {
         $this->middleware('auth');
 
         $this->serviceItem = $serviceItem;
+
+        $this->vehicle = $vehicle;
+    }
+
+    /**
+     * Show all services items for a specific vehicle.
+     *
+     * @return Response
+     */
+    public function index(Request $request, Vehicle $vehicle)
+    {
+        $vehicleData = $this->vehicle->forUserSingle($request->user(), $vehicle);
+        $serviceItems = ServiceItem::where('vehicle_id', $vehicle->id)->orderBy('service_date', 'desc')->get();
+
+        return view('serviceitems.index', [
+            'vehicleData' => $vehicleData,
+            'serviceItems' => $serviceItems
+        ]);
     }
 
     /**
@@ -66,7 +93,7 @@ class ServiceItemController extends Controller
         // sql: DELETE FROM service_items WHERE id = $id;
         ServiceItem::where('id', $id)->delete();
 
-        return redirect('/vehicles/' . $vehicleid);
+        return redirect('/vehicles/' . $vehicleid . '/serviceitems');
     }
 
     /**
