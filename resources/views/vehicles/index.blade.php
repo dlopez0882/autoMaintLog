@@ -17,7 +17,7 @@
         {'name': 'make', 'type': 'text'},
         {'name': 'model', 'type': 'text'}]"
     :hidden-fields="[]"
-    :axios-create-url="'/vehicles/'"
+    :axios-create-url="'/vehicles'"
     :axios-get-url="'/vehicles/'"
     :axios-update-url="'/vehicles/'"
     :axios-delete-url="'/vehicles/'"
