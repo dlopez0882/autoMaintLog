@@ -6,7 +6,7 @@
             <div class="card-header">{{ uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(table) }} details</div>
                 <div class="card-body">
                     <div v-for="field in fields" class="mb-3">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}:
-                        <div v-if="field.type == 'tinymce'" v-html="details[field.name]"></div>
+                        <div v-if="field.type == 'tinymce'" v-html="details.data[field.name]"></div>
                         <div v-else>{{ numberFormatter(details.data[field.name], field.format) }}</div>
                     </div>
 
