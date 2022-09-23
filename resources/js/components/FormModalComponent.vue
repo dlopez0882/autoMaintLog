@@ -54,7 +54,7 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { computed } from '@vue/reactivity';
 import useVuelidate from '@vuelidate/core';
 import { between, helpers, required } from '@vuelidate/validators';
@@ -63,11 +63,12 @@ import { onMounted, reactive } from 'vue';
 import Editor from '@tinymce/tinymce-vue';
 import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingular } from '../modules/utilities'
 
-export default {
-    setup(props) {
-        let state = reactive({
+// export default {
+    // setup(props) {
+        const state = reactive({
             formData: {}
         })
+
         onMounted(() => {
             // if there is a record id, load form with response data
             if(props.itemId) { 
@@ -115,8 +116,8 @@ export default {
 
         const v$ = useVuelidate(rules, state)
 
-        return { state, v$ }
-    },
+        // return { state, v$ }
+    // },
 
     // data() {
     //     return {
@@ -142,7 +143,7 @@ export default {
     //     }
     // },
 
-    props: {
+    const props = defineProps({
         table: String,
         fields: Object,
         subdirectory1: [Number, String],
@@ -153,25 +154,26 @@ export default {
         redirectUrl: String,
         ruleSet: String,
         itemId: [Number, String],
-    },
-    components: {
-        'editor': Editor
-    },
-    methods: {
-        uppercaseFirstLetterAndRemoveUnderscores(string) {
-            return uppercaseFirstLetterAndRemoveUnderscores(string);
-        },
-        makeSingularAndRemoveUnderscores(string) {
+    })
+    // components: {
+    //     'editor': Editor
+    // },
+    // methods: {
+        // uppercaseFirstLetterAndRemoveUnderscores(string) {
+        //     return uppercaseFirstLetterAndRemoveUnderscores(string);
+        // },
+        function makeSingularAndRemoveUnderscores(string) {
             return removeUnderscores(makeSingular(string));
-        },
-        async submitForm() {
-            const isFormCorrect = await this.v$.$validate()
+        }
+
+        const submitForm = async () => {
+            // const isFormCorrect = await this.v$.$validate()
 
             // if validation returns errors, do nothing
-            if (!isFormCorrect) return
+            // if (!isFormCorrect) return
 
             // otherwise gather data from form and submit
-            const formDataArray = this.state;
+            const formDataArray = state.formData;
 
             // use proxy to extract since data is observable object (for reactivity)
             const myProxy = new Proxy(formDataArray, {});
@@ -182,7 +184,7 @@ export default {
             // if there are hidden fields, add them to data array
             const hiddenFields = document.getElementById('formModal').querySelectorAll('input[type="hidden"]');
             if(hiddenFields.length > 0)
-                hiddenFields.forEach(element => data.formData[element.name] = element.value);
+                hiddenFields.forEach(element => data[element.name] = element.value);
             
             const config = {
                 headers: {
@@ -195,19 +197,19 @@ export default {
             // submit data to laravel
             // manipulate axios post url if we are updating a record
             let axiosFormPostUrl = '';
-            if(this.$props.itemId) {
-                axiosFormPostUrl = this.axiosUpdateUrl + this.$props.itemId;
+            if(props.itemId) {
+                axiosFormPostUrl = props.axiosUpdateUrl + props.itemId;
             } else {
-                axiosFormPostUrl = this.axiosCreateUrl;
+                axiosFormPostUrl = props.axiosCreateUrl;
             }
 
             axios.post(axiosFormPostUrl, data, config)
                 .then(response => {
                     // console.log(response)
-                    window.location.href = this.redirectUrl;
+                    window.location.href = props.redirectUrl;
                 })
                 .catch(error => console.log(error));
         }
-    }
-}
+    // }
+// }
 </script>
