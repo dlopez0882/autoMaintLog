@@ -167,10 +167,10 @@ import { uppercaseFirstLetterAndRemoveUnderscores, removeUnderscores, makeSingul
         }
 
         const submitForm = async () => {
-            // const isFormCorrect = await this.v$.$validate()
+            const isFormCorrect = await v$.value.$validate()
 
             // if validation returns errors, do nothing
-            // if (!isFormCorrect) return
+            if (!isFormCorrect) return
 
             // otherwise gather data from form and submit
             const formDataArray = state.formData;
