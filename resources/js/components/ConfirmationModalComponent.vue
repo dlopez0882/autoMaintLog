@@ -30,25 +30,21 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { makeSingular, removeUnderscores } from '../modules/utilities'
+import { ref } from 'vue';
 
-export default {
-    data() {
-        return {
-            csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    },
-    props: {
-        table: String,
-        method: String,
-        confirmPostUrl: String,
-    },
-    emits: ['close'],
-    methods: {
-        makeSingularAndRemoveUnderscores(string) {
-            return removeUnderscores(makeSingular(string));
-        }
-    }
+const csrfToken = ref(document.querySelector('meta[name="csrf-token"]').getAttribute('content'))
+
+const props = defineProps({
+    table: String,
+    method: String,
+    confirmPostUrl: String,
+})
+
+const emit = defineEmits(['close'])
+
+function makeSingularAndRemoveUnderscores(string) {
+    return removeUnderscores(makeSingular(string));
 }
 </script>

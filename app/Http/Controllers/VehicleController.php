@@ -64,9 +64,9 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $request->user()->vehicles()->create([
-            'year' => $request->formData['year'],
-            'make' => $request->formData['make'],
-            'model' => $request->formData['model'],
+            'year' => $request['year'],
+            'make' => $request['make'],
+            'model' => $request['model'],
         ]);
      
         return;
@@ -100,9 +100,9 @@ class VehicleController extends Controller
     public function update(Request $request, $id)
     {
         Vehicle::where('id', $id)->update([
-            'year' => $request->formData['year'],
-            'make' => $request->formData['make'],
-            'model' => $request->formData['model'],
+            'year' => $request['year'],
+            'make' => $request['make'],
+            'model' => $request['model'],
         ]);
      
         return;

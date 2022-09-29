@@ -100,7 +100,7 @@
 
 
 
-<script>
+<script setup>
 import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
 import ModalComponent from './ModalComponent.vue'
@@ -110,55 +110,42 @@ import {
     removeUnderscores, 
     makeSingular, 
     numberFormatter } from '../modules/utilities'
+import { ref } from 'vue';
 
-export default {
-    data() {
-        return {
-            displayModal: false,
-            itemId: '',
-            modalBody: '',
-        };
-    },
-    props: {
-        bootstrapColumns: String,
-        items: Object,
-        tableName: [String, Number],
-        subdirectory1: [String, Number],
-        columns: Array,
-        options: Array,
-        fields: Array,
-        hiddenFields: Array,
-        axiosCreateUrl: String,
-        axiosGetUrl: String,
-        axiosUpdateUrl: String,
-        axiosDeleteUrl: String,
-        redirectUrl: String,
-        ruleSet: String,
-    },
-    methods: {
-        showModal(id, modalBody) {
-            this.displayModal = true;
-            this.itemId = id;
-            this.modalBody = modalBody;
-        },
-        closeModal() {
-            this.displayModal = false;
-            this.itemId = '';
-            this.modalBody = '';
-        },
-        uppercaseFirstLetterAndRemoveUnderscores(string) {
-            return uppercaseFirstLetterAndRemoveUnderscores(string);
-        },
-        removeUnderscores(string) {
-            return removeUnderscores(string);
-        },
-        makeSingularAndRemoveUnderscores(string) {
-            return removeUnderscores(makeSingular(string));
-        },
-        numberFormatter(value, format) {
-            return numberFormatter(value, format);
-        },
-    },
-    components: { ConfirmationModalComponent, FormModalComponent, ModalComponent, DetailsBodyComponent }
+const displayModal = ref(false)
+const itemId = ref('')
+const modalBody = ref('')
+
+const props = defineProps ({
+    bootstrapColumns: String,
+    items: Object,
+    tableName: [String, Number],
+    subdirectory1: [String, Number],
+    columns: Array,
+    options: Array,
+    fields: Array,
+    hiddenFields: Array,
+    axiosCreateUrl: String,
+    axiosGetUrl: String,
+    axiosUpdateUrl: String,
+    axiosDeleteUrl: String,
+    redirectUrl: String,
+    ruleSet: String,
+})
+
+function showModal(id, bodyType) {
+    displayModal.value = true;
+    itemId.value = id;
+    modalBody.value = bodyType;
+}
+
+function closeModal() {
+    displayModal.value = false;
+    itemId.value = '';
+    modalBody.value = '';
+}
+
+function makeSingularAndRemoveUnderscores(string) {
+    return removeUnderscores(makeSingular(string));
 }
 </script>

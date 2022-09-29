@@ -6,8 +6,8 @@
             <div class="card-header">{{ uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(table) }} details</div>
                 <div class="card-body">
                     <div v-for="field in fields" class="mb-3">{{ uppercaseFirstLetterAndRemoveUnderscores(field.name) }}:
-                        <div v-if="field.type == 'tinymce'" v-html="details[field.name]"></div>
-                        <div v-else>{{ numberFormatter(details[field.name], field.format) }}</div>
+                        <div v-if="field.type == 'tinymce'" v-html="details.data[field.name]"></div>
+                        <div v-else>{{ numberFormatter(details.data[field.name], field.format) }}</div>
                     </div>
 
                     <div class="text-end">
@@ -20,40 +20,27 @@
     </div>
 </template>
 
-<script>
-    import { uppercaseFirstLetterAndRemoveUnderscores, numberFormatter, uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores } from '../modules/utilities'
-    export default {
-        data () {
-            return {
-                details: {}
-            }
-        },
-        props: {
-            fields: Object,
-            itemId: [Number, String],
-            table: String,
-            axiosGetUrl: String,
-        },
-        emits: ['close'],
-        methods: {
-            numberFormatter(value, format) {
-                return numberFormatter(value, format);
-            },
-            uppercaseFirstLetterAndRemoveUnderscores(string) {
-                return uppercaseFirstLetterAndRemoveUnderscores(string);
-            },
-            uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string) {
-                return uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores(string);
-        },
-        },
-        mounted() {
-            let itemId = this.itemId;
-            axios.get(this.axiosGetUrl + itemId)
-                .then(response => {
-                    this.details = response.data
-                })
-                .catch(error => console.log(error));
-        }
-    }
+<script setup>
+import { uppercaseFirstLetterAndRemoveUnderscores, numberFormatter, uppercaseFirstLetterAndMakeSingularAndRemoveUnderscores } from '../modules/utilities'
+import { reactive, onMounted } from 'vue';
 
+const details = reactive({
+    data: {}
+})
+
+const props = defineProps({
+    fields: Object,
+    itemId: [Number, String],
+    table: String,
+    axiosGetUrl: String,   
+})
+
+onMounted(() => {
+    let itemId = props.itemId;
+    axios.get(props.axiosGetUrl + itemId)
+        .then(response => {
+            details.data = response.data
+        })
+        .catch(error => console.log(error));
+})
 </script>
