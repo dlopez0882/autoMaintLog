@@ -8,7 +8,7 @@ This application is built using [Laravel 9](https://laravel.com/) and [Vue 3](ht
 
 ## How to Install and Run the Project
 1. Clone this project locally.
-2. ```cd {project_directory}```.
+2. Run ```cd {project_directory}```.
 3. Install composer dependencies (note: must have Composer installed).
 4. Install NPM dependicies (note: must have npm installed).
 5. Run ```cp .env.example .env```
@@ -19,10 +19,12 @@ This application is built using [Laravel 9](https://laravel.com/) and [Vue 3](ht
 10. Run ```php artisan serve```
 11. Run ```npm run dev```
 11. Navigate to outputted URL (example: http://localhost:8000/)
-12. After stopping the project, all you will need to do is
-    * ```cd {project_directory}```
-    * Run ```php artisan serve```
-    * Run ```npm run dev```
+12. After stopping the project, all you will need to do to restart is run the following in Terminal:
+    ```
+    $ cd {project_directory}
+    $ php artisan serve
+    $ npm run dev
+    ```
 
 
 ## How to Use the Project
