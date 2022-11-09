@@ -30,9 +30,9 @@ services:
       - key: MAIL_ENCRYPTION # Imported from Heroku app
         value: tls
       - key: MAIL_FROM_ADDRESS # Imported from Heroku app
-        value: &quot;hello@example.com&quot;
+        value: hello@example.com
       - key: MAIL_FROM_NAME # Imported from Heroku app
-        value: &quot;Maintenance Log&quot;
+        value: Maintenance Log
       - key: MAIL_HOST # Imported from Heroku app
         value: smtp.mailtrap.io
       - key: MAIL_MAILER # Imported from Heroku app
