@@ -35,3 +35,4 @@ services:
 databases: # Render PostgreSQL database
   - name: postgresql-curly-25925
     ipAllowList: [] # only allow internal connections
+    plan: free
