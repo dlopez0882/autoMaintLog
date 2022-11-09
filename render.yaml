@@ -27,20 +27,6 @@ services:
         value: 5432
       - key: DB_USERNAME # Imported from Heroku app
         value: grcouimfwcwcqf
-      - key: MAIL_ENCRYPTION # Imported from Heroku app
-        value: tls
-      - key: MAIL_FROM_ADDRESS # Imported from Heroku app
-        value: hello@example.com
-      - key: MAIL_FROM_NAME # Imported from Heroku app
-        value: Maintenance Log
-      - key: MAIL_HOST # Imported from Heroku app
-        value: smtp.mailtrap.io
-      - key: MAIL_MAILER # Imported from Heroku app
-        value: smtp
-      - key: MAIL_PORT # Imported from Heroku app
-        value: 2525
-      - key: MAIL_USERNAME # Imported from Heroku app
-        value: 22a91f60825d0a
       - key: DATABASE_URL # Render PostgreSQL database
         fromDatabase:
           name: postgresql-curly-25925
