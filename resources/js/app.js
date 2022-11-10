@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import BootstrapVue3 from 'bootstrap-vue-3';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -13,13 +14,14 @@ import { createApp } from 'vue';
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({}).use(BootstrapVue3);
 
 // import ExampleComponent from './components/ExampleComponent.vue';
 // app.component('example-component', ExampleComponent);
 
 import TableComponent from './components/TableComponent.vue';
 app.component('table-component', TableComponent);
+
 
 /**
  * The following block of code may be used to automatically register your
