@@ -41,6 +41,16 @@
                             </tbody>
                         </table>
 
+                        <b-pagination
+                            v-model="ex1CurrentPage"
+                            :total-rows="ex1Rows"
+                            :per-page="ex1PerPage"
+                            first-text="First"
+                            prev-text="Prev"
+                            next-text="Next"
+                            last-text="Last"
+                        ></b-pagination>
+
                         <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
                             @click="showModal('', 'form')"
                             @keydown.esc="displayModal=false">
@@ -115,6 +125,10 @@ import { ref } from 'vue';
 const displayModal = ref(false)
 const itemId = ref('')
 const modalBody = ref('')
+
+const ex1CurrentPage = ref(1)
+const ex1PerPage = ref(10)
+const ex1Rows = ref(props.items.length)
 
 const props = defineProps ({
     bootstrapColumns: String,
