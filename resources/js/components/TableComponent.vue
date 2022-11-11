@@ -41,23 +41,24 @@
                             </tbody>
                         </table>
 
-                        <b-pagination
-                            v-model="currentPage"
-                            :total-rows="items.length"
-                            :per-page="perPage"
-                            first-text="First"
-                            prev-text="Prev"
-                            next-text="Next"
-                            last-text="Last"
-                            align="end"
-                            size="sm"
-                        ></b-pagination>
-
-                        <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
-                            @click="showModal('', 'form')"
-                            @keydown.esc="displayModal=false">
-                            <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
-
+                        <!-- add record button and paginator -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
+                                    @click="showModal('', 'form')"
+                                    @keydown.esc="displayModal=false">
+                                    <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <b-pagination
+                                    v-model="currentPage"
+                                    :total-rows="items.length"
+                                    :per-page="perPage"
+                                    align="end"
+                                    size="sm"
+                                ></b-pagination>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
