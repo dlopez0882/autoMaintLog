@@ -42,9 +42,9 @@
                         </table>
 
                         <b-pagination
-                            v-model="ex1CurrentPage"
-                            :total-rows="ex1Rows"
-                            :per-page="ex1PerPage"
+                            v-model="currentPage"
+                            :total-rows="totalRows"
+                            :per-page="perPage"
                             first-text="First"
                             prev-text="Prev"
                             next-text="Next"
@@ -126,9 +126,9 @@ const displayModal = ref(false)
 const itemId = ref('')
 const modalBody = ref('')
 
-const ex1CurrentPage = ref(1)
-const ex1PerPage = ref(10)
-const ex1Rows = ref(props.items.length)
+const currentPage = ref(1)
+const perPage = ref(10)
+const totalRows = ref(props.items.length)
 
 const props = defineProps ({
     bootstrapColumns: String,
@@ -148,8 +148,8 @@ const props = defineProps ({
 })
 
 const paginatedItems = computed(() => {
-    const start = (ex1CurrentPage.value - 1) * ex1PerPage.value;
-    const end = ex1CurrentPage.value * ex1PerPage.value;
+    const start = (currentPage.value - 1) * perPage.value;
+    const end = currentPage.value * perPage.value;
 
     return props.items.slice(start, end);
 })
