@@ -55,7 +55,6 @@
                                     :total-rows="items.length"
                                     :per-page="perPage"
                                     align="end"
-                                    size="sm"
                                 ></b-pagination>
                             </div>
                         </div>
