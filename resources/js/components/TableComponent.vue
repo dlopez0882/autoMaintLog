@@ -43,12 +43,14 @@
 
                         <b-pagination
                             v-model="currentPage"
-                            :total-rows="totalRows"
+                            :total-rows="items.length"
                             :per-page="perPage"
                             first-text="First"
                             prev-text="Prev"
                             next-text="Next"
                             last-text="Last"
+                            align="end"
+                            size="sm"
                         ></b-pagination>
 
                         <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
@@ -125,10 +127,8 @@ import { computed, ref } from 'vue';
 const displayModal = ref(false)
 const itemId = ref('')
 const modalBody = ref('')
-
 const currentPage = ref(1)
 const perPage = ref(10)
-const totalRows = ref(props.items.length)
 
 const props = defineProps ({
     bootstrapColumns: String,
