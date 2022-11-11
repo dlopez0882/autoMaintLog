@@ -22,7 +22,7 @@
 
                             <!-- Table Body -->
                             <tbody>
-                                <tr v-for="item in items" :key="item.id">
+                                <tr v-for="item in paginatedItems" :key="item.id">
                                     <td v-for="column in columns" :class="column.css_classes">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id + subdirectory1"
@@ -120,7 +120,7 @@ import {
     removeUnderscores, 
     makeSingular, 
     numberFormatter } from '../modules/utilities'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const displayModal = ref(false)
 const itemId = ref('')
@@ -145,6 +145,13 @@ const props = defineProps ({
     axiosDeleteUrl: String,
     redirectUrl: String,
     ruleSet: String,
+})
+
+const paginatedItems = computed(() => {
+    const start = (ex1CurrentPage.value - 1) * ex1PerPage.value;
+    const end = ex1CurrentPage.value * ex1PerPage.value;
+
+    return props.items.slice(start, end);
 })
 
 function showModal(id, bodyType) {
