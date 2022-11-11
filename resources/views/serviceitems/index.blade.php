@@ -37,7 +37,7 @@
     <template v-slot:card-header>
         <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
     </template>
-    <template v-slot:return-link>
+    <template v-slot:breadcrumb>
         <b-breadcrumb :items="[
             {'text': 'My vehicles', 'href': '/vehicles'},
             {'text': 'Service log'}

@@ -8,7 +8,7 @@
                     </slot>
 
                     <div class="card-body">
-                        <slot name="return-link"></slot>
+                        <slot name="breadcrumb"></slot>
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
 
                         <table v-else class="table table-striped task-table">
