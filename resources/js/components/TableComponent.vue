@@ -22,7 +22,7 @@
 
                             <!-- Table Body -->
                             <tbody>
-                                <tr v-for="item in items" :key="item.id">
+                                <tr v-for="item in paginatedItems" :key="item.id">
                                     <td v-for="column in columns" :class="column.css_classes">{{ numberFormatter(item[column.name], [column.format]) }}</td>
                                     <td v-for="option in options">
                                         <a v-if="option == 'view'" :href="tableName + '/' + item.id + subdirectory1"
@@ -41,11 +41,23 @@
                             </tbody>
                         </table>
 
-                        <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
-                            @click="showModal('', 'form')"
-                            @keydown.esc="displayModal=false">
-                            <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
-
+                        <!-- add record button and paginator -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
+                                    @click="showModal('', 'form')"
+                                    @keydown.esc="displayModal=false">
+                                    <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
+                            </div>
+                            <div v-if="items.length > perPage" class="col-sm-6">
+                                <b-pagination
+                                    v-model="currentPage"
+                                    :total-rows="items.length"
+                                    :per-page="perPage"
+                                    align="end"
+                                ></b-pagination>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,11 +122,13 @@ import {
     removeUnderscores, 
     makeSingular, 
     numberFormatter } from '../modules/utilities'
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const displayModal = ref(false)
 const itemId = ref('')
 const modalBody = ref('')
+const currentPage = ref(1)
+const perPage = ref(10)
 
 const props = defineProps ({
     bootstrapColumns: String,
@@ -131,6 +145,13 @@ const props = defineProps ({
     axiosDeleteUrl: String,
     redirectUrl: String,
     ruleSet: String,
+})
+
+const paginatedItems = computed(() => {
+    const start = (currentPage.value - 1) * perPage.value;
+    const end = currentPage.value * perPage.value;
+
+    return props.items.slice(start, end);
 })
 
 function showModal(id, bodyType) {
