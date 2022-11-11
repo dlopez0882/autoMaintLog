@@ -49,7 +49,7 @@
                                     @keydown.esc="displayModal=false">
                                     <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
                             </div>
-                            <div class="col-sm-6">
+                            <div v-if="items.length > perPage" class="col-sm-6">
                                 <b-pagination
                                     v-model="currentPage"
                                     :total-rows="items.length"
