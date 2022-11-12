@@ -3,10 +3,9 @@
         <div class="row justify-content-center">
             <div :class="bootstrapColumns">
                 <div class="card">
-                    <slot name="card-header">
-                        <div class="card-header">My {{ tableName }}</div>
-                    </slot>
-
+                    
+                    <div class="card-header text-center">{{ tableHeader }}</div>                    
+                    
                     <div class="card-body">
                         <slot name="breadcrumb"></slot>
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
@@ -145,6 +144,7 @@ const props = defineProps ({
     axiosDeleteUrl: String,
     redirectUrl: String,
     ruleSet: String,
+    tableHeader: String,
 })
 
 const paginatedItems = computed(() => {

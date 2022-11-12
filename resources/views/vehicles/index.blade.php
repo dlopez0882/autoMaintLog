@@ -23,6 +23,7 @@
     :axios-delete-url="'/vehicles/'"
     :redirect-url="'/'"
     :rule-set="'addvehicle'"
+    :table-header="'My vehicles'"
 ></table-component>
 
 @endsection
