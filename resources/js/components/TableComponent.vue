@@ -3,13 +3,21 @@
         <div class="row justify-content-center">
             <div :class="bootstrapColumns">
                 <div class="card">
-                    
                     <div class="card-header text-center">{{ tableHeader }}</div>                    
-                    
                     <div class="card-body">
-                        <slot name="breadcrumb"></slot>
-                        <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
+                        <div class="row d-flex">
+                            <div class="col-sm-6">
+                                <slot name="breadcrumb"></slot>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-sm btn-primary float-end full-width" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
+                                        @click="showModal('', 'form')"
+                                        @keydown.esc="displayModal=false">
+                                        <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>  
+                            </div>
+                        </div>
 
+                        <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
                             <thead>
@@ -40,14 +48,8 @@
                             </tbody>
                         </table>
 
-                        <!-- add record button and paginator -->
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <button type="button" class="btn btn-primary" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
-                                    @click="showModal('', 'form')"
-                                    @keydown.esc="displayModal=false">
-                                    <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>
-                            </div>
+                        <!-- paginator -->
+                        <div class="row justify-content-end">
                             <div v-if="items.length > perPage" class="col-sm-6">
                                 <b-pagination
                                     v-model="currentPage"
