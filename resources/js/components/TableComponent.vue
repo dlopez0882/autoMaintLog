@@ -2,21 +2,26 @@
     <div class="container">
         <div class="row justify-content-center">
             <div :class="bootstrapColumns">
+                <slot name="breadcrumb"></slot>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div :class="bootstrapColumns">
                 <div class="card">
-                    <div class="card-header text-center">{{ tableHeader }}</div>                    
-                    <div class="card-body">
-                        <div class="row d-flex">
-                            <div class="col-sm-6">
-                                <slot name="breadcrumb"></slot>
-                            </div>
-                            <div class="col-sm-6">
+                    <div class="card-header">
+                        <div class="row d-flex align-items-center">
+                            <div class="col-sm-8">{{ tableHeader }}</div>
+                            <div class="col-sm-4">
                                 <button type="button" class="btn btn-sm btn-primary float-end full-width" :title="`Add ${makeSingularAndRemoveUnderscores(tableName)}`" 
                                         @click="showModal('', 'form')"
                                         @keydown.esc="displayModal=false">
                                         <i class="fa fa-plus"></i> Add {{ makeSingularAndRemoveUnderscores(tableName) }}</button>  
                             </div>
                         </div>
+                    </div>
 
+                    <div class="card-body">
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
