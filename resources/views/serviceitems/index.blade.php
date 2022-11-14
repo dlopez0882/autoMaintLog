@@ -33,10 +33,8 @@
     :axios-delete-url="'/serviceitems/'"
     :redirect-url="'/vehicles/' + {{ $vehicleData->id }} + '/serviceitems'"
     :rule-set="'addserviceitem'"
+    :table-header="'Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}'"
     >
-    <template v-slot:card-header>
-        <div class="card-header">Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}</div>
-    </template>
     <template v-slot:breadcrumb>
         <b-breadcrumb :items="[
             {'text': 'My vehicles', 'href': '/vehicles'},
