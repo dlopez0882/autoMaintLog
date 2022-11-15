@@ -22,6 +22,10 @@
                     </div>
 
                     <div class="card-body">
+                        <SearchComponent
+                            :styleClass="`col-6 float-end`"
+                            :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
+                        ></SearchComponent>
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
@@ -123,6 +127,7 @@ import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
 import ModalComponent from './ModalComponent.vue'
 import DetailsBodyComponent from './DetailsBodyComponent.vue';
+import SearchComponent from './SearchComponent.vue';
 import { 
     uppercaseFirstLetterAndRemoveUnderscores, 
     removeUnderscores, 
