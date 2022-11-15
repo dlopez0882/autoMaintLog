@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 const props = defineProps({
     styleClass: String,
@@ -14,7 +14,9 @@ const props = defineProps({
 
 const searchString = ref('')
 
+const emit = defineEmits(['submitSearch'])
+
 function submitSearch(event) {
-    console.log(event.target.value);
+    emit('submitSearch', event.target.value)
 }
 </script>

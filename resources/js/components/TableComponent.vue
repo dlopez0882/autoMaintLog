@@ -25,6 +25,7 @@
                         <SearchComponent
                             :styleClass="`col-6 float-end`"
                             :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
+                            @submitSearch="submitSearch"
                         ></SearchComponent>
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
@@ -180,5 +181,9 @@ function closeModal() {
 
 function makeSingularAndRemoveUnderscores(string) {
     return removeUnderscores(makeSingular(string));
+}
+
+function submitSearch(value) {
+    console.log(value);
 }
 </script>
