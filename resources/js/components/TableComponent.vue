@@ -183,7 +183,11 @@ function makeSingularAndRemoveUnderscores(string) {
     return removeUnderscores(makeSingular(string));
 }
 
-function submitSearch(value) {
-    console.log(value);
+function submitSearch(value, key='service_summary') {
+    const filteredRecords = props.items.filter(item =>
+        item[key] !== null && item[key].toUpperCase().includes(value.toUpperCase())
+    );
+
+    console.log(filteredRecords);
 }
 </script>
