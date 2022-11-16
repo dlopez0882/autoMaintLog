@@ -183,6 +183,7 @@ function makeSingularAndRemoveUnderscores(string) {
     return removeUnderscores(makeSingular(string));
 }
 
+// TODO: make function accept multiple keys - possible foreach?
 function submitSearch(value, key='service_summary') {
     const filteredRecords = props.items.filter(item =>
         item[key] !== null && item[key].toUpperCase().includes(value.toUpperCase())
