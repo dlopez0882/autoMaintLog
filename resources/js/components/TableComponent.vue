@@ -60,7 +60,7 @@
 
                         <!-- paginator -->
                         <div class="row justify-content-end">
-                            <div v-if="items.length > perPage" class="col-sm-6">
+                            <div v-if="filteredItems.length > 0" class="col-sm-6">
                                 <b-pagination
                                     v-model="currentPage"
                                     :total-rows="filteredItems.length"
