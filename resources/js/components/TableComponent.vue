@@ -63,7 +63,7 @@
                             <div v-if="items.length > perPage" class="col-sm-6">
                                 <b-pagination
                                     v-model="currentPage"
-                                    :total-rows="items.length"
+                                    :total-rows="filteredItems.length"
                                     :per-page="perPage"
                                     align="end"
                                 ></b-pagination>
@@ -178,6 +178,8 @@ const filteredItems = computed(() => {
     // if there are items, modify items array and return it
     // TODO: make function accept multiple keys - possible foreach?
     if (searchString.value) {
+        currentPage.value = 1;
+
         return items.filter(item =>
             item['service_summary'] !== null && item['service_summary'].toUpperCase().includes(searchString.value.toUpperCase())
         );
