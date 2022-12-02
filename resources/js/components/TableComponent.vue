@@ -164,7 +164,24 @@ const paginatedItems = computed(() => {
     const start = (currentPage.value - 1) * perPage.value;
     const end = currentPage.value * perPage.value;
 
+    return filteredItems.value.slice(start, end);
+})
+
 const filteredItems = computed(() => {
+    // if there are no items, return default items array
+    if (searchString.value === '') {   
+        return items;
+    }
+
+    // if there are items, modify items array and return it
+    // TODO: make function accept multiple keys - possible foreach?
+    if (searchString.value) {
+        return items.filter(item =>
+            item['service_summary'] !== null && item['service_summary'].toUpperCase().includes(searchString.value.toUpperCase())
+        );
+
+    }
+
 })
 
 function showModal(id, bodyType) {
