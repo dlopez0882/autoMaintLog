@@ -164,7 +164,7 @@ const paginatedItems = computed(() => {
     const start = (currentPage.value - 1) * perPage.value;
     const end = currentPage.value * perPage.value;
 
-    return props.items.slice(start, end);
+const filteredItems = computed(() => {
 })
 
 function showModal(id, bodyType) {
