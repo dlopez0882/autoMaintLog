@@ -25,7 +25,7 @@
                         <SearchComponent
                             :styleClass="`col-6 float-end`"
                             :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
-                            @submitSearch="submitSearch"
+                            @submitSearch="setSearchString"
                         ></SearchComponent>
                         <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
@@ -141,6 +141,8 @@ const itemId = ref('')
 const modalBody = ref('')
 const currentPage = ref(1)
 const perPage = ref(10)
+const searchString = ref('')
+const { items } = props
 
 const props = defineProps ({
     bootstrapColumns: String,
@@ -200,12 +202,7 @@ function makeSingularAndRemoveUnderscores(string) {
     return removeUnderscores(makeSingular(string));
 }
 
-// TODO: make function accept multiple keys - possible foreach?
-function submitSearch(value, key='service_summary') {
-    const filteredRecords = props.items.filter(item =>
-        item[key] !== null && item[key].toUpperCase().includes(value.toUpperCase())
-    );
-
-    console.log(filteredRecords);
+function setSearchString(value) {
+    searchString.value = value;
 }
 </script>
