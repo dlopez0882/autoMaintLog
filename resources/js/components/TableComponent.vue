@@ -22,11 +22,13 @@
                     </div>
 
                     <div class="card-body">
-                        <SearchComponent
-                            :styleClass="`col-6 float-end`"
-                            :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
-                            @submitSearch="setSearchString"
-                        ></SearchComponent>
+                        <div v-if="items.length > 0">
+                            <SearchComponent
+                                :styleClass="`col-6 float-end`"
+                                :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
+                                @submitSearch="setSearchString"
+                            ></SearchComponent>
+                        </div>
                         <div v-if="!filteredItems.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
