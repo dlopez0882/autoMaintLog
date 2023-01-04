@@ -162,7 +162,6 @@ const props = defineProps ({
     redirectUrl: String,
     ruleSet: String,
     tableHeader: String,
-    propsToCheck: Array,
 })
 
 const paginatedItems = computed(() => {
@@ -170,6 +169,17 @@ const paginatedItems = computed(() => {
     const end = currentPage.value * perPage.value;
 
     return filteredItems.value.slice(start, end);
+})
+
+const fieldsToFilter = computed(() => {
+    // declare array to return
+    const returnArray = [];
+
+    // push each 'name' element value from columns prop to returnArray 
+    props.columns.forEach(element => returnArray.push(element.name));
+
+    // return
+    return returnArray;
 })
 
 const filteredItems = computed(() => {
@@ -187,7 +197,7 @@ const filteredItems = computed(() => {
         // );
 
         return items.filter(obj =>
-            props.propsToCheck.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
+            fieldsToFilter.value.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
             )
         );
     }
