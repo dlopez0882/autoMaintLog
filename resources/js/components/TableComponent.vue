@@ -192,10 +192,6 @@ const filteredItems = computed(() => {
     if (searchString.value) {
         currentPage.value = 1;
 
-        // return items.filter(item =>
-        //     item['service_summary'] !== null && item['service_summary'].toUpperCase().includes(searchString.value.toUpperCase())
-        // );
-
         return items.filter(obj =>
             fieldsToFilter.value.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
             )
