@@ -34,6 +34,7 @@
     :redirect-url="'/vehicles/' + {{ $vehicleData->id }} + '/serviceitems'"
     :rule-set="'addserviceitem'"
     :table-header="'Service Log for {{ $vehicleData->year }} {{ $vehicleData->make }} {{ $vehicleData->model }}'"
+    :props-to-check="['service_summary', 'service_details', 'cost']"
     >
     <template v-slot:breadcrumb>
         <b-breadcrumb :items="[

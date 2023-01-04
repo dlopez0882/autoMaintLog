@@ -162,6 +162,7 @@ const props = defineProps ({
     redirectUrl: String,
     ruleSet: String,
     tableHeader: String,
+    propsToCheck: Array,
 })
 
 const paginatedItems = computed(() => {
@@ -170,9 +171,6 @@ const paginatedItems = computed(() => {
 
     return filteredItems.value.slice(start, end);
 })
-
-// TODO: make this dynamic. otherwise hardcode as prop from laravel blade.
-const propsToCheck = ['service_summary', 'service_details', 'cost'];
 
 const filteredItems = computed(() => {
     // if there are no items, return default items array
@@ -189,7 +187,7 @@ const filteredItems = computed(() => {
         // );
 
         return items.filter(obj =>
-            propsToCheck.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
+            props.propsToCheck.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
             )
         );
     }
