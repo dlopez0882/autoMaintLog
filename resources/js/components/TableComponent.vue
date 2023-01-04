@@ -171,6 +171,9 @@ const paginatedItems = computed(() => {
     return filteredItems.value.slice(start, end);
 })
 
+// TODO: make this dynamic. otherwise hardcode as prop from laravel blade.
+const propsToCheck = ['service_summary', 'service_details', 'cost'];
+
 const filteredItems = computed(() => {
     // if there are no items, return default items array
     if (searchString.value === '') {   
@@ -178,16 +181,18 @@ const filteredItems = computed(() => {
     }
 
     // if there are items, modify items array and return it
-    // TODO: make function accept multiple keys - possible foreach?
     if (searchString.value) {
         currentPage.value = 1;
 
-        return items.filter(item =>
-            item['service_summary'] !== null && item['service_summary'].toUpperCase().includes(searchString.value.toUpperCase())
+        // return items.filter(item =>
+        //     item['service_summary'] !== null && item['service_summary'].toUpperCase().includes(searchString.value.toUpperCase())
+        // );
+
+        return items.filter(obj =>
+            propsToCheck.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
+            )
         );
-
     }
-
 })
 
 function showModal(id, bodyType) {
