@@ -22,7 +22,14 @@
                     </div>
 
                     <div class="card-body">
-                        <div v-if="!items.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
+                        <div v-if="items.length > 0">
+                            <SearchComponent
+                                :styleClass="`col-6 float-end`"
+                                :placeholder="`${makeSingularAndRemoveUnderscores(tableName)} search`"
+                                @submitSearch="setSearchString"
+                            ></SearchComponent>
+                        </div>
+                        <div v-if="!filteredItems.length" class="mt-2 mb-2">No {{ removeUnderscores(tableName) }} found!</div>
                         <table v-else class="table table-striped task-table">
                             <!-- Table Headings -->
                             <thead>
@@ -55,10 +62,10 @@
 
                         <!-- paginator -->
                         <div class="row justify-content-end">
-                            <div v-if="items.length > perPage" class="col-sm-6">
+                            <div v-if="filteredItems.length > 0" class="col-sm-6">
                                 <b-pagination
                                     v-model="currentPage"
-                                    :total-rows="items.length"
+                                    :total-rows="filteredItems.length"
                                     :per-page="perPage"
                                     align="end"
                                 ></b-pagination>
@@ -123,6 +130,7 @@ import ConfirmationModalComponent from './ConfirmationModalComponent.vue';
 import FormModalComponent from './FormModalComponent.vue';
 import ModalComponent from './ModalComponent.vue'
 import DetailsBodyComponent from './DetailsBodyComponent.vue';
+import SearchComponent from './SearchComponent.vue';
 import { 
     uppercaseFirstLetterAndRemoveUnderscores, 
     removeUnderscores, 
@@ -135,6 +143,8 @@ const itemId = ref('')
 const modalBody = ref('')
 const currentPage = ref(1)
 const perPage = ref(10)
+const searchString = ref('')
+const { items } = props
 
 const props = defineProps ({
     bootstrapColumns: String,
@@ -158,7 +168,35 @@ const paginatedItems = computed(() => {
     const start = (currentPage.value - 1) * perPage.value;
     const end = currentPage.value * perPage.value;
 
-    return props.items.slice(start, end);
+    return filteredItems.value.slice(start, end);
+})
+
+const fieldsToFilter = computed(() => {
+    // declare array to return
+    const returnArray = [];
+
+    // push each 'name' element value from columns prop to returnArray 
+    props.columns.forEach(element => returnArray.push(element.name));
+
+    // return
+    return returnArray;
+})
+
+const filteredItems = computed(() => {
+    // if there are no items, return default items array
+    if (searchString.value === '') {   
+        return items;
+    }
+
+    // if there are items, modify items array and return it
+    if (searchString.value) {
+        currentPage.value = 1;
+
+        return items.filter(obj =>
+            fieldsToFilter.value.some(key => String(obj[key]).toUpperCase().includes(searchString.value.toUpperCase())
+            )
+        );
+    }
 })
 
 function showModal(id, bodyType) {
@@ -175,5 +213,9 @@ function closeModal() {
 
 function makeSingularAndRemoveUnderscores(string) {
     return removeUnderscores(makeSingular(string));
+}
+
+function setSearchString(value) {
+    searchString.value = value;
 }
 </script>
