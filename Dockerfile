@@ -7,7 +7,7 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/i
 WORKDIR /app
 COPY . /app
 
-RUN composer install --no-dev --no-interaction
+RUN composer install --no-dev
 
 RUN echo "#!/bin/sh\n" \
   "php artisan migrate --force\n" \
