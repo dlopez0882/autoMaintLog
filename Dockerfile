@@ -1,4 +1,4 @@
-FROM php:8
+FROM php:7
 
 RUN apt-get update; apt-get install -y wget libzip-dev
 RUN docker-php-ext-install zip pdo_mysql
