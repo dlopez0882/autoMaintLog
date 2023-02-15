@@ -1,7 +1,9 @@
 FROM php:8
 
-RUN echo "<?php\n"\
-    "print 'Hello World!';\n"\
-    "?>" > /opt/hello.php
+RUN echo "#!/bin/sh\n" \
+  "php artisan migrate\n" \
+  "php artisan serve --host 0.0.0.0 --port \$PORT" > /app/start.sh
 
-CMD ["php", "/opt/hello.php"]
+RUN chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
