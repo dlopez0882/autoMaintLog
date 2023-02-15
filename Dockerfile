@@ -7,10 +7,10 @@ RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/master/web/i
 WORKDIR /app
 COPY . /app
 
-RUN composer install --no-dev
+RUN composer install --no-dev --no-interaction
 
 RUN echo "#!/bin/sh\n" \
-  "php artisan migrate\n" \
+  "php artisan migrate --force\n" \
   "php artisan serve --host 0.0.0.0 --port \$PORT" > /app/start.sh
 
 RUN chmod +x /app/start.sh
